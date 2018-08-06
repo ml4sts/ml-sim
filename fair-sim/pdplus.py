@@ -1,39 +1,46 @@
 import pandas as import pd
 import numpy as np
+import os
 
 
-class pdplus:
+class provSeries(pandas.Series):
+    @property
+    def _constructor(self):
+        return provSeries
+
+    def custom_series_function(self):
+        return 'OK'
+
+class ProvDataFrame(pandas.DataFrame):
     """
-    a wrapper of pandas DataFrames that includes extra info for reproducibitliy
-    and writes out that information as well
-
-    accessing pdplus.df directly gives a pandas dataframe
+    a subclass extending pandas DataFrames to contain meta data about the
+    generating process
     """
 
-    def __init__(self,data,columns):
-        self.df = pd.DataFrame(data,columns)
-        self.seed = np
+    def __init__(self, *args, **kw):
+        super(ProvDataFrame, self).__init__(*args, **kw)
 
-    def save_pair(self, filename):
+    @property
+    def _constructor(self):
+        return ProvDataFrame
+
+    _constructor_sliced = provSeries
+
+    def to_csv(self, filename, path=os.pwd):
         """
-        save to two files, one _info.txt and one _data.csv
+        save to two files, in a folder one _info.txt and one _data.csv
 
-        filename should be full path, with no extension
+        filename should not include any extension
         """
-        self.df.to_csv(filename+'_data.csv')
+        full_path = os.path.join(path,filename)
+        os.mkdir(path,filename)
 
-    def save(self, filename):
+        self.to_csv(os.path.join(full_path,filename,'_data.csv'))
+
+    def load(self,filename, path=os.pwd):
         """
-        save to a txt file that's~ two csv files
-
-        filename should be full path, with no extension
+        load from data saved previously as this type of object
         """
+        full_path = os.path.join(path,filename)
 
-        self.df.to_csv('tmp.csv')
-
-        with open('tmp.csv', 'r') as dat_only:
-            data = dat_only.read()
-
-        # for prepending other data as
-        with open(filename, 'w') as full:
-            full.write("new first line\n" + data)
+        self.df = pd.read_csv()
