@@ -76,7 +76,7 @@ def geometric_indep_views_gmm_sp(d,r_clusters,cluster_size,cluster_spread,p_sp_c
     numeric_categorical=False
         use numerical (ordinal) values instead of letters
     """
-    log_info = format_log(locals(),'geometric_indep_views_gmm_sp')
+    # log_info = format_log(locals(),'geometric_indep_views_gmm_sp')
 
     # if not defined, set uniform cluster probaiblity
     if p_clusters is None:
@@ -207,3 +207,52 @@ def data_only_geometric_2d_gmm(r_clusters,cluster_size,cluster_spread,p_sp_clust
                                         cluster_covs[c_sp[z_i]]) for z_i in z])
 
     return x,z
+
+
+def generate_rate_sp(N):
+    """
+    induce SP in the form of the Berkeley Admissions Example
+
+    Parameters
+    ----------
+    N : scalar
+        number of samples to draw
+    """
+
+    # must have imbalance
+    p_explanatory = [.15,.2,.1,.55]
+    #protected, given explantory, largest explantory should have fipped rates
+    # larger subgroup should have opposite protected class balance
+    p_protected_explanatory = [[.7, .3],[.8,.2],[.85,.15],[.2,.8]]
+    protected_list = ['F','M']
+    # need to have higher accept in the larger subgroup,
+    p_outcome_all = [{'F':.18,'M':.12},{'F':.17,'M':.1},
+                           {'F':.30,'M':.27},{'F':.35,'M':.30}]
+
+    df = def gen_rate(N, p_explanatory, p_protected_explanatory,p_outcome_all)
+
+    return df
+
+
+def gen_rate(N, p_explanatory, p_protected_explanatory,p_outcome_all):
+    """
+    sampler that takes in probabilities
+
+    Parameters
+    ----------
+    N : scalar
+        number of samples to draw
+    """
+    protected_list = ['F','M']
+    explantory = np.random.choice(list(range(len(p_explanatory))),
+                                    size=N, p =p_dept)
+    protected = [np.random.choice(protected_list, p=p_protected_explanatory[e])
+                                    for e in explantory]
+    p_outcome =[ p_outcome_all[e][p] for e,p in zip(explantory,protected)]
+
+    outcome = [np.random.choice([1,0], p = [p,1-p]) for p in p_outcome]
+    data = [[e,p,o] for e,p,o in zip(explantory,protected,outcome)]
+
+    df = pd.DataFrame(data = data, columns=['explanatory','protected','outcome'])
+
+    return df
