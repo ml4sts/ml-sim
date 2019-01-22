@@ -11,12 +11,12 @@ To use the package, download (or clone) and:
 
 .. code-block:: bash
 
-  cd fair-sim/
+  cd ml-sim/
   pip install .
 
 To use the package, after installed::
 
-  import fair-sim
+  import mlsim
 
 
 
