@@ -1,6 +1,6 @@
 Fair-Sim:
 =========
-Synthetic Data generators for fairness evaluation
+Synthetic Data generators for ML  evaluation
 
 Getting Started
 ================

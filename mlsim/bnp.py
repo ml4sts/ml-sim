@@ -1,42 +1,10 @@
 import numpy as np
 
 # CRP samplers
-def sample_CRP(N, alpha):
+def sample_CRP(N, alpha,d =0):
     """
-    sample from a Dirichlet process via the Chinese Restaraunt process
-
-    Parameters
-    -----------
-    N : scalar, integer
-        number of samples to return
-    alpha : scalar >0
-        concentration parameter
-
-    Returns
-    --------
-    z : list
-        list of integers in [0,K] sampled from the CRP, where E[K]=Nlog(alpha)
-    """
-    # initialize
-    pi = [1]
-
-    z = []
-
-    # draw samples
-    for n in range(N):
-        # sample from pi
-        z.append(np.random.choice(len(pi),p=pi))
-        K = max(z) +1
-        # update counts
-        counts,e = np.histogram(z,bins = np.arange(K+1)-.5)
-        # append alpha and normalize to a distribution
-        pi = np.append(counts,alpha)/(alpha + n +1.0)
-
-    return z
-
-def sample_CRP(N, alpha,d):
-    """
-    sample from a Pitman-Yor process via the Chinese Restaraunt process
+    sample from a Pitman-Yor process via the Chinese Restaraunt process, default
+    value of d=0 samples from a Dirichlet process
 
     Parameters
     -----------

@@ -1,6 +1,10 @@
+"""
+commonly used basic generators
+"""
 import numpy as np
-
 import scipy.stats as stats
+
+
 
 def means_with_spread(mu_mu,cov,k):
     """
@@ -38,7 +42,7 @@ def means_with_spread(mu_mu,cov,k):
     while len(mu) <= k:
         m = next_sample()
         p_keep = 1- dist(mu,m)
-        if p_keep > .99:
+        if p_keep > .97:
             mu.append(m)
             p_dist.append(p_keep)
 
