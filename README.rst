@@ -1,4 +1,4 @@
-Fair-Sim:
+ML-Sim:
 =========
 Synthetic Data generators for ML  evaluation
 
