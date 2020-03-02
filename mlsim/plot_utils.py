@@ -5,7 +5,8 @@ import matplotlib.markers as mk
 import matplotlib.pylab as plt
 
 
-def sp_plot(df, x_col, y_col, color_col,ci = None,domain_range=[0, 20, 0 , 20],ax=None):
+def sp_plot(df, x_col, y_col, color_col,ci = None,domain_range=[0, 20, 0 , 20],
+            ax=None,aggplot=True,x_jitter=0,height=3,legend=True):
     """
     create SP vizualization plot from 2 columns of a df
     """
@@ -24,10 +25,11 @@ def sp_plot(df, x_col, y_col, color_col,ci = None,domain_range=[0, 20, 0 , 20],a
 
 
     sns.lmplot(x_col, y_col, data=df, hue=color_col, ci=ci,
-                   markers =cur_markers, palette="Set1")
-
-    # adda whole data regression line, but don't cover the scatter data
-    sns.regplot(x_col, y_col, data=df, color='black', scatter=False, ci=ci)
+                   markers =cur_markers, palette="Set1",x_jitter=x_jitter,
+                   height=height,legend=legend)
+    if aggplot:
+        # adda whole data regression line, but don't cover the scatter data
+        sns.regplot(x_col, y_col, data=df, color='black', scatter=False, ci=ci,)
 
     plt.axis(domain_range)
 

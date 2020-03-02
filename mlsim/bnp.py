@@ -1,3 +1,6 @@
+"""
+Bayesian nonparametric samplers
+"""
 import numpy as np
 
 # CRP samplers
