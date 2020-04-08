@@ -7,7 +7,7 @@
 # d - int, number of features
 # mu - array of arrays with dimensions [a][z]
 # d_shared - int, number of shared features
-def feature_bias2(rho_a, rho_z, beta, N, d, d_shared, mu):
+def feature_bias(rho_a, rho_z, beta, N, d, d_shared, mu):
     '''
     '''
     # portion of disadvantaged group
@@ -18,26 +18,22 @@ def feature_bias2(rho_a, rho_z, beta, N, d, d_shared, mu):
 
     a = np.random.choice([0,1], p=p_a, size=N)
     z = np.random.choice([0,1], p=p_z, size=N)
+    y = z
     x = [np.random.multivariate_normal(mu[a_i][z_i],cov) for a_i, z_i in zip(a,z)]
 
     x = np.asarray(x)
+    # concatenate the data and p
+    data = np.concatenate([labels_protected,x],axis=1)
 
-    y = z
-    data = np.asarray([a,z,y]).T
-    df = pd.DataFrame(data=data, columns = ['a','z','y'])
-
-    var_list = []
-    for i in range(d):
-        var = 'x' + str(i)
-        df[var] = x[:,i]
-        var_list.append(var)
-
-    df.head()
+    labels =['a','z','y']
+    labels.extend(['x'+str(i) for i in range(d_total)])
+    df = pd.DataFrame(data=data, columns = labels)
 
     return df
 
-def feature_bias(rho_a, rho_z, beta, N, d, d_shared, mu):
+def subspace_bias(rho_a, rho_z, beta, N, d, d_shared, mu):
     '''
+
     '''
     p_a = [1-rho_a, rho_a]
     p_z = [1-rho_z, rho_z]
@@ -49,6 +45,8 @@ def feature_bias(rho_a, rho_z, beta, N, d, d_shared, mu):
 
     a = np.random.choice([0,1], p=p_a, size=N)
     z = np.random.choice([0,1], p=p_z, size=N)
+    y = z
+    labels_protected = np.asarray([a,z,y]).T
     x_z = [np.random.multivariate_normal(mu[z_i],cov) for z_i in z]
     x_n = np.random.multivariate_normal([0]*d_noise,np.eye(d_noise),N)
         # functions for combining noise and true vectors
@@ -56,17 +54,14 @@ def feature_bias(rho_a, rho_z, beta, N, d, d_shared, mu):
           1: lambda x,n: np.concatenate((n, x[d_shared-1:d],  x[:d_noise]))}
     x = [x_a[a](x_zi,x_ni) for a,x_zi,x_ni in zip(a,x_z,x_n)]
     x = np.asarray(x)
+    # concatenate the data and p
+    data = np.concatenate([labels_protected,x],axis=1)
+
+    labels =['a','z','y']
+    labels.extend(['x'+str(i) for i in range(d_total)])
+    df = pd.DataFrame(data=data, columns = labels)
 
 
-    y = z
-    data = np.asarray([a,z,y]).T
-    df = pd.DataFrame(data=data, columns = ['a','z','y'])
-
-    var_list = []
-    for i in range(d_total):
-        var = 'x' + str(i)
-        df[var] = x[:,i]
-        var_list.append(var)
 
     return df
 
