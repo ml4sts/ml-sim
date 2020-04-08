@@ -1,26 +1,22 @@
 # generators for biased data by models
-
-# rho_a - float
-# rho_z - float
-# beta - float array size 2, error rate for each group
-# N - int, number of samples
-# d - int, number of features
-# mu - array of arrays with dimensions [a][z]
-# d_shared - int, number of shared features
 def feature_bias(rho_a, rho_z, N, d, d_shared, mu):
     '''
+    Bias that occurs when different features are information for different protected classes (d not shared)
+    
     Parameters
     -----------
     rho_a : float
         p(a = 1)
     rho_z : float
-        p(z=1)
+        p(z = 1)
     N : int
          number of samples
     mu : matrix like, 2xD
-        mu[0] is the mean for z=0, D= len(mu[0]) = numbe of features
-    d :
-    d_shared :
+        mu[0] is the mean for z=0, D= len(mu[0]) = number of features
+    d : int
+        total number of features
+    d_shared : int
+        number of shared features
 
     Returns
     --------
@@ -50,6 +46,7 @@ def feature_bias(rho_a, rho_z, N, d, d_shared, mu):
 
 def subspace_bias(rho_a, rho_z,  N, d, d_shared, mu):
     '''
+    This is feature bias without noise 
 
     Parameters
     -----------
@@ -60,9 +57,11 @@ def subspace_bias(rho_a, rho_z,  N, d, d_shared, mu):
     N : int
          number of samples
     mu : matrix like, 2xD
-        mu[0] is the mean for z=0, D= len(mu[0]) = numbe of features
-    d :
-    d_shared :
+        mu[0] is the mean for z=0, D= len(mu[0]) = number of features
+    d : int
+        total number of features
+    d_shared : int
+        number of shared features
 
     Returns
     --------
@@ -95,14 +94,11 @@ def subspace_bias(rho_a, rho_z,  N, d, d_shared, mu):
     labels.extend(['x'+str(i) for i in range(d_total)])
     df = pd.DataFrame(data=data, columns = labels)
 
-
-
     return df
 
 def label_bias(rho_a, rho_z, beta, N, mu, cov):
     '''
     Bias where the labeling errors are correlated with the protected attribute
-
 
     Parameters
     -----------
