@@ -7,8 +7,25 @@
 # d - int, number of features
 # mu - array of arrays with dimensions [a][z]
 # d_shared - int, number of shared features
-def feature_bias(rho_a, rho_z, beta, N, d, d_shared, mu):
+def feature_bias(rho_a, rho_z, N, d, d_shared, mu):
     '''
+    Parameters
+    -----------
+    rho_a : float
+        p(a = 1)
+    rho_z : float
+        p(z=1)
+    N : int
+         number of samples
+    mu : matrix like, 2xD
+        mu[0] is the mean for z=0, D= len(mu[0]) = numbe of features
+    d :
+    d_shared :
+
+    Returns
+    --------
+    df : DataFrame
+        a data frame with N rows and columns: a,y,z, x0:xD
     '''
     # portion of disadvantaged group
     p_a = [1-rho_a, rho_a]
@@ -31,9 +48,26 @@ def feature_bias(rho_a, rho_z, beta, N, d, d_shared, mu):
 
     return df
 
-def subspace_bias(rho_a, rho_z, beta, N, d, d_shared, mu):
+def subspace_bias(rho_a, rho_z,  N, d, d_shared, mu):
     '''
 
+    Parameters
+    -----------
+    rho_a : float
+        p(a = 1)
+    rho_z : float
+        p(z=1)
+    N : int
+         number of samples
+    mu : matrix like, 2xD
+        mu[0] is the mean for z=0, D= len(mu[0]) = numbe of features
+    d :
+    d_shared :
+
+    Returns
+    --------
+    df : DataFrame
+        a data frame with N rows and columns: a,y,z, x0:xD
     '''
     p_a = [1-rho_a, rho_a]
     p_z = [1-rho_z, rho_z]
@@ -88,7 +122,7 @@ def label_bias(rho_a, rho_z, beta, N, mu, cov):
     Returns
     --------
     df : DataFrame
-        a data frame with N rows and columns: a,y,z, x0,x1
+        a data frame with N rows and columns: a,y,z, x0:xD
 
     '''
     p_a = [1-rho_a, rho_a]
