@@ -1,3 +1,7 @@
+import pandas as pd
+import numpy as np
+import aif360.datasets
+
 # generators for biased data by models
 def feature_bias(rho_a, rho_z, N, d, mu):
     '''
@@ -55,7 +59,7 @@ def subspace_bias(rho_a, rho_z,  N, d, d_shared, mu):
     N : int
          number of samples
     mu : matrix like, 2xD
-        mu[0] is the mean for a=0, mu[0][0] is the mean for a=0, z=0, D= len(mu[0][0) = number of features
+        mu[0] is the mean for a=0, mu[0][0] is the mean for a=0, z=0, D = len(mu[0][0) = number of features
     d : int
         total number of features
     d_shared : int
@@ -136,3 +140,20 @@ def label_bias(rho_a, rho_z, beta, N, mu, cov):
     df = pd.DataFrame(data=data, columns = labels)
 
     return df
+
+def convert_to_dataset(df, label_names, protected_attribute_names):
+    '''
+    Converts a dataframe created by one of the above functions into a dataset usable in IBM 360 package
+
+    Parameters
+    -----------
+    df : pandas dataframe
+    label_names : optional, a list of strings describing each label
+    protected_attribute_names : optional, a list of strings describing features corresponding to      protected attributes
+
+    Returns
+    --------
+    aif360.datasets.StructuredDataset
+
+    '''
+    return aif360.datasets.StructuredDataset(df, label_names, protected_attribute_names)
