@@ -6,7 +6,7 @@ import aif360.datasets
 def feature_bias(rho_a, rho_z, N, d, mu):
     '''
     Bias that occurs when different protected attributes have different means (mu)
-    
+
     Parameters
     -----------
     rho_a : float
@@ -48,7 +48,7 @@ def feature_bias(rho_a, rho_z, N, d, mu):
 
 def subspace_bias(rho_a, rho_z,  N, d, d_shared, mu):
     '''
-    Bias that occurs when different features are informative for different protected classes (d not shared) 
+    Bias that occurs when different features are informative for different protected classes (d not shared)
 
     Parameters
     -----------
