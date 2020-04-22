@@ -4,7 +4,7 @@ import pandas as pd
 def demographic_template(N):
     a = np.random.choice([0,1], size=N)
     z = np.random.choice([0,1], size=N)
-    return np.asarray([a,z]).T
+    return np.asarray(a).T,np.asarray(z).T
 
 def target_template(a,z, beta):
     y = z
@@ -52,12 +52,16 @@ class Population():
         sample N members of the  population, according to its underlying
         distribution
         '''
-        a,z
-
+        a,z = self.demographic_sampler(N)
+        y = self.target_sampler(a,z,)
+        x = self.feature_sampler(a,z,y)
+        x = self.feature_noise_sampler(a,z,y,x)
+        D,_ = x.shape
         # concatenate the data and p
-        data = np.concatenate([labels_protected,x],axis=1)
+        data = np.concatenate([a,z,y,x],axis=1)
         labels =['a','z','y']
         labels.extend(['x'+str(i) for i in range(D)])
+
         df = pd.DataFrame(data=data, columns = labels)
 
         return df

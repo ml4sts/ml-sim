@@ -33,7 +33,7 @@ def demographic_independent(N,rho_a, rho_z):
     a = np.random.choice([0,1], p=p_a, size=N)
     z = np.random.choice([0,1], p=p_z, size=N)
 
-    return np.asarray([a,z]).T
+    return np.asarray(a).T,np.asarray(z).T
 
 
 def target_disadvantaged_error(a,z,beta):
