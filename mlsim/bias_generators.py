@@ -38,7 +38,7 @@ def feature_bias(rho_a, rho_z, N, d, mu):
 
     x = np.asarray(x)
     # concatenate the data and p
-    data = np.concatenate([labels_protected,x],axis=1)
+    data = np.concatenate([np.asarray([a,z,y]).T,x],axis=1)
 
     labels =['a','z','y']
     labels.extend(['x'+str(i) for i in range(d)])
