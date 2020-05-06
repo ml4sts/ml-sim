@@ -136,7 +136,7 @@ def label_bias(rho_a, rho_z, beta, N, mu, cov):
     # concatenate the data and p
     data = np.concatenate([labels_protected,x],axis=1)
     labels =['a','z','y']
-    labels.extend(['x'+str(i) for i in range(D)])
+    labels.extend(['x'+str(i) for i in range(len(mu[0]))])
     df = pd.DataFrame(data=data, columns = labels)
 
     return df
