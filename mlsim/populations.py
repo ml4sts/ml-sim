@@ -1,38 +1,18 @@
 import numpy as np
 import pandas as pd
+from .bias_components import Demographic, Target, Feature, FeatureNoise
 
-def demographic_template(N):
-    a = np.random.choice([0,1], size=N)
-    z = np.random.choice([0,1], size=N)
-    return np.asarray(a).T,np.asarray(z).T
-
-def target_template(a,z, beta):
-    y = z
-    return np.asarray(y).T
-
-def feature_template(a,z,y,dist,theta):
-    '''
-    features sampled per true group only
-
-    dist : function handle
-    theta : params of dist, one per value of z
-    '''
-    x = [dist(theta[z_i]) for z_i in z]
-    return np.asarray(x)
-
-def feature_noise_template(a,z,y,x,dist,theta):
-    '''
-    no noise added
-    '''
-    return x
-
+default_params = {'dem':None,}
 
 class Population():
     '''
-    base class
+    Object for describing a population so that sampling from the population
+    and biased samples are possible, where there may be an underlying from
     '''
-    def __init__(self, demographic_sampler, target_sampler, feature_sampler,
-                feature_noise_sampler, parameter_dictionary):
+    def __init__(self, demographic_sampler= Demographic,
+                target_sampler = Target,
+                feature_sampler = Feature,
+                feature_noise_sampler = FeatureNoise, parameter_dictionary = {}):
         '''
         initialize a population based on the way to sample from it
 
@@ -41,65 +21,149 @@ class Population():
         population_sampler : function handle
             function to sample from the distribution
         '''
-        self.parameters  = parameter_dictionary
-        self.demographic_sampler = demographic_sampler
-        self.target_sampler = target_sampler
-        self.feature_sampler = feature_sampler
-        self.feature_noise_sampler = feature_noise_sampler
 
-    def sample_population(self, N):
+
+        required_keys = ['dem','target','feat','featnoise']
+
+        #ensure required keys are set
+        for key in required_keys:
+            if not(key in parameter_dictionary.keys()):
+                parameter_dictionary[key]= None
+
+        dem_params = parameter_dictionary['dem']
+        target_params = parameter_dictionary['target']
+        feat_params = parameter_dictionary['feat']
+        featnoise_params = parameter_dictionary['featnoise']
+
+        # initialize objects for each, with parameters if provided
+        if dem_params:
+            self.demographic_sampler = demographic_sampler(dem_params)
+        else:
+            self.demographic_sampler = demographic_sampler()
+
+        if target_params:
+            self.target_sampler = target_sampler(target_params)
+        else:
+            self.target_sampler = target_sampler()
+
+        if feat_params:
+            self.feature_sampler = feature_sampler(feat_params)
+        else:
+            self.feature_sampler = feature_sampler()
+
+        if featnoise_params:
+            self.feature_noise_sampler = feature_noise_sampler(featnoise_params)
+        else:
+            self.feature_noise_sampler = feature_noise_sampler()
+
+
+    def sample(self, N,return_as = 'dataframe'):
         '''
         sample N members of the  population, according to its underlying
         distribution
         '''
-        a,z = self.demographic_sampler(N)
-        y = self.target_sampler(a,z,)
-        x = self.feature_sampler(a,z,y)
-        x = self.feature_noise_sampler(a,z,y,x)
-        D,_ = x.shape
-        # concatenate the data and p
-        data = np.concatenate([a,z,y,x],axis=1)
-        labels =['a','z','y']
-        labels.extend(['x'+str(i) for i in range(D)])
+        a,z = self.demographic_sampler.sample(N)
+        y = self.target_sampler.sample(a,z)
+        x = self.feature_sampler.sample(a,z,y)
+        x = self.feature_noise_sampler.sample(a,z,y,x)
 
-        df = pd.DataFrame(data=data, columns = labels)
+        if return_as == 'dataframe':
+            df = self.make_DataFrame(a,z,y,x)
+        # TODO elif option to return as ibm strucutred dataset
 
         return df
 
-    def sample_unfavorable(self,N,skew):
+    def sample_unfavorable_outcomes(self,N,rho_z_scale):
         '''
         sample so that the disadvantaged group (a=1) gets the favorable
-        outcome (y=1) less often based on the skew
+        outcome (y=1) less often based on the rho_z_scale
+        '''
+        # get original demographic parameters
+        rho_z0 = self.demographic_sampler.get_rho_z()
+        rho_a = self.demographic_sampler.get_rho_a()
+        # scale rho_a
+        rho_z = [rho_z0[0],rho_z0[1]*rho_z_scale]
+        # sameple the demongraphic vars with the new sampler
+        self.unfavorable_dem = DemographicCorrelated(rho_a,rho_z)
+        a,z = self.unfavorable_dem.sample(N)
+
+        # sample the rest as usual
+        y = self.target_sampler.sample(a,z)
+        x = self.feature_sampler.sample(a,z,y)
+        x = self.feature_noise_sampler.sample(a,z,y,x)
+
+        return make_DataFrame(a,z,y,x)
+
+    def make_DataFrame(self,a,z,y,x):
+        '''
+        combine into data frame with labels
+        '''
+        # concatenate the data and p
+        azy = np.vstack([a,z,y]).T
+        data = np.concatenate([azy,x],axis=1)
+        labels =['a','z','y']
+        _,D = x.shape
+        labels.extend(['x'+str(i) for i in range(D)])
+
+        return pd.DataFrame(data=data, columns = labels)
+
+    def make_StructuredDataset(a,z,y,x):
+        '''
+        Converts a dataframe created by one of the above functions into a dataset usable in IBM 360 package
+
+        Parameters
+        -----------
+        df : pandas dataframe
+        label_names : optional, a list of strings describing each label
+        protected_attribute_names : optional, a list of strings describing
+        features corresponding to      protected attributes
+
+        Returns
+        --------
+        aif360.datasets.StructuredDataset
+
+        '''
+        df = make_DataFrame(a,z,y,x)
+        #  TODO: fix this
+        return aif360.datasets.StructuredDataset(df, label_names, ['a'])
+
+    def get_parameter_description(self):
+        '''
+        '''
+        description = ''
+
+
+        description += 'Demographic Parameters\n'
+        description += self.demographic_sampler.params.__str__()
+        description += '\nTarget Parameters \n'
+        description += self.target_sampler.params.__str__()
+        description += '\nFeature Parameters \n'
+        description += self.feature_sampler.params.__str__()
+        description += '\nFeature Noise Parameters \n'
+        description += self.feature_noise_sampler.params.__str__()
+
+        return description
+
+
+class PopulationInstantiated(Population):
+    '''
+    Object for describing a population so that sampling from the population
+    and biased samples are possible, where there may be an underlying from
+    '''
+    def __init__(self, demographic_sampler= Demographic(),
+                target_sampler = Target(),
+                feature_sampler = Feature(),
+                feature_noise_sampler = FeatureNoise()):
+        '''
+        initialize a population based on the way to sample from it
+
+        Parameters:
+        -----------
+        population_sampler : function handle
+            function to sample from the distribution
         '''
 
-
-    def
-
-
-
-
-def sample_bias(df,frac,favor_factor,sample_name = 'train'):
-    '''
-    sample to favor a=1 by favor_ratio amount in percent of the dataset
-
-    Parameters
-    -----------
-    df : DataFrame
-    percent : float
-        percentage of the data to include in the sample
-    favor_ratio : float
-        how much to overrepresent a=1.
-
-    Returns
-    -------
-    df : DataFrame
-        data frame with an added column
-    '''
-    N = len(df)
-
-    weights_a = {0:1, 1:favor_factor}
-    p_sample = lambda row: weights_a[row['a']]
-
-    weights = df.apply(p_sample)
-
-    sample_df = df.sample(frac =percent,weights)
+        self.demographic_sampler = demographic_sampler
+        self.target_sampler = target_sampler
+        self.feature_sampler = feature_sampler
+        self.feature_noise_sampler = feature_noise_sampler
