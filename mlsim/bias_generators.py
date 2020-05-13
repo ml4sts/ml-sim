@@ -153,7 +153,8 @@ def convert_to_dataset(df, label_names, protected_attribute_names):
     -----------
     df : pandas dataframe
     label_names : optional, a list of strings describing each label
-    protected_attribute_names : optional, a list of strings describing features corresponding to      protected attributes
+    protected_attribute_names : optional, a list of strings describing features corresponding to      
+                                protected attributes
 
     Returns
     --------
