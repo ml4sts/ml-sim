@@ -189,12 +189,18 @@ class Feature(Sampler):
     '''
     '''
     ParamCreator = FeatureParams
-    def __init__(self,dist= mean_only_mvn,mu = [[5,2],[2,5]]):
+    def __init__(self,dist= mean_only_mvn,mu = [[5,2],[2,5]],
+                            param_tuple = None):
         '''
         '''
         # same mean for both values of y and a
-        theta = [[mu,mu],[mu, mu]]
-        super().__init__((dist,theta))
+        if param_tuple:
+            # used by subclasses
+            super().__init__(param_tuple)
+        else:
+            # default params passed
+            theta = [[mu,mu],[mu, mu]]
+            super().__init__((dist,theta))
 
     def sample(self,a,z,y):
         '''
@@ -224,7 +230,7 @@ class FeatureSharedParam(Feature):
 
         theta_z = [(li,spread) for li in loc]
         theta = [[theta_z,theta_z],[theta_z, theta_z]]
-        super().__init__((dist,theta))
+        super().__init__(param_tuple=(dist,theta))
 
 class FeatureTwoParams(Feature):
     '''
@@ -236,7 +242,7 @@ class FeatureTwoParams(Feature):
 
         theta_z = [(li,si) for li,si in zip(loc,spread)]
         theta = [[theta_z,theta_z],[theta_z, theta_z]]
-        super().__init__((dist,theta))
+        super().__init__(param_tuple=(dist,theta))
 
 class FeaturePerGroupTwoParam(Feature):
     '''
@@ -251,9 +257,9 @@ class FeaturePerGroupTwoParam(Feature):
         '''
         theta_za = [[(lii,sii) for lii,sii in zip(li,si)] for li,si in zip(loc,spread)]
         theta = [theta_za,theta_za]
-        super().__init__((dist,theta))
+        super().__init__(param_tuple=(dist,theta))
 
-class FeaturePerGroupSharedParam(Feature):
+class FeaturePerGroupSharedParamWithinGroup(Feature):
     '''
     '''
     def __init__(sel,dist,loc,spread):
@@ -264,9 +270,26 @@ class FeaturePerGroupSharedParam(Feature):
         ----------
         theta :
         '''
-        theta_za = [[(lii,spread) for lii in zip(li)] for li in zip(loc)]
+        theta_za = [[(laizi,covzi) for laizi,covzi in zip(laiz,spread)] for laiz in loc]
+        # same for both values fo y
         theta = [theta_za,theta_za]
-        super().__init__((dist,theta))
+        super().__init__(param_tuple=(dist,theta))
+
+class FeaturePerGroupSharedParamAcrossGroups(Feature):
+    '''
+    '''
+    def __init__(sel,dist,loc,spread):
+        '''
+        for feature bias
+
+        Parameters
+        ----------
+        theta :
+        '''
+        theta_za = [[(laizi,spread) for laizi in laiz] for laiz in loc]
+        # same for both values fo y
+        theta = [theta_za,theta_za]
+        super().__init__(param_tuple=(dist,theta))
 
 class FeatureMeasurementQualityProxy(Feature):
     '''
@@ -288,7 +311,7 @@ class FeatureMeasurementQualityProxy(Feature):
         theta_yaz = [[[(lii,sii) for lii,sii in zip(li,si)]
                                 for li in loc] for si in spread]
 
-        super().__init__((dist,theta_yaz))
+        super().__init__(param_tuple=(dist,theta_yaz))
 
 
 shape_spread_only_mvn = lambda x,cov: x + np.random.multivariate_normal([0]*len(x),cov*np.eye(len(x)))
