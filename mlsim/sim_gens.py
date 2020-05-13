@@ -83,12 +83,12 @@ def subspace_sim(rho_a, rho_z,  N, d, d_shared, mu, classifier):
     return df3
     
     
-def label_sim(rho_a, rho_z, beta, N, mu, cov, classifier):
+def label_sim(rho_a, rho_z, beta, N, d, mu, classifier):
     '''
     '''
-    df1 = bias_generators.label_bias(rho_a, rho_z, beta, N, mu, cov)
-    df2 = bias_generators.label_bias(rho_a, rho_z, beta, N, mu, cov)
-    df3 = bias_generators.label_bias(rho_a, rho_z, beta, N, mu, cov)
+    df1 = bias_generators.label_bias(rho_a, rho_z, beta, N, d, mu)
+    df2 = bias_generators.label_bias(rho_a, rho_z, beta, N, d, mu)
+    df3 = bias_generators.label_bias(rho_a, rho_z, beta, N, d, mu)
     
     y1 = df1['y']
     y2 = df2['y']
