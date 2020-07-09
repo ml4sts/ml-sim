@@ -16,7 +16,8 @@ def feature_bias(rho_a, rho_z, N, d, mu):
     N : int
          number of samples
     mu : matrix like, 2xD
-        mu[0] is the mean for z=0, D= len(mu[0]) = number of features
+        mu[0] is the mean for a=0, mu[0][0] is the mean for a=0, z=0, 
+        D = len(mu[0][0]) = number of features
     d : int
         total number of features
 
@@ -38,7 +39,7 @@ def feature_bias(rho_a, rho_z, N, d, mu):
 
     x = np.asarray(x)
     # concatenate the data and p
-    data = np.concatenate([labels_protected,x],axis=1)
+    data = np.concatenate([np.asarray([a,z,y]).T,x],axis=1)
 
     labels =['a','z','y']
     labels.extend(['x'+str(i) for i in range(d)])
@@ -48,7 +49,10 @@ def feature_bias(rho_a, rho_z, N, d, mu):
 
 def subspace_bias(rho_a, rho_z,  N, d, d_shared, mu):
     '''
-    Bias that occurs when different features are informative for different protected classes (d not shared)
+
+    Bias that occurs when different features are informative for different protected classes 
+    (d not shared) 
+
 
     Parameters
     -----------
@@ -59,7 +63,7 @@ def subspace_bias(rho_a, rho_z,  N, d, d_shared, mu):
     N : int
          number of samples
     mu : matrix like, 2xD
-        mu[0] is the mean for a=0, mu[0][0] is the mean for a=0, z=0, D = len(mu[0][0) = number of features
+        mu[0] is the mean for z=0, D = len(mu[0]) = number of features
     d : int
         total number of features
     d_shared : int
@@ -98,7 +102,7 @@ def subspace_bias(rho_a, rho_z,  N, d, d_shared, mu):
 
     return df
 
-def label_bias(rho_a, rho_z, beta, N, mu, cov):
+def label_bias(rho_a, rho_z, beta, N, d, mu):
     '''
     Bias where the labeling errors are correlated with the protected attribute
 
@@ -111,11 +115,11 @@ def label_bias(rho_a, rho_z, beta, N, mu, cov):
     beta : float
         error rate in y, p(y=z) = 1-beta
     N : int
-         number of samples
+        number of samples
+    d : int
+        number of features
     mu : matrix like, 2xD
-        mu[0] is the mean for z=0, D= len(mu[0]) = number of features
-    cov : 2x2
-        covariance, shared across classes
+        mu[0] is the mean for z=0, D = len(mu[0]) = number of features
 
     Returns
     --------
@@ -125,6 +129,8 @@ def label_bias(rho_a, rho_z, beta, N, mu, cov):
     '''
     p_a = [1-rho_a, rho_a]
     p_z = [1-rho_z, rho_z]
+    
+    cov = np.eye(d)
 
     a = np.random.choice([0,1], p=p_a, size=N)
     z = np.random.choice([0,1], p=p_z, size=N)
@@ -136,7 +142,7 @@ def label_bias(rho_a, rho_z, beta, N, mu, cov):
     # concatenate the data and p
     data = np.concatenate([labels_protected,x],axis=1)
     labels =['a','z','y']
-    labels.extend(['x'+str(i) for i in range(D)])
+    labels.extend(['x'+str(i) for i in range(len(mu[0]))])
     df = pd.DataFrame(data=data, columns = labels)
 
     return df
@@ -149,7 +155,8 @@ def convert_to_dataset(df, label_names, protected_attribute_names):
     -----------
     df : pandas dataframe
     label_names : optional, a list of strings describing each label
-    protected_attribute_names : optional, a list of strings describing features corresponding to      protected attributes
+    protected_attribute_names : optional, a list of strings describing features corresponding to      
+                                protected attributes
 
     Returns
     --------
