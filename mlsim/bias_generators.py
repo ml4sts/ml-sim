@@ -158,7 +158,7 @@ def convert_to_dataset(df, label_names, protected_attribute_names):
 
     Returns
     --------
-    aif360.datasets.StructuredDataset
+    aif360.datasets.BinaryLabelDataset
 
     '''
-    return aif360.datasets.StructuredDataset(df, label_names, protected_attribute_names)
+    return aif360.datasets.BinaryLabelDataset(1.0, 0.0, df = df, label_names = label_names, protected_attribute_names = protected_attribute_names)
