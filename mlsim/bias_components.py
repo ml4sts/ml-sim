@@ -173,14 +173,49 @@ class TargetTwoError(Target):
     '''
     def __init__(self,beta=[0,.1]):
         '''
-        P(Y=Z|A=1,Z ) = P(Y=Z|A=1) = 1-beta
-        P(Y=Z|A=0,Z ) = P(Y=Z|A=0) = 1
+        P(Y=Z|A=1,Z ) = P(Y=Z|A=1) = 1-beta1
+        P(Y=Z|A=0,Z ) = P(Y=Z|A=0) = 1-beta0
         make errors with prob beta
 
         '''
         pyz_a0 = [1-beta[0],beta[0]]
         pyz_a1 = [1-beta[1],beta[1]]
         Py_az = [[pyz_a0,pyz_a0],[pyz_a1,pyz_a1]]
+        Sampler.__init__((Py_az,))
+
+class TargetFlipNegative(Target):
+    '''
+    '''
+    def __init__(self,beta=[0,.1]):
+        '''
+        P(Y=Z|A=1,Z =1 ) = 1-beta[1]
+        P(Y=Z|A=0,Z = 1) = 1-beta[0]
+        P(Y=Z|Z  =0) = 1
+        make errors with prob beta
+
+        '''
+        pyz1_a0 = [1-beta[0],beta[0]]
+        pyz1_a1 = [1-beta[1],beta[1]]
+        no_error = [1,0] # if z=0, P(Y=z) =1
+        Py_az = [[no_error,pyz1_a0],[no_error,pyz1_a1]]
+        Sampler.__init__((Py_az,))
+
+class TargetFlipAllIndep(Target):
+    '''
+    '''
+    def __init__(self,beta=[[.05,.1],[.05,.1]]):
+        '''
+        P(Y=Z|A=1,Z =1 ) = 1- beta[1][1]
+        P(Y=Z|A=0,Z = 1) = 1- beta[0][1]
+        P(Y=Z|A=1,Z =0 ) = 1- beta[1][0]
+        P(Y=Z|A=0,Z = 0) = 1- beta[0][0]
+        make errors with prob beta
+
+        '''
+        pyz1_a0 = [1-beta[0],beta[0]]
+        pyz1_a1 = [1-beta[1],beta[1]]
+        no_error = [1,0] # if z=0, P(Y=z) =1
+        Py_az = [[[1-b,b] for b in be] for be in beta]
         Sampler.__init__((Py_az,))
 
 mean_only_mvn = lambda mu :np.random.multivariate_normal(mu,np.eye(len(mu)))
