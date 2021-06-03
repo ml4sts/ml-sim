@@ -10,6 +10,8 @@ Welcome to Fair-Sim's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   populations
+
 
 .. instead of keeping this info in two places, set it to show at github and here
 .. include:: ../../README.rst
