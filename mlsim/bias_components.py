@@ -353,6 +353,7 @@ shape_spread_only_mvn = lambda x,cov: x + np.random.multivariate_normal([0]*len(
 
 class FeatureNoise(Sampler):
     '''
+    Base class for adding noise to feature s
     '''
     ParamCreator = NoiseParams
 
@@ -384,7 +385,8 @@ class FeatureNoise(Sampler):
 
 class FeatureNoiseReplace(FeatureNoise):
     '''
-
+    feature noise that replcaes some of the features with noise according to
+    mean and covariance attributes
     '''
     def __init__(self,dist,mu = [0,0,0],cov = [[1,0,0],[0,1,0],[0,0,1]],d_shared=1):
         '''
@@ -394,6 +396,15 @@ class FeatureNoiseReplace(FeatureNoise):
         d_shared in the middle valid for both groups; replace the first 1/2(ceiled)
         of the remaining with noise for the disadvantaged group and the last portion
         (floored) for the advantaged group
+
+        Parameters
+        ----------
+        mu : List
+            noise mean, default [0, 0, 0]
+        cov: list
+            noise covariance matrix, default is identity in 3 dimensions
+        d_shared: int =1
+            number of shared features that are informative for both groups
         '''
         d = len(mu)
         d_shared = d_shared

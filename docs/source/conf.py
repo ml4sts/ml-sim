@@ -19,8 +19,8 @@ sys.path.insert(0, os.path.abspath('.'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'Fair-Sim'
-copyright = '2018, Sarah M Brown'
+project = 'ML-Sim'
+copyright = '2018-2021, Sarah M Brown'
 author = 'Sarah M Brown'
 
 # The short X.Y version
