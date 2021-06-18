@@ -340,7 +340,15 @@ def geometric_indep_views_gmm_sp(d,r_clusters,cluster_size,cluster_spread,p_sp_c
 
     #cluster naming will be name the columns: A, B, ...
     # valuses will be A1, A2, ..., Ak...
+    char_reps = 1
     z_names = list(string.ascii_uppercase[:d])
+    # if there are more splitbys than letters in the alphabet, use repetition:
+    #       AA, ..., ZZ, AAA, ...
+    while d> 26:
+        d-=26
+        char_reps += 1
+        z_names.extend([''.join(c*char_reps) for c in list(string.ascii_uppercase[:d])])
+
     # code cluster as and add it a column to the dataframe
     for z_i,name in zip(z,z_names):
         if numeric_categorical:
