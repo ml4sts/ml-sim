@@ -14,12 +14,18 @@ class Population():
                 feature_sampler = Feature,
                 feature_noise_sampler = FeatureNoise, parameter_dictionary = {}):
         '''
-        initialize a population based on the way to sample from it
+        initialize a population based on the way to sample from it. a population
+        object has properties that define the samplers for the demographic
+        variables (A,Z) the observed target (Y) and the features (X)
 
         Parameters:
         -----------
-        population_sampler : function handle
-            function to sample from the distribution
+        demographic_sampler : Demographic
+            a sampler that inherits from mlsim.Demographic
+        target_sampler : Target,
+        feature_sampler : Feature,
+        feature_noise_sampler : FeatureNoise,
+        parameter_dictionary : dictionary default empty
         '''
 
 
@@ -61,6 +67,13 @@ class Population():
         '''
         sample N members of the  population, according to its underlying
         distribution
+
+        Parameters
+        -----------
+        N : int
+            number of samples
+        return_as : string, 'dataframe'
+            type to return as
         '''
         a,z = self.demographic_sampler.sample(N)
         y = self.target_sampler.sample(a,z)
@@ -69,7 +82,7 @@ class Population():
 
         if return_as == 'dataframe':
             df = self.make_DataFrame(a,z,y,x)
-        # TODO elif option to return as ibm strucutred dataset
+        # TODO: elif option to return as ibm strucutred dataset
 
         return df
 

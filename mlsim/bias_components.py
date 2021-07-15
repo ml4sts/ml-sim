@@ -159,64 +159,66 @@ class TargetDisadvantagedError(Target):
     '''
     def __init__(self,beta=.1):
         '''
+        make errors with prob beta
         P(Y=Z|A=1,Z ) = P(Y=Z|A=1) = 1-beta
         P(Y=Z|A=0,Z ) = P(Y=Z|A=0) = 1
-        make errors with prob beta
 
         '''
         pyeqz = [1-beta,beta]
         Py_az = [[[1,0],[1,0]],[pyeqz,pyeqz]]
-        Sampler.__init__((Py_az,))
+        Sampler.__init__(self,(Py_az,))
 
 class TargetTwoError(Target):
     '''
     '''
     def __init__(self,beta=[0,.1]):
         '''
+        make errors with prob beta
         P(Y=Z|A=1,Z ) = P(Y=Z|A=1) = 1-beta1
         P(Y=Z|A=0,Z ) = P(Y=Z|A=0) = 1-beta0
-        make errors with prob beta
 
         '''
         pyz_a0 = [1-beta[0],beta[0]]
         pyz_a1 = [1-beta[1],beta[1]]
         Py_az = [[pyz_a0,pyz_a0],[pyz_a1,pyz_a1]]
-        Sampler.__init__((Py_az,))
+        Sampler.__init__(self,(Py_az,))
 
 class TargetFlipNegative(Target):
     '''
     '''
     def __init__(self,beta=[0,.1]):
         '''
+
+        make errors with prob beta only for the Z=1 class
         P(Y=Z|A=1,Z =1 ) = 1-beta[1]
         P(Y=Z|A=0,Z = 1) = 1-beta[0]
         P(Y=Z|Z  =0) = 1
-        make errors with prob beta
 
         '''
         pyz1_a0 = [1-beta[0],beta[0]]
         pyz1_a1 = [1-beta[1],beta[1]]
         no_error = [1,0] # if z=0, P(Y=z) =1
         Py_az = [[no_error,pyz1_a0],[no_error,pyz1_a1]]
-        Sampler.__init__((Py_az,))
+        Sampler.__init__(self,(Py_az,))
 
 class TargetFlipAllIndep(Target):
     '''
     '''
     def __init__(self,beta=[[.05,.1],[.05,.1]]):
         '''
+        make errors with prob beta for all possible combinations of A,Z
         P(Y=Z|A=1,Z =1 ) = 1- beta[1][1]
         P(Y=Z|A=0,Z = 1) = 1- beta[0][1]
         P(Y=Z|A=1,Z =0 ) = 1- beta[1][0]
         P(Y=Z|A=0,Z = 0) = 1- beta[0][0]
-        make errors with prob beta
+
 
         '''
         pyz1_a0 = [1-beta[0],beta[0]]
         pyz1_a1 = [1-beta[1],beta[1]]
         no_error = [1,0] # if z=0, P(Y=z) =1
         Py_az = [[[1-b,b] for b in be] for be in beta]
-        Sampler.__init__((Py_az,))
+        Sampler.__init__(self,(Py_az,))
 
 mean_only_mvn = lambda mu :np.random.multivariate_normal(mu,np.eye(len(mu)))
 
@@ -353,6 +355,7 @@ shape_spread_only_mvn = lambda x,cov: x + np.random.multivariate_normal([0]*len(
 
 class FeatureNoise(Sampler):
     '''
+    Base class for adding noise to feature s
     '''
     ParamCreator = NoiseParams
 
@@ -384,7 +387,8 @@ class FeatureNoise(Sampler):
 
 class FeatureNoiseReplace(FeatureNoise):
     '''
-
+    feature noise that replcaes some of the features with noise according to
+    mean and covariance attributes
     '''
     def __init__(self,dist,mu = [0,0,0],cov = [[1,0,0],[0,1,0],[0,0,1]],d_shared=1):
         '''
@@ -394,6 +398,15 @@ class FeatureNoiseReplace(FeatureNoise):
         d_shared in the middle valid for both groups; replace the first 1/2(ceiled)
         of the remaining with noise for the disadvantaged group and the last portion
         (floored) for the advantaged group
+
+        Parameters
+        ----------
+        mu : List
+            noise mean, default [0, 0, 0]
+        cov: list
+            noise covariance matrix, default is identity in 3 dimensions
+        d_shared: int =1
+            number of shared features that are informative for both groups
         '''
         d = len(mu)
         d_shared = d_shared
