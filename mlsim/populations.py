@@ -83,7 +83,6 @@ class Population():
 
         if return_as == 'dataframe':
             df = self.make_DataFrame(a,z,y,x)
-        # TODO: elif option to return as ibm strucutred dataset
         elif return_as == 'structuredDataset':
             df = self.make_StructuredDataset(a,z,y,x)
 
