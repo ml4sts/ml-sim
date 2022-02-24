@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import aif360.datasets
 from .bias_components import Demographic, Target, Feature, FeatureNoise
 
 default_params = {'dem':None,}
@@ -83,6 +84,8 @@ class Population():
         if return_as == 'dataframe':
             df = self.make_DataFrame(a,z,y,x)
         # TODO: elif option to return as ibm strucutred dataset
+        elif return_as == 'structuredDataset':
+            df = self.make_StructuredDataset(a,z,y,x)
 
         return df
 
@@ -97,7 +100,7 @@ class Population():
         # scale rho_a
         rho_z = [rho_z0[0],rho_z0[1]*rho_z_scale]
         # sameple the demongraphic vars with the new sampler
-        self.unfavorable_dem = DemographicCorrelated(rho_a,rho_z)
+        self.unfavorable_dem = self.DemographicCorrelated(rho_a,rho_z)
         a,z = self.unfavorable_dem.sample(N)
 
         # sample the rest as usual
@@ -105,7 +108,7 @@ class Population():
         x = self.feature_sampler.sample(a,z,y)
         x = self.feature_noise_sampler.sample(a,z,y,x)
 
-        return make_DataFrame(a,z,y,x)
+        return self.make_DataFrame(a,z,y,x)
 
     def make_DataFrame(self,a,z,y,x):
         '''
@@ -120,7 +123,7 @@ class Population():
 
         return pd.DataFrame(data=data, columns = labels)
 
-    def make_StructuredDataset(a,z,y,x):
+    def make_StructuredDataset(self,a,z,y,x):
         '''
         Converts a dataframe created by one of the above functions into a dataset usable in IBM 360 package
 
@@ -136,9 +139,8 @@ class Population():
         aif360.datasets.StructuredDataset
 
         '''
-        df = make_DataFrame(a,z,y,x)
-        #  TODO: fix this
-        return aif360.datasets.StructuredDataset(df, label_names, ['a'])
+        df = self.make_DataFrame(a,z,y,x)
+        return aif360.datasets.StructuredDataset(df, ['y'], ['a'])
 
     def get_parameter_description(self):
         '''
