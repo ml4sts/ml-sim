@@ -1,3 +1,4 @@
 nbsphinx==0.8.8
-nbconvert
+nbconvert==6.0.0rc0
 numpydoc
+Pygments==2.6.1

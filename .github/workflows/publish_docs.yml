@@ -10,10 +10,9 @@ jobs:
         fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
     - name: Setup Dependencies
       run: |
-        conda install pygments
+        conda install sphinx
         conda install --channel=conda-forge pandoc
         pip install -r requirements.txt
-        conda install sphinx
     - name: Build and Commit
       uses: sphinx-notes/pages@master
       with:
