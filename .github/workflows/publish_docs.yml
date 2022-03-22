@@ -11,7 +11,7 @@ jobs:
     - name: Setup Dependencies
       run: |
         conda install pygments
-        conda install pandoc
+        conda install --channel=conda-forge pandoc
         pip install -r requirements.txt
         conda install sphinx
     - name: Build and Commit
