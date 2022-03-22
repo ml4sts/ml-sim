@@ -12,6 +12,7 @@ jobs:
       run: |
         conda install sphinx
         conda install --channel=conda-forge pandoc
+        conda install -c conda-forge nbsphinx
         pip install -r requirements.txt
     - name: Build and Commit
       uses: sphinx-notes/pages@master
