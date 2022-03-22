@@ -11,8 +11,8 @@ jobs:
     - name: Setup Dependencies
       run: |
         pip install -r requirements.txt
-        conda install sphinx
         conda install --channel=conda-forge pandoc
+        conda install sphinx
         
     - name: Build and Commit
       uses: sphinx-notes/pages@master
