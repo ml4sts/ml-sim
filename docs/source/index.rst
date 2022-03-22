@@ -11,6 +11,8 @@ Welcome to Fair-Sim's documentation!
    :caption: Contents:
 
    populations
+   rate_sp
+   regression_sp
 
 
 .. instead of keeping this info in two places, set it to show at github and here
