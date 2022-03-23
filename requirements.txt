@@ -2,3 +2,4 @@ nbconvert
 nbsphinx
 numpydoc
 Pygments==2.11.2
+docutils==0.18
