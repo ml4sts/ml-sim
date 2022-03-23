@@ -10,7 +10,7 @@ jobs:
         fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
     - name: Setup Dependencies
       run: |
-        conda install -c conda-forge pandoc
+        choco install pandoc
         pip install -r requirements.txt        
     - name: Build and Commit
       run: |
