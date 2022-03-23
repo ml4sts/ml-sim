@@ -12,11 +12,11 @@ jobs:
       run: |
         pip install -r requirements.txt
         conda install --channel=conda-forge pandoc
-        conda install sphinx
+        conda install sphinx==4.3.2
         
     - name: Build and Commit
       run: |
-        sphinx-build -b html docs/source docs
+        sphinx-build -b html docs/source docs/build
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
