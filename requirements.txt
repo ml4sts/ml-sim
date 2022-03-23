@@ -5,4 +5,3 @@ numpydoc
 Pygments==2.6.1
 docutils==0.16
 Sphinx
-pandoc==2.17
