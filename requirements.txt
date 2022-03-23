@@ -1,4 +1,4 @@
 nbconvert
 nbsphinx
 numpydoc
-Pygments
+Pygments==2.11.2
