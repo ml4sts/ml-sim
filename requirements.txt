@@ -2,4 +2,3 @@ nbconvert==6.0.0rc0
 nbsphinx
 numpydoc
 Pygments==2.6.1
-IPython
