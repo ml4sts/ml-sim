@@ -20,7 +20,6 @@ jobs:
       run: |
         pipenv install .
         pipenv install --dev
-        npm install -g jsdoc
     - name: addons
       uses: docker://pandoc/core:2.9
         # Use Sphinx to make the html docs
