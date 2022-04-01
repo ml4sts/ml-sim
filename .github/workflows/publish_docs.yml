@@ -1,14 +1,13 @@
-name: Pages
-on: [push]
 jobs:
   build:
+
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 
       uses: actions/setup-python@v2
       with: 
-        python-version: 3.7
+        python-version: 3.8
     - name: pip cache    
       uses: actions/cache@v2
       with:
@@ -20,8 +19,12 @@ jobs:
       run: |
         pipenv install .
         pipenv install --dev
+        npm install -g jsdoc
     - name: addons
       uses: docker://pandoc/core:2.9
+    - name: pytest
+      run: |
+        pipenv run pytest
         # Use Sphinx to make the html docs
     - name: make docs
       run: |

@@ -2,10 +2,10 @@ nbconvert==5.3.1
 nbformat==4.4.0
 nbsphinx==0.3.4
 numpydoc==0.8.0
-Pygments>=2.2.0
+Pygments==2.7.4
 docutils==0.14
 pandoc==1.0.2
 pandocfilters==1.4.2
-Sphinx==3.1.2
-Jinja2<3.1
-mistune==0.8.4
+Sphinx==4.2.0
+Jinja2==2.11.3
+mistune==0.8.3
