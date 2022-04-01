@@ -10,7 +10,7 @@ jobs:
         fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
     - name: Setup Dependencies
       run: |
-        choco install pandoc
+        conda install pandoc
         pip install -r requirements.txt   
     - name: addons
       uses: docker://pandoc/core:2.9
