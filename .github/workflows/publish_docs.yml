@@ -1,22 +1,42 @@
-name: Pages
-on: [push]
+name: Python application
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    
 jobs:
   build:
+
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@master
+    - uses: actions/checkout@v2
+    - name: Set up Python 
+      uses: actions/setup-python@v2
+      with: 
+        python-version: 3.8
+    - name: pip cache    
+      uses: actions/cache@v2
       with:
-        fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
-    - name: Setup Dependencies
+        path: ~/.cache/pip
+        key: ${{ hashFiles('setup.py') }}-${{ hashFiles('dev-requirements.txt') }}
+    - name: Install pipenv
+      uses: dschep/install-pipenv-action@v1
+    - name: Install dependencies
       run: |
-        choco install pandoc
-        pip install -r requirements.txt        
-    - name: Build and Commit
+        pipenv install .
+        pipenv install --dev
+        npm install -g jsdoc
+    - name: addons
+      uses: docker://pandoc/core:2.9
+        # Use Sphinx to make the html docs
+    - name: make docs
       run: |
-        sphinx-build -b html docs/source docs/build
-    - name: Push changes
-      uses: ad-m/github-push-action@master
+        pipenv install sphinx
+        cd docs
+        pipenv run make html # must be run in the docs folder
+    - name: deploy
+      uses: peaceiris/actions-gh-pages@v3.6.1
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/html/ # where compiled docs are placed by sphinx, set in sphinx conf.py
