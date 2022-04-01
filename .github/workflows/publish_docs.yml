@@ -1,13 +1,7 @@
-name: Python application
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-    
+name: Pages
+on: [push]
 jobs:
   build:
-
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
