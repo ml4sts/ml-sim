@@ -15,6 +15,7 @@ pandoc = "==1.0.2"
 pandocfilters = "==1.4.2"
 Jinja2 = "==2.11.3"
 mistune = "==0.8.3"
+MarkupSafe = "==2.0.1"
 
 [dev-packages]
 
