@@ -11,7 +11,9 @@ jobs:
     - name: Setup Dependencies
       run: |
         choco install pandoc
-        pip install -r requirements.txt        
+        pip install -r requirements.txt   
+    - name: addons
+      uses: docker://pandoc/core:2.9
     - name: Build and Commit
       run: |
         sphinx-build -b html docs/source docs/build
