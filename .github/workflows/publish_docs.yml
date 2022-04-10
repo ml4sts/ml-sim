@@ -10,29 +10,12 @@ jobs:
       uses: actions/setup-python@v2
       with: 
         python-version: 3.8
-    - name: pip cache    
-      uses: actions/cache@v2
-      with:
-        path: ~/.cache/pip
-        key: ${{ hashFiles('setup.py') }}-${{ hashFiles('dev-requirements.txt') }}
-    - name: Install pipenv
-      uses: dschep/install-pipenv-action@v1
-    - name: Install dependencies
-      run: |
-        pipenv install .
-        pipenv install --dev
-        npm install -g jsdoc
-    - name: addons
-      uses: docker://pandoc/core:2.9
+    - name: Install Dependencies
+      run: pip install -r requirements.txt
     - name: pytest
       run: |
         pipenv run pytest
         # Use Sphinx to make the html docs
-    - name: make docs
-      run: |
-        pipenv install sphinx
-        cd docs
-        pipenv run make html # must be run in the docs folder
     - name: deploy
       uses: peaceiris/actions-gh-pages@v3.6.1
       with:
