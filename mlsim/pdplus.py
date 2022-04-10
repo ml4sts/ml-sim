@@ -1,4 +1,4 @@
-import pandas as import pd
+import pandas as pd
 import numpy as np
 import os
 
@@ -52,7 +52,7 @@ class ProvDataFrame(pd.DataFrame):
     def _constructor_sliced(self):
         return ProvSeries
 
-     _metadata = ['provenance']
+    _metadata = ['provenance']
 
 
 
