@@ -1,4 +1,4 @@
-name: Pages
+name: Testing
 on: [push]
 jobs:
   build:
