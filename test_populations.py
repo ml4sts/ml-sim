@@ -38,3 +38,23 @@ def test_constructor_with_params():
     
     assert testPopulation.get_parameter_description() == description
     
+def test_demographic_sampler():
+    testPop = mlsim.Population()
+    sampleNum = 3000
+    accuracyThreshold = .03
+    df = testPop.sample(sampleNum)
+    probA = sum(df['a'])/sampleNum
+    probZ = sum(df['z'])/sampleNum
+    
+    assert abs(probA - testPop.demographic_sampler.get_rho_a()) < accuracyThreshold
+    assert abs(probZ - testPop.demographic_sampler.get_rho_z()[0]) < accuracyThreshold
+    
+def test_target_sampler():
+    testPop = mlsim.Population()
+    sampleNum = 4000
+    accuracyThreshold = .01
+    df = testPop.sample(sampleNum)
+    probY = sum(df['y'])/sampleNum
+    probZ = sum(df['z'])/sampleNum
+    assert abs(probY-probZ) < accuracyThreshold
+    
