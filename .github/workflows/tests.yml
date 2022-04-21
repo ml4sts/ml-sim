@@ -12,9 +12,6 @@ jobs:
         python-version: 3.8
     - name: Install Dependencies
       run: pip install -r requirements.txt
-        # Use Sphinx to make the html docs
-    - name: deploy
-      uses: peaceiris/actions-gh-pages@v3.6.1
-      with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/html/ # where compiled docs are placed by sphinx, set in sphinx conf.py
+    - name: pytest
+      run: |
+        pytest
