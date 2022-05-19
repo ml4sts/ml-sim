@@ -1,5 +1,5 @@
 API Reference
 =============
 
-.. automodule:: mlsim.bias
+.. automodule:: mlsim.anomaly
     :members:
