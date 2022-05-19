@@ -44,22 +44,22 @@ class Population():
 
         # initialize objects for each, with parameters if provided
         if dem_params:
-            self.demographic_sampler = demographic_sampler(dem_params)
+            self.demographic_sampler = demographic_sampler(*dem_params)
         else:
             self.demographic_sampler = demographic_sampler()
 
         if target_params:
-            self.target_sampler = target_sampler(target_params)
+            self.target_sampler = target_sampler(*target_params)
         else:
             self.target_sampler = target_sampler()
 
         if feat_params:
-            self.feature_sampler = feature_sampler(feat_params)
+            self.feature_sampler = feature_sampler(*feat_params)
         else:
             self.feature_sampler = feature_sampler()
 
         if featnoise_params:
-            self.feature_noise_sampler = feature_noise_sampler(featnoise_params)
+            self.feature_noise_sampler = feature_noise_sampler(*featnoise_params)
         else:
             self.feature_noise_sampler = feature_noise_sampler()
 
