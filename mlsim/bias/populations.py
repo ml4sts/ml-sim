@@ -8,7 +8,7 @@ default_params = {'dem':None,}
 class Population():
     '''
     Object for describing a population so that sampling from the population
-    and biased samples are possible, where there may be an underlying from
+    and biased samples are possible from a sampler type and parameter dictionary
     '''
     def __init__(self, demographic_sampler= Demographic,
                 target_sampler = Target,
@@ -114,6 +114,10 @@ class Population():
     def make_DataFrame(self,a,z,y,x):
         '''
         combine into data frame with labels
+
+        Parameters
+        ----------
+        a : list
         '''
         # concatenate the data and p
         azy = np.vstack([a,z,y]).T
@@ -145,6 +149,12 @@ class Population():
 
     def get_parameter_description(self):
         '''
+        Build a string output that describes this object
+
+        Returns
+        --------
+        description : string
+            values of each parameter value grouped by sampler
         '''
         description = ''
 
@@ -163,8 +173,7 @@ class Population():
 
 class PopulationInstantiated(Population):
     '''
-    Object for describing a population so that sampling from the population
-    and biased samples are possible, where there may be an underlying from
+    To instantiate with either default parameters or instantiated sampler objects
     '''
     def __init__(self, demographic_sampler= Demographic(),
                 target_sampler = Target(),
