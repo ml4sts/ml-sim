@@ -2,7 +2,7 @@
 from .simpsons_paradox import geometric_2d_gmm_sp
 from .simpsons_paradox import geometric_indep_views_gmm_sp
 from .plot_utils import sp_plot, plot_clustermat
-from .bias_generators import subspace_bias, feature_bias, label_bias, convert_to_dataset
+# from .bias_generators import subspace_bias, feature_bias, label_bias, convert_to_dataset
 from .populations import Population,PopulationInstantiated
 from .bias_components import Demographic, DemographicIndependent, DemographicCorrelated
 from .bias_components import Target, TargetDisadvantagedError, TargetTwoError

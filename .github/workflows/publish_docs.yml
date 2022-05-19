@@ -1,20 +1,46 @@
-name: Pages
-on: [push]
-jobs:
-  build:
+name: deploydocs
 
+# Only run this when the main branch changes
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches: [ main ]
+    # If your git repository has the Jupyter Book within some-subfolder next to
+    # unrelated files, you can make this run only if a file within that specific
+    # folder has been modified.
+    #
+    # paths:
+    # - some-subfolder/**
+
+# This job installs dependencies, build the book, and pushes it to `gh-pages`
+jobs:
+  deploy-book:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 
-      uses: actions/setup-python@v2
-      with: 
-        python-version: 3.8
-    - name: Install Dependencies
-      run: pip install -r requirements.txt
-        # Use Sphinx to make the html docs
-    - name: deploy
+
+    # Install dependencies
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    # Build the book
+    - name: Build the book
+      run: |
+        cd docs
+        make html
+
+    # Push the book's HTML to github-pages
+    - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v3.6.1
       with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/html/ # where compiled docs are placed by sphinx, set in sphinx conf.py
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: docs/_build/html
+
