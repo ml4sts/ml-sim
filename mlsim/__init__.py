@@ -1,9 +1,9 @@
 
-# import anomaly
+import anomaly
 #
 # import base
 #
-# import bias
+import bias
 # from .bias_generators import subspace_bias, feature_bias, label_bias, convert_to_dataset
 
 
