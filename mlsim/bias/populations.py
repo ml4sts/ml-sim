@@ -64,7 +64,7 @@ class Population():
             self.feature_noise_sampler = feature_noise_sampler()
 
 
-    def sample(self, N,return_as = 'dataframe'):
+    def sample(self, N,return_as = 'DataFrame'):
         '''
         sample N members of the  population, according to its underlying
         distribution
@@ -74,14 +74,15 @@ class Population():
         N : int
             number of samples
         return_as : string, 'dataframe'
-            type to return as
+            type to return as, can be pandas 'DataFrame' or IBM AIF360
+            'structuredDataset'
         '''
         a,z = self.demographic_sampler.sample(N)
         y = self.target_sampler.sample(a,z)
         x = self.feature_sampler.sample(a,z,y)
         x = self.feature_noise_sampler.sample(a,z,y,x)
 
-        if return_as == 'dataframe':
+        if return_as == 'DataFrame':
             df = self.make_DataFrame(a,z,y,x)
 
         elif return_as == 'structuredDataset':
