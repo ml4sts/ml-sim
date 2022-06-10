@@ -302,8 +302,88 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="api-reference">
-<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">#</a></h1>
+  <section id="module-mlsim.anomaly">
+<span id="api-reference"></span><h1>API Reference<a class="headerlink" href="#module-mlsim.anomaly" title="Permalink to this headline">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="mlsim.anomaly.geometric_2d_gmm_sp">
+<span class="sig-prename descclassname"><span class="pre">mlsim.anomaly.</span></span><span class="sig-name descname"><span class="pre">geometric_2d_gmm_sp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r_clusters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_spread</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_sp_clusters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_clusters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/anomaly/simpsons_paradox.html#geometric_2d_gmm_sp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.anomaly.geometric_2d_gmm_sp" title="Permalink to this definition">#</a></dt>
+<dd><p>Sample from a gaussian mixture model with Simpson’s Paradox and spread means
+return data in a data fram</p>
+<dl class="simple">
+<dt>r_clusters<span class="classifier">scalar [0,1]</span></dt><dd><p>correlation coefficient of clusters</p>
+</dd>
+<dt>cluster_size<span class="classifier">2 vector</span></dt><dd><p>variance in each direction of each cluster</p>
+</dd>
+<dt>cluster_spread<span class="classifier">scalar [0,1]</span></dt><dd><p>pearson correlation of means</p>
+</dd>
+<dt>p_sp_clusters<span class="classifier">scalar in [0,1]</span></dt><dd><p>portion of clusters with SP</p>
+</dd>
+<dt>p_clusters<span class="classifier">vector in [0,1)^k, optional</span></dt><dd><p>probabilty of membership of a sample in each cluster (controls relative
+size of clusters) default is [1.0/k]*k for uniform</p>
+</dd>
+<dt>domain_range<span class="classifier">[xmin, xmax, ymin, ymax]</span></dt><dd><p>planned region for points to be in, means will be in middle 80%</p>
+</dd>
+<dt>k<span class="classifier">integer</span></dt><dd><p>number of clusters</p>
+</dd>
+<dt>N<span class="classifier">scalar</span></dt><dd><p>number of points</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mlsim.anomaly.geometric_indep_views_gmm_sp">
+<span class="sig-prename descclassname"><span class="pre">mlsim.anomaly.</span></span><span class="sig-name descname"><span class="pre">geometric_indep_views_gmm_sp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_clusters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_spread</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_sp_clusters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_clusters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numeric_categorical</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/anomaly/simpsons_paradox.html#geometric_indep_views_gmm_sp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.anomaly.geometric_indep_views_gmm_sp" title="Permalink to this definition">#</a></dt>
+<dd><p>Sample from a gaussian mixture model with Simpson’s Paradox and spread means
+return data in a data fram</p>
+<dl class="simple">
+<dt>d<span class="classifier">integer</span></dt><dd><p>number of independent views, groups of 3 columns with sp</p>
+</dd>
+<dt>r_clusters<span class="classifier">scalar [0,1] or list of d</span></dt><dd><p>correlation coefficient of clusters</p>
+</dd>
+<dt>cluster_size<span class="classifier">2 vector or list of d</span></dt><dd><p>variance in each direction of each cluster</p>
+</dd>
+<dt>cluster_spread<span class="classifier">scalar [0,1] list of d</span></dt><dd><p>pearson correlation of means</p>
+</dd>
+<dt>p_sp_clusters<span class="classifier">scalar in [0,1] list of d</span></dt><dd><p>portion of clusters with SP</p>
+</dd>
+<dt>p_clusters<span class="classifier">vector in [0,1)^k, optional or list of d vectors</span></dt><dd><p>probabilty of membership of a sample in each cluster (controls relative
+size of clusters) default is [1.0/k]*k for uniform</p>
+</dd>
+<dt>domain_range<span class="classifier">[xmin, xmax, ymin, ymax] list of d</span></dt><dd><p>planned region for points to be in, means will be in middle 80%</p>
+</dd>
+<dt>k<span class="classifier">integer or list of d</span></dt><dd><p>number of clusters</p>
+</dd>
+<dt>N<span class="classifier">scalar</span></dt><dd><p>number of points, shared across all views</p>
+</dd>
+<dt>numeric_categorical=False</dt><dd><p>use numerical (ordinal) values instead of letters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mlsim.anomaly.plot_clustermat">
+<span class="sig-prename descclassname"><span class="pre">mlsim.anomaly.</span></span><span class="sig-name descname"><span class="pre">plot_clustermat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/anomaly/plot_utils.html#plot_clustermat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.anomaly.plot_clustermat" title="Permalink to this definition">#</a></dt>
+<dd><p>black and white matshow for clustering and feat allocation matrices</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>z</strong> (<em>nparray</em><em>, </em><em>square to be plotted</em>) – </p></li>
+<li><p><strong>fmt</strong> (<em>if z is not a square</em><em>, </em><em>then str of what it is</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<p>fmt options:
+‘crplist’ : a list of values from zero to k
+‘ibplist’ : a list of lists of varying lengths
+‘list’ : a list, but not nparray otherwise ready to plot</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mlsim.anomaly.sp_plot">
+<span class="sig-prename descclassname"><span class="pre">mlsim.anomaly.</span></span><span class="sig-name descname"><span class="pre">sp_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ci</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">20,</span> <span class="pre">0,</span> <span class="pre">20]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggplot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_jitter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/anomaly/plot_utils.html#sp_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.anomaly.sp_plot" title="Permalink to this definition">#</a></dt>
+<dd><p>create SP vizualization plot from 2 columns of a df</p>
+</dd></dl>
+
 </section>
 
     <script type="text/x-thebe-config">

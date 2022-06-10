@@ -379,41 +379,6 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">mlsim</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">hostedtoolcache</span><span class="o">/</span><span class="n">Python</span><span class="o">/</span><span class="mf">3.8.12</span><span class="o">/</span><span class="n">x64</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">mlsim</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">anomaly</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">base</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">bias</span>
-
-<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">hostedtoolcache</span><span class="o">/</span><span class="n">Python</span><span class="o">/</span><span class="mf">3.8.12</span><span class="o">/</span><span class="n">x64</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">mlsim</span><span class="o">/</span><span class="n">anomaly</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">.simpsons_paradox</span> <span class="kn">import</span> <span class="n">geometric_2d_gmm_sp</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">.simpsons_paradox</span> <span class="kn">import</span> <span class="n">geometric_indep_views_gmm_sp</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">.plot_utils</span> <span class="kn">import</span> <span class="n">sp_plot</span><span class="p">,</span> <span class="n">plot_clustermat</span>
-
-<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">hostedtoolcache</span><span class="o">/</span><span class="n">Python</span><span class="o">/</span><span class="mf">3.8.12</span><span class="o">/</span><span class="n">x64</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">mlsim</span><span class="o">/</span><span class="n">anomaly</span><span class="o">/</span><span class="n">simpsons_paradox</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">string</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">..base.basic_gens</span> <span class="kn">import</span> <span class="n">means_with_spread</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="k">def</span> <span class="nf">geometric_2d_gmm_sp</span><span class="p">(</span><span class="n">r_clusters</span><span class="p">,</span><span class="n">cluster_size</span><span class="p">,</span><span class="n">cluster_spread</span><span class="p">,</span><span class="n">p_sp_clusters</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>                 <span class="n">domain_range</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">p_clusters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span><span class="sd">     Sample from a gaussian mixture model with Simpson&#39;s Paradox and spread means</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span><span class="sd">     return data in a data fram</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">     </span><span class="mi">29</span><span class="sd">         number of points</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span><span class="sd">     &quot;&quot;&quot;</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;mlsim.base&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <p>Create an all default population</p>
 <div class="cell docutils container">
@@ -430,11 +395,40 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Demographic Parameters
+DemParams(Pa=[0.5, 0.5], Pz_a=[[0.5, 0.5], [0.5, 0.5]])
+Target Parameters 
+TargetParams(Py_az=[[[0.95, 0.05], [0.95, 0.05]], [[0.95, 0.05], [0.95, 0.05]]])
+Feature Parameters 
+FeatureParams(distfunc=&lt;function &lt;lambda&gt; at 0x7fc98a189700&gt;, theta=[[[[5, 2], [2, 5]], [[5, 2], [2, 5]]], [[[5, 2], [2, 5]], [[5, 2], [2, 5]]]])
+Feature Noise Parameters 
+NoiseParams(noisefunc=&lt;function &lt;lambda&gt; at 0x7fc98a18e280&gt;, theta=[[[1.0, 1.0], [1.0, 1.0]], [[1.0, 1.0], [1.0, 1.0]]])
+</pre></div>
+</div>
+</div>
 </div>
 <p>The instantiation just assigns values to these parameters. In order to get data, we use the <code class="docutils literal notranslate"><span class="pre">sample</span></code> method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">sample</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on method sample in module mlsim.bias.populations:
+
+sample(N, return_as=&#39;DataFrame&#39;) method of mlsim.bias.populations.Population instance
+    sample N members of the  population, according to its underlying
+    distribution
+    
+    Parameters
+    -----------
+    N : int
+        number of samples
+    return_as : string, &#39;dataframe&#39;
+        type to return as, can be pandas &#39;DataFrame&#39; or IBM AIF360
+        &#39;structuredDataset&#39;
 </pre></div>
 </div>
 </div>
@@ -446,6 +440,76 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>a</th>
+      <th>z</th>
+      <th>y</th>
+      <th>x0</th>
+      <th>x1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.867357</td>
+      <td>4.628609</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>5.080684</td>
+      <td>2.945964</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.030819</td>
+      <td>4.267798</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>5.065378</td>
+      <td>1.894033</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>4.643410</td>
+      <td>2.822794</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <section id="changing-the-type-of-bias">
 <h2>Changing the type of bias<a class="headerlink" href="#changing-the-type-of-bias" title="Permalink to this headline">#</a></h2>
@@ -468,6 +532,76 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>a</th>
+      <th>z</th>
+      <th>y</th>
+      <th>x0</th>
+      <th>x1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>5.300376</td>
+      <td>0.986896</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.687046</td>
+      <td>0.947970</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>5.972963</td>
+      <td>3.737018</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.540306</td>
+      <td>3.599601</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.820290</td>
+      <td>4.671458</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>New we’ll create a feature bias where the classes are separable for one group and not for the other.</p>
 <div class="cell docutils container">
@@ -490,6 +624,100 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>a</th>
+      <th>z</th>
+      <th>y</th>
+      <th>x0</th>
+      <th>x1</th>
+      <th>x2</th>
+      <th>x3</th>
+      <th>x4</th>
+      <th>x5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.103651</td>
+      <td>1.615880</td>
+      <td>1.288220</td>
+      <td>3.828693</td>
+      <td>1.647954</td>
+      <td>5.141605</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.365248</td>
+      <td>3.166123</td>
+      <td>3.421383</td>
+      <td>2.598534</td>
+      <td>0.923438</td>
+      <td>0.385508</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>-1.220046</td>
+      <td>4.848114</td>
+      <td>3.265049</td>
+      <td>3.995160</td>
+      <td>5.277655</td>
+      <td>3.893916</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>5.159936</td>
+      <td>7.295938</td>
+      <td>8.603595</td>
+      <td>7.826704</td>
+      <td>10.833710</td>
+      <td>4.532863</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.629384</td>
+      <td>6.456372</td>
+      <td>7.482420</td>
+      <td>8.091060</td>
+      <td>12.057296</td>
+      <td>8.480933</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -498,12 +726,23 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/demo_populations_15_0.png" src="../_images/demo_populations_15_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">dffbai</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span> <span class="n">var_list</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;z&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">ai</span><span class="p">,</span><span class="n">dffbai</span> <span class="ow">in</span> <span class="n">pop_feature_bias_df1</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)]</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;seaborn.axisgrid.PairGrid at 0x7fc988d8d610&gt;,
+ &lt;seaborn.axisgrid.PairGrid at 0x7fc984b0b7f0&gt;]
+</pre></div>
+</div>
+<img alt="../_images/demo_populations_16_1.png" src="../_images/demo_populations_16_1.png" />
+<img alt="../_images/demo_populations_16_2.png" src="../_images/demo_populations_16_2.png" />
 </div>
 </div>
 </section>

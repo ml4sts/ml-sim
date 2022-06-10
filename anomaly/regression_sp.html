@@ -384,42 +384,6 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 9&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="ne">----&gt; </span><span class="mi">9</span> <span class="kn">import</span> <span class="nn">mlsim</span> 
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span> <span class="nn">mlsim.anomaly</span> <span class="kn">import</span> <span class="n">sp_plot</span>
-
-<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">hostedtoolcache</span><span class="o">/</span><span class="n">Python</span><span class="o">/</span><span class="mf">3.8.12</span><span class="o">/</span><span class="n">x64</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">mlsim</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">anomaly</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">base</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">bias</span>
-
-<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">hostedtoolcache</span><span class="o">/</span><span class="n">Python</span><span class="o">/</span><span class="mf">3.8.12</span><span class="o">/</span><span class="n">x64</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">mlsim</span><span class="o">/</span><span class="n">anomaly</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">.simpsons_paradox</span> <span class="kn">import</span> <span class="n">geometric_2d_gmm_sp</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">.simpsons_paradox</span> <span class="kn">import</span> <span class="n">geometric_indep_views_gmm_sp</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">.plot_utils</span> <span class="kn">import</span> <span class="n">sp_plot</span><span class="p">,</span> <span class="n">plot_clustermat</span>
-
-<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">hostedtoolcache</span><span class="o">/</span><span class="n">Python</span><span class="o">/</span><span class="mf">3.8.12</span><span class="o">/</span><span class="n">x64</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">mlsim</span><span class="o">/</span><span class="n">anomaly</span><span class="o">/</span><span class="n">simpsons_paradox</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">string</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">..base.basic_gens</span> <span class="kn">import</span> <span class="n">means_with_spread</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="k">def</span> <span class="nf">geometric_2d_gmm_sp</span><span class="p">(</span><span class="n">r_clusters</span><span class="p">,</span><span class="n">cluster_size</span><span class="p">,</span><span class="n">cluster_spread</span><span class="p">,</span><span class="n">p_sp_clusters</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>                 <span class="n">domain_range</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">p_clusters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span><span class="sd">     Sample from a gaussian mixture model with Simpson&#39;s Paradox and spread means</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span><span class="sd">     return data in a data fram</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">     </span><span class="mi">29</span><span class="sd">         number of points</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span><span class="sd">     &quot;&quot;&quot;</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;mlsim.base&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <p>The basic version of SP in the regression form is the clustering model based SP- we use a gaussian mixture model and control parameters of the shape</p>
 <div class="cell docutils container">
@@ -447,6 +411,15 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+</pre></div>
+</div>
+<img alt="../_images/regression_sp_5_2.png" src="../_images/regression_sp_5_2.png" />
+</div>
 </div>
 <p>We can change the parameters and see variation</p>
 <div class="cell docutils container">
@@ -467,6 +440,15 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+</pre></div>
+</div>
+<img alt="../_images/regression_sp_7_2.png" src="../_images/regression_sp_7_2.png" />
+</div>
 </div>
 <section id="multiple-views">
 <h2>Multiple Views<a class="headerlink" href="#multiple-views" title="Permalink to this headline">#</a></h2>
@@ -481,6 +463,94 @@ title="Print to PDF"
 <span class="n">many_sp_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x1</th>
+      <th>x2</th>
+      <th>x3</th>
+      <th>x4</th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10.823181</td>
+      <td>6.177323</td>
+      <td>9.060465</td>
+      <td>8.237958</td>
+      <td>A2</td>
+      <td>B2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>13.588226</td>
+      <td>9.430599</td>
+      <td>5.429569</td>
+      <td>4.153046</td>
+      <td>A0</td>
+      <td>B1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>13.567953</td>
+      <td>9.318421</td>
+      <td>11.857309</td>
+      <td>9.425595</td>
+      <td>A0</td>
+      <td>B0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>9.855959</td>
+      <td>12.392614</td>
+      <td>10.649850</td>
+      <td>11.057886</td>
+      <td>A4</td>
+      <td>B0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>10.325357</td>
+      <td>6.948757</td>
+      <td>11.229007</td>
+      <td>9.686046</td>
+      <td>A2</td>
+      <td>B0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><img alt="../_images/regression_sp_9_4.png" src="../_images/regression_sp_9_4.png" />
+<img alt="../_images/regression_sp_9_5.png" src="../_images/regression_sp_9_5.png" />
 </div>
 </div>
 <p>The views do not have to have the same parameters though. We can make each parameter a list of values with the length set to the number of views.</p>
@@ -505,6 +575,92 @@ title="Print to PDF"
 <span class="n">many_sp_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x1</th>
+      <th>x2</th>
+      <th>x3</th>
+      <th>x4</th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10.823181</td>
+      <td>6.177323</td>
+      <td>9.060465</td>
+      <td>8.237958</td>
+      <td>A2</td>
+      <td>B2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>13.588226</td>
+      <td>9.430599</td>
+      <td>5.429569</td>
+      <td>4.153046</td>
+      <td>A0</td>
+      <td>B1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>13.567953</td>
+      <td>9.318421</td>
+      <td>11.857309</td>
+      <td>9.425595</td>
+      <td>A0</td>
+      <td>B0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>9.855959</td>
+      <td>12.392614</td>
+      <td>10.649850</td>
+      <td>11.057886</td>
+      <td>A4</td>
+      <td>B0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>10.325357</td>
+      <td>6.948757</td>
+      <td>11.229007</td>
+      <td>9.686046</td>
+      <td>A2</td>
+      <td>B0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><img alt="../_images/regression_sp_11_3.png" src="../_images/regression_sp_11_3.png" />
+<img alt="../_images/regression_sp_11_4.png" src="../_images/regression_sp_11_4.png" />
 </div>
 </div>
 </section>

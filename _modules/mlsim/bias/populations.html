@@ -1,0 +1,486 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mlsim.bias.populations &#8212; ML Sim Documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">ML Sim Documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../index.html">
+                    ML-Sim Documentation
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Anomalies
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../anomaly/simpsons_paradox.html">
+   Simpson’s Paradox
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../anomaly/rate_sp.html">
+   Rate-Based SP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../anomaly/regression_sp.html">
+   Regression -Based Simpson’s Paradox
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../anomaly/api.html">
+   API Reference
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Biases
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../bias/populations.html">
+   Population Sampling for Bias Modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../bias/demo_populations.html">
+   Using Population objects to create biased data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../bias/api.html">
+   API Reference
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Basic Generators
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../base/basic_generators.html">
+   Basic Generators
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <h1>Source code for mlsim.bias.populations</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">aif360.datasets</span>
+<span class="kn">from</span> <span class="nn">.bias_components</span> <span class="kn">import</span> <span class="n">Demographic</span><span class="p">,</span> <span class="n">Target</span><span class="p">,</span> <span class="n">Feature</span><span class="p">,</span> <span class="n">FeatureNoise</span>
+
+<span class="n">default_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dem&#39;</span><span class="p">:</span><span class="kc">None</span><span class="p">,}</span>
+
+<div class="viewcode-block" id="Population"><a class="viewcode-back" href="../../../bias/api.html#mlsim.bias.Population">[docs]</a><span class="k">class</span> <span class="nc">Population</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Object for describing a population so that sampling from the population</span>
+<span class="sd">    and biased samples are possible from a sampler type and parameter dictionary</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">demographic_sampler</span><span class="o">=</span> <span class="n">Demographic</span><span class="p">,</span>
+                <span class="n">target_sampler</span> <span class="o">=</span> <span class="n">Target</span><span class="p">,</span>
+                <span class="n">feature_sampler</span> <span class="o">=</span> <span class="n">Feature</span><span class="p">,</span>
+                <span class="n">feature_noise_sampler</span> <span class="o">=</span> <span class="n">FeatureNoise</span><span class="p">,</span> <span class="n">parameter_dictionary</span> <span class="o">=</span> <span class="p">{}):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        initialize a population based on the way to sample from it. a population</span>
+<span class="sd">        object has properties that define the samplers for the demographic</span>
+<span class="sd">        variables (A,Z) the observed target (Y) and the features (X)</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        demographic_sampler : Demographic</span>
+<span class="sd">            a sampler that inherits from mlsim.Demographic</span>
+<span class="sd">        target_sampler : Target,</span>
+<span class="sd">        feature_sampler : Feature,</span>
+<span class="sd">        feature_noise_sampler : FeatureNoise,</span>
+<span class="sd">        parameter_dictionary : dictionary default empty</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+
+        <span class="n">required_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dem&#39;</span><span class="p">,</span><span class="s1">&#39;target&#39;</span><span class="p">,</span><span class="s1">&#39;feat&#39;</span><span class="p">,</span><span class="s1">&#39;featnoise&#39;</span><span class="p">]</span>
+
+        <span class="c1">#ensure required keys are set</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">required_keys</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">key</span> <span class="ow">in</span> <span class="n">parameter_dictionary</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+                <span class="n">parameter_dictionary</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">=</span> <span class="kc">None</span>
+
+        <span class="n">dem_params</span> <span class="o">=</span> <span class="n">parameter_dictionary</span><span class="p">[</span><span class="s1">&#39;dem&#39;</span><span class="p">]</span>
+        <span class="n">target_params</span> <span class="o">=</span> <span class="n">parameter_dictionary</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span>
+        <span class="n">feat_params</span> <span class="o">=</span> <span class="n">parameter_dictionary</span><span class="p">[</span><span class="s1">&#39;feat&#39;</span><span class="p">]</span>
+        <span class="n">featnoise_params</span> <span class="o">=</span> <span class="n">parameter_dictionary</span><span class="p">[</span><span class="s1">&#39;featnoise&#39;</span><span class="p">]</span>
+
+        <span class="c1"># initialize objects for each, with parameters if provided</span>
+        <span class="k">if</span> <span class="n">dem_params</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">demographic_sampler</span> <span class="o">=</span> <span class="n">demographic_sampler</span><span class="p">(</span><span class="o">*</span><span class="n">dem_params</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">demographic_sampler</span> <span class="o">=</span> <span class="n">demographic_sampler</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">target_params</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">target_sampler</span> <span class="o">=</span> <span class="n">target_sampler</span><span class="p">(</span><span class="o">*</span><span class="n">target_params</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">target_sampler</span> <span class="o">=</span> <span class="n">target_sampler</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">feat_params</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">feature_sampler</span> <span class="o">=</span> <span class="n">feature_sampler</span><span class="p">(</span><span class="o">*</span><span class="n">feat_params</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">feature_sampler</span> <span class="o">=</span> <span class="n">feature_sampler</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">featnoise_params</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">feature_noise_sampler</span> <span class="o">=</span> <span class="n">feature_noise_sampler</span><span class="p">(</span><span class="o">*</span><span class="n">featnoise_params</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">feature_noise_sampler</span> <span class="o">=</span> <span class="n">feature_noise_sampler</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="Population.sample"><a class="viewcode-back" href="../../../bias/api.html#mlsim.bias.Population.sample">[docs]</a>    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span><span class="n">return_as</span> <span class="o">=</span> <span class="s1">&#39;DataFrame&#39;</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        sample N members of the  population, according to its underlying</span>
+<span class="sd">        distribution</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        N : int</span>
+<span class="sd">            number of samples</span>
+<span class="sd">        return_as : string, &#39;dataframe&#39;</span>
+<span class="sd">            type to return as, can be pandas &#39;DataFrame&#39; or IBM AIF360</span>
+<span class="sd">            &#39;structuredDataset&#39;</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">a</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">demographic_sampler</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_sampler</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_sampler</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_noise_sampler</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">return_as</span> <span class="o">==</span> <span class="s1">&#39;DataFrame&#39;</span><span class="p">:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_DataFrame</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">return_as</span> <span class="o">==</span> <span class="s1">&#39;structuredDataset&#39;</span><span class="p">:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_StructuredDataset</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+
+
+        <span class="k">return</span> <span class="n">df</span></div>
+
+<div class="viewcode-block" id="Population.sample_unfavorable_outcomes"><a class="viewcode-back" href="../../../bias/api.html#mlsim.bias.Population.sample_unfavorable_outcomes">[docs]</a>    <span class="k">def</span> <span class="nf">sample_unfavorable_outcomes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">rho_z_scale</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        sample so that the disadvantaged group (a=1) gets the favorable</span>
+<span class="sd">        outcome (y=1) less often based on the rho_z_scale</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># get original demographic parameters</span>
+        <span class="n">rho_z0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">demographic_sampler</span><span class="o">.</span><span class="n">get_rho_z</span><span class="p">()</span>
+        <span class="n">rho_a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">demographic_sampler</span><span class="o">.</span><span class="n">get_rho_a</span><span class="p">()</span>
+        <span class="c1"># scale rho_a</span>
+        <span class="n">rho_z</span> <span class="o">=</span> <span class="p">[</span><span class="n">rho_z0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">rho_z0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">rho_z_scale</span><span class="p">]</span>
+        <span class="c1"># sameple the demongraphic vars with the new sampler</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unfavorable_dem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">DemographicCorrelated</span><span class="p">(</span><span class="n">rho_a</span><span class="p">,</span><span class="n">rho_z</span><span class="p">)</span>
+        <span class="n">a</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unfavorable_dem</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+        <span class="c1"># sample the rest as usual</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_sampler</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_sampler</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_noise_sampler</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_DataFrame</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Population.make_DataFrame"><a class="viewcode-back" href="../../../bias/api.html#mlsim.bias.Population.make_DataFrame">[docs]</a>    <span class="k">def</span> <span class="nf">make_DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        combine into data frame with labels</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        a : list</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># concatenate the data and p</span>
+        <span class="n">azy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">a</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">y</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">azy</span><span class="p">,</span><span class="n">x</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">labels</span> <span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+        <span class="n">_</span><span class="p">,</span><span class="n">D</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">labels</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s1">&#39;x&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">D</span><span class="p">)])</span>
+
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">labels</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Population.make_StructuredDataset"><a class="viewcode-back" href="../../../bias/api.html#mlsim.bias.Population.make_StructuredDataset">[docs]</a>    <span class="k">def</span> <span class="nf">make_StructuredDataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Converts a dataframe created by one of the above functions into a dataset usable in IBM 360 package</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        df : pandas dataframe</span>
+<span class="sd">        label_names : optional, a list of strings describing each label</span>
+<span class="sd">        protected_attribute_names : optional, a list of strings describing</span>
+<span class="sd">        features corresponding to      protected attributes</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        aif360.datasets.StructuredDataset</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_DataFrame</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">aif360</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">StructuredDataset</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Population.get_parameter_description"><a class="viewcode-back" href="../../../bias/api.html#mlsim.bias.Population.get_parameter_description">[docs]</a>    <span class="k">def</span> <span class="nf">get_parameter_description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Build a string output that describes this object</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        description : string</span>
+<span class="sd">            values of each parameter value grouped by sampler</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+
+        <span class="n">description</span> <span class="o">+=</span> <span class="s1">&#39;Demographic Parameters</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">description</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">demographic_sampler</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
+        <span class="n">description</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Target Parameters </span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">description</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_sampler</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
+        <span class="n">description</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Feature Parameters </span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">description</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_sampler</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
+        <span class="n">description</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Feature Noise Parameters </span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">description</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_noise_sampler</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">description</span></div></div>
+
+
+<div class="viewcode-block" id="PopulationInstantiated"><a class="viewcode-back" href="../../../bias/api.html#mlsim.bias.PopulationInstantiated">[docs]</a><span class="k">class</span> <span class="nc">PopulationInstantiated</span><span class="p">(</span><span class="n">Population</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    To instantiate with either default parameters or instantiated sampler objects</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">demographic_sampler</span><span class="o">=</span> <span class="n">Demographic</span><span class="p">(),</span>
+                <span class="n">target_sampler</span> <span class="o">=</span> <span class="n">Target</span><span class="p">(),</span>
+                <span class="n">feature_sampler</span> <span class="o">=</span> <span class="n">Feature</span><span class="p">(),</span>
+                <span class="n">feature_noise_sampler</span> <span class="o">=</span> <span class="n">FeatureNoise</span><span class="p">()):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        initialize a population based on the way to sample from it</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        population_sampler : function handle</span>
+<span class="sd">            function to sample from the distribution</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">demographic_sampler</span> <span class="o">=</span> <span class="n">demographic_sampler</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_sampler</span> <span class="o">=</span> <span class="n">target_sampler</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feature_sampler</span> <span class="o">=</span> <span class="n">feature_sampler</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feature_noise_sampler</span> <span class="o">=</span> <span class="n">feature_noise_sampler</span></div>
+</pre></div>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By ML4STS Lab<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

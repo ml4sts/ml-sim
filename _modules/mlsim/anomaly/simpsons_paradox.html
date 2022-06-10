@@ -1,0 +1,771 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mlsim.anomaly.simpsons_paradox &#8212; ML Sim Documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">ML Sim Documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../index.html">
+                    ML-Sim Documentation
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Anomalies
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../anomaly/simpsons_paradox.html">
+   Simpson’s Paradox
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../anomaly/rate_sp.html">
+   Rate-Based SP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../anomaly/regression_sp.html">
+   Regression -Based Simpson’s Paradox
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../anomaly/api.html">
+   API Reference
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Biases
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../bias/populations.html">
+   Population Sampling for Bias Modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../bias/demo_populations.html">
+   Using Population objects to create biased data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../bias/api.html">
+   API Reference
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Basic Generators
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../base/basic_generators.html">
+   Basic Generators
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <h1>Source code for mlsim.anomaly.simpsons_paradox</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">string</span>
+
+<span class="kn">from</span> <span class="nn">..base.basic_gens</span> <span class="kn">import</span> <span class="n">means_with_spread</span>
+
+<div class="viewcode-block" id="geometric_2d_gmm_sp"><a class="viewcode-back" href="../../../anomaly/api.html#mlsim.anomaly.geometric_2d_gmm_sp">[docs]</a><span class="k">def</span> <span class="nf">geometric_2d_gmm_sp</span><span class="p">(</span><span class="n">r_clusters</span><span class="p">,</span><span class="n">cluster_size</span><span class="p">,</span><span class="n">cluster_spread</span><span class="p">,</span><span class="n">p_sp_clusters</span><span class="p">,</span>
+                <span class="n">domain_range</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">p_clusters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sample from a gaussian mixture model with Simpson&#39;s Paradox and spread means</span>
+<span class="sd">    return data in a data fram</span>
+
+<span class="sd">    r_clusters : scalar [0,1]</span>
+<span class="sd">        correlation coefficient of clusters</span>
+<span class="sd">    cluster_size : 2 vector</span>
+<span class="sd">        variance in each direction of each cluster</span>
+<span class="sd">    cluster_spread : scalar [0,1]</span>
+<span class="sd">        pearson correlation of means</span>
+<span class="sd">    p_sp_clusters : scalar in [0,1]</span>
+<span class="sd">        portion of clusters with SP</span>
+<span class="sd">    p_clusters : vector in [0,1)^k, optional</span>
+<span class="sd">        probabilty of membership of a sample in each cluster (controls relative</span>
+<span class="sd">        size of clusters) default is [1.0/k]*k for uniform</span>
+<span class="sd">    domain_range : [xmin, xmax, ymin, ymax]</span>
+<span class="sd">        planned region for points to be in, means will be in middle 80%</span>
+<span class="sd">    k : integer</span>
+<span class="sd">        number of clusters</span>
+<span class="sd">    N : scalar</span>
+<span class="sd">        number of points</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># if not defined, set uniform cluster probaiblity</span>
+    <span class="k">if</span> <span class="n">p_clusters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">p_clusters</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="o">/</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">k</span>
+
+    <span class="c1"># sample the data</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">data_only_geometric_2d_gmm</span><span class="p">(</span><span class="n">r_clusters</span><span class="p">,</span><span class="n">cluster_size</span><span class="p">,</span><span class="n">cluster_spread</span><span class="p">,</span>
+                                      <span class="n">p_sp_clusters</span><span class="p">,</span>
+                                      <span class="n">domain_range</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">p_clusters</span><span class="p">)</span>
+
+    <span class="c1"># make a dataframe</span>
+    <span class="n">latent_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">x</span><span class="p">,</span>
+                           <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">])</span>
+
+    <span class="c1"># code cluster as color and add it a column to the dataframe</span>
+    <span class="n">latent_df</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">z</span>
+
+
+    <span class="k">return</span> <span class="n">latent_df</span></div>
+
+
+<span class="k">def</span> <span class="nf">slope_linear_sp</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">p_sp_clusters</span><span class="p">,</span> <span class="n">domain_range</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">N</span><span class="p">,</span>
+                    <span class="n">p_clusters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">numeric_categorical</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sample from a gaussian mixture model with Simpson&#39;s Paradox and spread means</span>
+<span class="sd">    return data in a data fram</span>
+
+<span class="sd">    d : integer</span>
+<span class="sd">        number of independent views, groups of 3 columns with sp</span>
+<span class="sd">    r_clusters : scalar [0,1] or list of d</span>
+<span class="sd">        correlation coefficient of clusters</span>
+<span class="sd">    cluster_size : 2 vector or list of d</span>
+<span class="sd">        variance in each direction of each cluster</span>
+<span class="sd">    cluster_spread : scalar [0,1] list of d</span>
+<span class="sd">        pearson correlation of means</span>
+<span class="sd">    p_sp_clusters : scalar in [0,1] list of d</span>
+<span class="sd">        portion of clusters with SP</span>
+<span class="sd">    p_clusters : vector in [0,1)^k, optional or list of d vectors</span>
+<span class="sd">        probabilty of membership of a sample in each cluster (controls relative</span>
+<span class="sd">        size of clusters) default is [1.0/k]*k for uniform</span>
+<span class="sd">    domain_range : [xmin, xmax, ymin, ymax] list of d</span>
+<span class="sd">        planned region for points to be in, means will be in middle 80%</span>
+<span class="sd">    k : integer or list of d</span>
+<span class="sd">        number of clusters</span>
+<span class="sd">    N : scalar</span>
+<span class="sd">        number of points, shared across all views</span>
+<span class="sd">    numeric_categorical=False</span>
+<span class="sd">        use numerical (ordinal) values instead of letters</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># log_info = format_log(locals(),&#39;geometric_indep_views_gmm_sp&#39;)</span>
+
+    <span class="c1"># if not defined, set uniform cluster probaiblity</span>
+    <span class="k">if</span> <span class="n">p_clusters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">p_clusters</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="o">/</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">k</span>
+
+
+    <span class="c1"># make inputs lists if not</span>
+    <span class="n">sclar_to_list</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">*</span><span class="n">d</span> <span class="c1"># if float, make d list by repeats</span>
+
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">p_sp_clusters</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="n">p_sp_clusters</span> <span class="o">=</span> <span class="n">sclar_to_list</span><span class="p">(</span><span class="n">p_sp_clusters</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">sclar_to_list</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">p_clusters</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="n">p_clusters</span> <span class="o">=</span> <span class="n">sclar_to_list</span><span class="p">(</span><span class="n">p_clusters</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">domain_range</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="n">domain_range</span> <span class="o">=</span> <span class="n">sclar_to_list</span><span class="p">(</span><span class="n">domain_range</span><span class="p">)</span>
+
+
+    <span class="c1"># set x to none for logic below to add stuff</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># sample from a GMM</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="n">p_clusters</span><span class="p">)</span>
+
+    <span class="c1"># cov_noise = lambda : np.random.permutation([.3*np.random.random(),np.random.random()])</span>
+    <span class="n">cluster_covs_all</span> <span class="o">=</span> <span class="p">[</span><span class="n">cluster_covs</span><span class="p">[</span><span class="n">c_i</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="k">for</span> <span class="n">c_i</span> <span class="ow">in</span> <span class="n">c_sp</span><span class="p">]</span>
+    <span class="c1"># sample data using the cluster assignments z, means and cluster covariances</span>
+    <span class="n">mu_p</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">cov</span><span class="p">)</span> <span class="k">for</span> <span class="n">mu</span><span class="p">,</span><span class="n">cov</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">cluster_covs_all</span><span class="p">)]</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mu</span><span class="p">[</span><span class="n">z_i</span><span class="p">],</span>
+                <span class="n">cluster_covs_all</span><span class="p">[</span><span class="n">z_i</span><span class="p">])</span> <span class="k">for</span> <span class="n">z_i</span> <span class="ow">in</span> <span class="n">z</span><span class="p">])</span>
+    <span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mu_p</span><span class="p">[</span><span class="n">z_i</span><span class="p">],</span><span class="n">cluster_covs_all</span><span class="p">[</span><span class="n">z_i</span><span class="p">])</span> <span class="k">for</span> <span class="n">z_i</span> <span class="ow">in</span> <span class="n">z</span><span class="p">])</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">x2</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d</span><span class="o">*</span><span class="mi">2</span><span class="p">)]</span>
+
+    <span class="c1"># make a dataframe</span>
+    <span class="c1"># print(len(x))</span>
+    <span class="c1"># print(len(x[0]))</span>
+
+    <span class="n">latent_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">x</span><span class="p">,</span>
+                           <span class="n">columns</span> <span class="o">=</span> <span class="n">col_names</span> <span class="p">)</span>
+
+    <span class="c1">#cluster naming will be name the columns: A, B, ...</span>
+    <span class="c1"># valuses will be A1, A2, ..., Ak...</span>
+    <span class="n">z_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span><span class="p">[:</span><span class="n">d</span><span class="p">])</span>
+    <span class="c1"># code cluster as and add it a column to the dataframe</span>
+    <span class="k">for</span> <span class="n">z_i</span><span class="p">,</span><span class="n">name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="n">z_names</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">numeric_categorical</span><span class="p">:</span>
+            <span class="n">latent_df</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">z_ii</span> <span class="k">for</span> <span class="n">z_ii</span> <span class="ow">in</span> <span class="n">z_i</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">latent_df</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">z_ii</span><span class="p">)</span> <span class="k">for</span> <span class="n">z_ii</span> <span class="ow">in</span> <span class="n">z_i</span><span class="p">]</span>
+
+
+    <span class="k">return</span> <span class="n">latent_df</span>
+
+
+
+
+
+
+
+
+
+<span class="k">def</span> <span class="nf">add_merge_cluster_views</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">r_clusters</span><span class="p">,</span><span class="n">cluster_size</span><span class="p">,</span><span class="n">cluster_spread</span><span class="p">,</span><span class="n">p_sp_clusters</span><span class="p">,</span>
+                <span class="n">domain_range</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">df</span><span class="p">,</span><span class="n">numeric_categorical</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sample from a gaussian mixture model with Simpson&#39;s Paradox and spread means</span>
+<span class="sd">    return data in a data fram</span>
+
+<span class="sd">    d : integer</span>
+<span class="sd">        number of independent views, groups of 3 columns with sp</span>
+<span class="sd">    r_clusters : scalar [0,1] or list of d</span>
+<span class="sd">        correlation coefficient of clusters</span>
+<span class="sd">    cluster_size : 2 vector or list of d</span>
+<span class="sd">        variance in each direction of each cluster</span>
+<span class="sd">    cluster_spread : scalar [0,1] list of d</span>
+<span class="sd">        pearson correlation of means</span>
+<span class="sd">    p_sp_clusters : scalar in [0,1] list of d</span>
+<span class="sd">        portion of clusters with SP</span>
+<span class="sd">    p_clusters : vector in [0,1)^k, optional or list of d vectors</span>
+<span class="sd">        probabilty of membership of a sample in each cluster (controls relative</span>
+<span class="sd">        size of clusters) default is [1.0/k]*k for uniform</span>
+<span class="sd">    domain_range : [xmin, xmax, ymin, ymax] list of d</span>
+<span class="sd">        planned region for points to be in, means will be in middle 80%</span>
+<span class="sd">    k : integer or list of d</span>
+<span class="sd">        number of clusters</span>
+<span class="sd">    N : scalar</span>
+<span class="sd">        number of points, shared across all views</span>
+<span class="sd">    numeric_categorical=False</span>
+<span class="sd">        use numerical (ordinal) values instead of letters</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># log_info = format_log(locals(),&#39;geometric_indep_views_gmm_sp&#39;)</span>
+
+    <span class="c1"># if not defined, set uniform cluster probaiblity</span>
+    <span class="k">if</span> <span class="n">p_clusters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">p_clusters</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="o">/</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">k</span>
+
+
+    <span class="c1"># make inputs lists if not</span>
+    <span class="n">sclar_to_list</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">*</span><span class="n">d</span> <span class="c1"># if float, make d list by repeats</span>
+
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">r_clusters</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="n">r_clusters</span> <span class="o">=</span> <span class="n">sclar_to_list</span><span class="p">(</span><span class="n">r_clusters</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">cluster_spread</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="n">cluster_spread</span> <span class="o">=</span> <span class="n">sclar_to_list</span><span class="p">(</span><span class="n">cluster_spread</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">p_sp_clusters</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="n">p_sp_clusters</span> <span class="o">=</span> <span class="n">sclar_to_list</span><span class="p">(</span><span class="n">p_sp_clusters</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">sclar_to_list</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">p_clusters</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="n">p_clusters</span> <span class="o">=</span> <span class="n">sclar_to_list</span><span class="p">(</span><span class="n">p_clusters</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">cluster_size</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="n">cluster_size</span> <span class="o">=</span> <span class="n">sclar_to_list</span><span class="p">(</span><span class="n">cluster_size</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">domain_range</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="n">domain_range</span> <span class="o">=</span> <span class="n">sclar_to_list</span><span class="p">(</span><span class="n">domain_range</span><span class="p">)</span>
+
+
+    <span class="c1"># set x to none for logic below to add stuff</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">r</span><span class="p">,</span><span class="n">c_std</span><span class="p">,</span><span class="n">c_sp</span><span class="p">,</span><span class="n">p_sp</span><span class="p">,</span> <span class="n">d_r</span><span class="p">,</span><span class="n">k_i</span><span class="p">,</span><span class="n">rho</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">r_clusters</span><span class="p">,</span><span class="n">cluster_size</span><span class="p">,</span><span class="n">cluster_spread</span><span class="p">,</span><span class="n">p_sp_clusters</span><span class="p">,</span>
+                            <span class="n">domain_range</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">p_clusters</span><span class="p">):</span>
+        <span class="c1"># sample the data</span>
+        <span class="n">x_tmp</span><span class="p">,</span> <span class="n">z_tmp</span> <span class="o">=</span> <span class="n">data_only_geometric_2d_gmm</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">c_std</span><span class="p">,</span><span class="n">c_sp</span><span class="p">,</span><span class="n">p_sp</span><span class="p">,</span> <span class="n">d_r</span><span class="p">,</span><span class="n">k_i</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">rho</span><span class="p">)</span>
+        <span class="c1"># x.append(x_tmp)</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x_tmp</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x_tmp</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">z</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">z_tmp</span><span class="p">)</span>
+
+    <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d</span><span class="o">*</span><span class="mi">2</span><span class="p">)]</span>
+
+    <span class="c1"># make a dataframe</span>
+    <span class="c1"># print(len(x))</span>
+    <span class="c1"># print(len(x[0]))</span>
+
+    <span class="n">latent_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">x</span><span class="p">,</span>
+                           <span class="n">columns</span> <span class="o">=</span> <span class="n">col_names</span> <span class="p">)</span>
+
+    <span class="c1">#cluster naming will be name the columns: A, B, ...</span>
+    <span class="c1"># valuses will be A1, A2, ..., Ak...</span>
+    <span class="n">z_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span><span class="p">[:</span><span class="n">d</span><span class="p">])</span>
+    <span class="c1"># code cluster as and add it a column to the dataframe</span>
+    <span class="k">for</span> <span class="n">z_i</span><span class="p">,</span><span class="n">name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="n">z_names</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">numeric_categorical</span><span class="p">:</span>
+            <span class="n">latent_df</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">z_ii</span> <span class="k">for</span> <span class="n">z_ii</span> <span class="ow">in</span> <span class="n">z_i</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">latent_df</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">z_ii</span><span class="p">)</span> <span class="k">for</span> <span class="n">z_ii</span> <span class="ow">in</span> <span class="n">z_i</span><span class="p">]</span>
+
+
+    <span class="k">return</span> <span class="n">latent_df</span>
+
+<div class="viewcode-block" id="geometric_indep_views_gmm_sp"><a class="viewcode-back" href="../../../anomaly/api.html#mlsim.anomaly.geometric_indep_views_gmm_sp">[docs]</a><span class="k">def</span> <span class="nf">geometric_indep_views_gmm_sp</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">r_clusters</span><span class="p">,</span><span class="n">cluster_size</span><span class="p">,</span><span class="n">cluster_spread</span><span class="p">,</span><span class="n">p_sp_clusters</span><span class="p">,</span>
+                <span class="n">domain_range</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">p_clusters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">numeric_categorical</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sample from a gaussian mixture model with Simpson&#39;s Paradox and spread means</span>
+<span class="sd">    return data in a data fram</span>
+
+<span class="sd">    d : integer</span>
+<span class="sd">        number of independent views, groups of 3 columns with sp</span>
+<span class="sd">    r_clusters : scalar [0,1] or list of d</span>
+<span class="sd">        correlation coefficient of clusters</span>
+<span class="sd">    cluster_size : 2 vector or list of d</span>
+<span class="sd">        variance in each direction of each cluster</span>
+<span class="sd">    cluster_spread : scalar [0,1] list of d</span>
+<span class="sd">        pearson correlation of means</span>
+<span class="sd">    p_sp_clusters : scalar in [0,1] list of d</span>
+<span class="sd">        portion of clusters with SP</span>
+<span class="sd">    p_clusters : vector in [0,1)^k, optional or list of d vectors</span>
+<span class="sd">        probabilty of membership of a sample in each cluster (controls relative</span>
+<span class="sd">        size of clusters) default is [1.0/k]*k for uniform</span>
+<span class="sd">    domain_range : [xmin, xmax, ymin, ymax] list of d</span>
+<span class="sd">        planned region for points to be in, means will be in middle 80%</span>
+<span class="sd">    k : integer or list of d</span>
+<span class="sd">        number of clusters</span>
+<span class="sd">    N : scalar</span>
+<span class="sd">        number of points, shared across all views</span>
+<span class="sd">    numeric_categorical=False</span>
+<span class="sd">        use numerical (ordinal) values instead of letters</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># log_info = format_log(locals(),&#39;geometric_indep_views_gmm_sp&#39;)</span>
+
+    <span class="c1"># if not defined, set uniform cluster probaiblity</span>
+    <span class="k">if</span> <span class="n">p_clusters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">p_clusters</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="o">/</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">k</span>
+
+
+    <span class="c1"># make inputs lists if not</span>
+    <span class="n">sclar_to_list</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">*</span><span class="n">d</span> <span class="c1"># if float, make d list by repeats</span>
+
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">r_clusters</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="n">r_clusters</span> <span class="o">=</span> <span class="n">sclar_to_list</span><span class="p">(</span><span class="n">r_clusters</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">cluster_spread</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="n">cluster_spread</span> <span class="o">=</span> <span class="n">sclar_to_list</span><span class="p">(</span><span class="n">cluster_spread</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">p_sp_clusters</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="n">p_sp_clusters</span> <span class="o">=</span> <span class="n">sclar_to_list</span><span class="p">(</span><span class="n">p_sp_clusters</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">sclar_to_list</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">p_clusters</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="n">p_clusters</span> <span class="o">=</span> <span class="n">sclar_to_list</span><span class="p">(</span><span class="n">p_clusters</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">cluster_size</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="n">cluster_size</span> <span class="o">=</span> <span class="n">sclar_to_list</span><span class="p">(</span><span class="n">cluster_size</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">domain_range</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="n">domain_range</span> <span class="o">=</span> <span class="n">sclar_to_list</span><span class="p">(</span><span class="n">domain_range</span><span class="p">)</span>
+
+
+    <span class="c1"># set x to none for logic below to add stuff</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">repeated_vars_tuple</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span><span class="n">r_clusters</span><span class="p">,</span><span class="n">cluster_size</span><span class="p">,</span><span class="n">cluster_spread</span><span class="p">,</span><span class="n">p_sp_clusters</span><span class="p">,</span>
+                            <span class="n">domain_range</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">p_clusters</span><span class="p">]:</span>
+        <span class="n">nv</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">var</span><span class="p">)</span> <span class="o">&lt;</span><span class="n">d</span><span class="p">:</span>
+            <span class="n">var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="n">d</span><span class="o">/</span><span class="n">nv</span><span class="p">),</span><span class="n">var</span><span class="p">[:</span><span class="n">d</span><span class="o">%</span><span class="n">nv</span><span class="p">])</span>
+
+        <span class="c1"># add all to</span>
+        <span class="n">repeated_vars_tuple</span> <span class="o">+=</span> <span class="p">(</span><span class="n">var</span><span class="p">,)</span>
+
+
+    <span class="k">for</span> <span class="n">r</span><span class="p">,</span><span class="n">c_std</span><span class="p">,</span><span class="n">c_sp</span><span class="p">,</span><span class="n">p_sp</span><span class="p">,</span> <span class="n">d_r</span><span class="p">,</span><span class="n">k_i</span><span class="p">,</span><span class="n">rho</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">repeated_vars_tuple</span><span class="p">):</span>
+        <span class="c1"># sample the data</span>
+        <span class="n">x_tmp</span><span class="p">,</span> <span class="n">z_tmp</span> <span class="o">=</span> <span class="n">data_only_geometric_2d_gmm</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">c_std</span><span class="p">,</span><span class="n">c_sp</span><span class="p">,</span><span class="n">p_sp</span><span class="p">,</span> <span class="n">d_r</span><span class="p">,</span><span class="n">k_i</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">rho</span><span class="p">)</span>
+        <span class="c1"># x.append(x_tmp)</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x_tmp</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x_tmp</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">z</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">z_tmp</span><span class="p">)</span>
+
+    <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d</span><span class="o">*</span><span class="mi">2</span><span class="p">)]</span>
+
+    <span class="c1"># make a dataframe</span>
+    <span class="c1"># print(len(x))</span>
+    <span class="c1"># print(len(x[0]))</span>
+
+    <span class="n">latent_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">x</span><span class="p">,</span>
+                           <span class="n">columns</span> <span class="o">=</span> <span class="n">col_names</span> <span class="p">)</span>
+
+    <span class="c1">#cluster naming will be name the columns: A, B, ...</span>
+    <span class="c1"># valuses will be A1, A2, ..., Ak...</span>
+    <span class="n">char_reps</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">z_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span><span class="p">[:</span><span class="n">d</span><span class="p">])</span>
+    <span class="c1"># if there are more splitbys than letters in the alphabet, use repetition:</span>
+    <span class="c1">#       AA, ..., ZZ, AAA, ...</span>
+    <span class="k">while</span> <span class="n">d</span><span class="o">&gt;</span> <span class="mi">26</span><span class="p">:</span>
+        <span class="n">d</span><span class="o">-=</span><span class="mi">26</span>
+        <span class="n">char_reps</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">z_names</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span><span class="o">*</span><span class="n">char_reps</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span><span class="p">[:</span><span class="n">d</span><span class="p">])])</span>
+
+    <span class="c1"># code cluster as and add it a column to the dataframe</span>
+    <span class="k">for</span> <span class="n">z_i</span><span class="p">,</span><span class="n">name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="n">z_names</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">numeric_categorical</span><span class="p">:</span>
+            <span class="n">latent_df</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">z_ii</span> <span class="k">for</span> <span class="n">z_ii</span> <span class="ow">in</span> <span class="n">z_i</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">latent_df</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">z_ii</span><span class="p">)</span> <span class="k">for</span> <span class="n">z_ii</span> <span class="ow">in</span> <span class="n">z_i</span><span class="p">]</span>
+
+
+    <span class="k">return</span> <span class="n">latent_df</span></div>
+
+<span class="k">def</span> <span class="nf">data_only_geometric_2d_gmm</span><span class="p">(</span><span class="n">r_clusters</span><span class="p">,</span><span class="n">cluster_size</span><span class="p">,</span><span class="n">cluster_spread</span><span class="p">,</span><span class="n">p_sp_clusters</span><span class="p">,</span>
+                <span class="n">domain_range</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">p_clusters</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    private, sampler only, returns raw variables, utily for sharing in other</span>
+<span class="sd">    samplers</span>
+<span class="sd">    Sample from a gaussian mixture model with Simpson&#39;s Paradox and spread means</span>
+
+<span class="sd">    r_clusters : scalar [0,1]</span>
+<span class="sd">        correlation coefficient of clusters</span>
+<span class="sd">    cluster_size : 2 vector</span>
+<span class="sd">        variance in each direction of each cluster</span>
+<span class="sd">    cluster_spread : scalar [0,1]</span>
+<span class="sd">        pearson correlation of means</span>
+<span class="sd">    p_sp_clusters : scalar in [0,1]</span>
+<span class="sd">        portion of clusters with SP</span>
+<span class="sd">    p_clusters : vector in [0,1)^k, optional</span>
+<span class="sd">        probabilty of membership of a sample in each cluster (controls relative</span>
+<span class="sd">        size of clusters) default is [1.0/k]*k for uniform</span>
+<span class="sd">    domain_range : [xmin, xmax, ymin, ymax]</span>
+<span class="sd">        planned region for points to be in, means will be in middle 80%</span>
+<span class="sd">    k : integer</span>
+<span class="sd">        number of clusters</span>
+<span class="sd">    N : scalar</span>
+<span class="sd">        number of points</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># define distribution for means, using the range provided</span>
+    <span class="n">mu_mu</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">domain_range</span><span class="p">[:</span><span class="mi">2</span><span class="p">]),</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">domain_range</span><span class="p">[</span><span class="mi">2</span><span class="p">:])]</span>
+    <span class="c1"># first set correlation mat for means</span>
+    <span class="n">mu_sign</span> <span class="o">=</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">r_clusters</span><span class="p">)</span>
+    <span class="n">corr</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="n">mu_sign</span><span class="o">*</span><span class="n">cluster_spread</span><span class="p">],[</span><span class="n">mu_sign</span><span class="o">*</span><span class="n">cluster_spread</span><span class="p">,</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="c1"># use a trimmed range to comput std</span>
+    <span class="n">mu_trim</span> <span class="o">=</span> <span class="mf">.2</span>
+    <span class="n">mu_transform</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">domain_range</span><span class="p">)[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span><span class="o">*</span><span class="p">(</span><span class="n">mu_trim</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">mu_transform</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span> <span class="o">=</span> <span class="n">mu_transform</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span><span class="o">*-</span><span class="mi">1</span> <span class="c1"># sign flip every other</span>
+    <span class="n">mu_domain</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="o">+</span> <span class="n">m_t</span> <span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">m_t</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">domain_range</span><span class="p">,</span><span class="n">mu_transform</span><span class="p">)]</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">mu_domain</span><span class="p">)[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]]))</span>
+    <span class="c1"># construct covariance from correlation</span>
+    <span class="n">mu_cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">corr</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+    <span class="c1"># sample means</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">means_with_spread</span><span class="p">(</span><span class="n">mu_mu</span><span class="p">,</span><span class="n">mu_cov</span><span class="p">,</span><span class="n">k</span><span class="p">)</span>
+
+    <span class="c1"># create cluster covariances for SP and not SP</span>
+    <span class="n">cluster_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cluster_size</span><span class="p">))</span>
+    <span class="n">cluster_corr_sp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="n">r_clusters</span><span class="p">],[</span><span class="n">r_clusters</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span> <span class="c1"># correlation with sp</span>
+    <span class="n">cluster_cov_sp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">cluster_std</span><span class="p">,</span><span class="n">cluster_corr_sp</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">cluster_std</span><span class="p">)</span> <span class="c1">#cov with sp</span>
+    <span class="n">cluster_corr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="n">r_clusters</span><span class="p">],[</span><span class="o">-</span><span class="n">r_clusters</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span> <span class="c1">#correlation without sp</span>
+    <span class="n">cluster_cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">cluster_std</span><span class="p">,</span><span class="n">cluster_corr</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">cluster_std</span><span class="p">)</span> <span class="c1">#cov wihtout sp</span>
+    <span class="n">cluster_covs</span> <span class="o">=</span> <span class="p">[</span><span class="n">cluster_corr_sp</span><span class="p">,</span> <span class="n">cluster_corr</span><span class="p">]</span>
+
+
+    <span class="c1"># sample the[0,1] k times to assign each cluster to SP or not</span>
+    <span class="n">c_sp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="n">p_sp_clusters</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">p_sp_clusters</span><span class="p">])</span>
+
+
+    <span class="c1"># sample from a GMM</span>
+    <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span><span class="n">p</span><span class="o">=</span><span class="n">p_clusters</span><span class="p">)</span>
+
+    <span class="c1"># cov_noise = lambda : np.random.permutation([.3*np.random.random(),np.random.random()])</span>
+    <span class="n">cluster_covs_all</span> <span class="o">=</span> <span class="p">[</span><span class="n">cluster_covs</span><span class="p">[</span><span class="n">c_i</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="k">for</span> <span class="n">c_i</span> <span class="ow">in</span> <span class="n">c_sp</span><span class="p">]</span>
+    <span class="c1"># sample data using the cluster assignments z, means and cluster covariances</span>
+    <span class="n">mu_p</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">cov</span><span class="p">)</span> <span class="k">for</span> <span class="n">mu</span><span class="p">,</span><span class="n">cov</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">cluster_covs_all</span><span class="p">)]</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mu</span><span class="p">[</span><span class="n">z_i</span><span class="p">],</span>
+                <span class="n">cluster_covs_all</span><span class="p">[</span><span class="n">z_i</span><span class="p">])</span> <span class="k">for</span> <span class="n">z_i</span> <span class="ow">in</span> <span class="n">z</span><span class="p">])</span>
+    <span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mu_p</span><span class="p">[</span><span class="n">z_i</span><span class="p">],</span><span class="n">cluster_covs_all</span><span class="p">[</span><span class="n">z_i</span><span class="p">])</span> <span class="k">for</span> <span class="n">z_i</span> <span class="ow">in</span> <span class="n">z</span><span class="p">])</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">x2</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span><span class="n">z</span>
+
+
+<span class="k">def</span> <span class="nf">generate_rate_sp</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    induce SP in the form of the Berkeley Admissions Example</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    N : scalar</span>
+<span class="sd">        number of samples to draw</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># must have imbalance</span>
+    <span class="n">p_explanatory</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.15</span><span class="p">,</span><span class="mf">.2</span><span class="p">,</span><span class="mf">.1</span><span class="p">,</span><span class="mf">.55</span><span class="p">]</span>
+    <span class="c1">#protected, given explantory, largest explantory should have fipped rates</span>
+    <span class="c1"># larger subgroup should have opposite protected class balance</span>
+    <span class="n">p_protected_explanatory</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">.7</span><span class="p">,</span> <span class="mf">.3</span><span class="p">],[</span><span class="mf">.8</span><span class="p">,</span><span class="mf">.2</span><span class="p">],[</span><span class="mf">.85</span><span class="p">,</span><span class="mf">.15</span><span class="p">],[</span><span class="mf">.2</span><span class="p">,</span><span class="mf">.8</span><span class="p">]]</span>
+    <span class="n">protected_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="s1">&#39;M&#39;</span><span class="p">]</span>
+    <span class="c1"># need to have higher accept in the larger subgroup,</span>
+    <span class="n">p_outcome_all</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;F&#39;</span><span class="p">:</span><span class="mf">.18</span><span class="p">,</span><span class="s1">&#39;M&#39;</span><span class="p">:</span><span class="mf">.12</span><span class="p">},{</span><span class="s1">&#39;F&#39;</span><span class="p">:</span><span class="mf">.17</span><span class="p">,</span><span class="s1">&#39;M&#39;</span><span class="p">:</span><span class="mf">.1</span><span class="p">},</span>
+                           <span class="p">{</span><span class="s1">&#39;F&#39;</span><span class="p">:</span><span class="mf">.30</span><span class="p">,</span><span class="s1">&#39;M&#39;</span><span class="p">:</span><span class="mf">.27</span><span class="p">},{</span><span class="s1">&#39;F&#39;</span><span class="p">:</span><span class="mf">.35</span><span class="p">,</span><span class="s1">&#39;M&#39;</span><span class="p">:</span><span class="mf">.30</span><span class="p">}]</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">gen_rate</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">p_explanatory</span><span class="p">,</span> <span class="n">p_protected_explanatory</span><span class="p">,</span><span class="n">p_outcome_all</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df</span>
+
+
+<span class="k">def</span> <span class="nf">gen_rate</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">p_explanatory</span><span class="p">,</span> <span class="n">p_protected_explanatory</span><span class="p">,</span><span class="n">p_outcome_all</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    sampler that takes in probabilities</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    N : scalar</span>
+<span class="sd">        number of samples to draw</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">protected_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="s1">&#39;M&#39;</span><span class="p">]</span>
+    <span class="n">explantory</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p_explanatory</span><span class="p">))),</span>
+                                    <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span><span class="n">p_dept</span><span class="p">)</span>
+    <span class="n">protected</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">protected_list</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p_protected_explanatory</span><span class="p">[</span><span class="n">e</span><span class="p">])</span>
+                                    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">explantory</span><span class="p">]</span>
+    <span class="n">p_outcome</span> <span class="o">=</span><span class="p">[</span> <span class="n">p_outcome_all</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="n">p</span><span class="p">]</span> <span class="k">for</span> <span class="n">e</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">explantory</span><span class="p">,</span><span class="n">protected</span><span class="p">)]</span>
+
+    <span class="n">outcome</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">])</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">p_outcome</span><span class="p">]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="n">e</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">o</span><span class="p">]</span> <span class="k">for</span> <span class="n">e</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">o</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">explantory</span><span class="p">,</span><span class="n">protected</span><span class="p">,</span><span class="n">outcome</span><span class="p">)]</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;explanatory&#39;</span><span class="p">,</span><span class="s1">&#39;protected&#39;</span><span class="p">,</span><span class="s1">&#39;outcome&#39;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">df</span>
+</pre></div>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By ML4STS Lab<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
