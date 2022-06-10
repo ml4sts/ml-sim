@@ -28,7 +28,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
-        pip install .
+        pip install -e . --no-deps --force-reinstall
 
     # Build the book
     - name: Build the book
