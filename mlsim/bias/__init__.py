@@ -6,3 +6,11 @@ from .bias_components import FeaturePerGroupTwoParam, FeaturePerGroupSharedParam
 from .bias_components import FeaturePerGroupSharedParamAcrossGroups
 from .bias_components import FeatureMeasurementQualityProxy
 from .bias_components import FeatureNoise, FeatureNoiseReplace
+
+__all__  = ['Population','PopulationInstantiated',  'Demographic',
+    'DemographicIndependent', 'DemographicCorrelated',  'Target',
+    'TargetDisadvantagedError', 'TargetTwoError',  'Feature','FeatureSharedParam',
+    'FeatureTwoParams',  'FeaturePerGroupTwoParam',
+    'FeaturePerGroupSharedParamWithinGroup',
+    'FeaturePerGroupSharedParamAcrossGroups',
+    'FeatureMeasurementQualityProxy',  'FeatureNoise', 'FeatureNoiseReplace' ]

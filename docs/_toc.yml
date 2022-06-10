@@ -6,13 +6,14 @@ parts:
     - file: anomaly/simpsons_paradox
     - file: anomaly/rate_sp
     - file: anomaly/regression_sp
-    - file: anomaly/api
+    - file: anomaly/api.rst
       # sections:
       # - file: path/to/part1/chapter2/section1
   - caption: Biases
     chapters:
     - file: bias/populations
-    - file: bias/api
+    - file: bias/demo_populations
+    - file: bias/api.rst
       # sections:
       # - file: path/to/part2/chapter2/section1
   - caption: Basic Generators
