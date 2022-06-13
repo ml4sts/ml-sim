@@ -23,11 +23,8 @@ To use the package, after installed::
 
 ## Development
 
-To work in a separate dev
+To work in a separate development environment use the `requirements.txt` to install dependencies
 
-.. code-block:: bash
-
-TOOD: make this true
 
 ### To reinstall  package after changes
 
@@ -48,7 +45,7 @@ need to be restarted to get the updates, if they're done outside of the notebook
 
 ## Offline Documentation
 To compile docs, jupyter book and some sphinx extensions are required, install
-them with 
+them with
 
 ```
 pip install -r requirements.txt
