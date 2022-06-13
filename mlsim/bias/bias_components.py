@@ -224,6 +224,18 @@ mean_only_mvn = lambda mu :np.random.multivariate_normal(mu,np.eye(len(mu)))
 
 class Feature(Sampler):
     '''
+    base class for all feature samplers: P(X|A,Z,Y) by default creates two
+    dimensional features with shared parameters across groups and good
+    separability of classes
+
+    Parameters
+    ----------
+    dist : function handle
+        function to sample X|parameters where the paramters are dependend on
+         Z,A,Y
+    theta : list-like or list of tupples
+        params of dist, one per value of z
+
     '''
     ParamCreator = FeatureParams
     def __init__(self,dist= mean_only_mvn,mu = [[5,2],[2,5]],
@@ -244,8 +256,7 @@ class Feature(Sampler):
         sample P(X|A,Z,Y)
         features sampled per true group only
 
-        dist : function handle
-        theta : params of dist, one per value of z
+
         '''
 
         if type(self.params.theta[0][0][0]) == tuple:
@@ -259,10 +270,16 @@ class Feature(Sampler):
 
 class FeatureSharedParam(Feature):
     '''
+    feature sampler with one parameter shared across Z (eg shared spread)
+    A and Y have no impact on X
     '''
-    def __init__(sel,dist,loc,spread):
+    def __init__(self,dist,loc,spread):
         '''
-        unique locations and shared spread for z, no impact of a an y
+        unique locations and shared spread for no impact of A or Y
+
+        Parameters
+        ----------
+        dist
         '''
 
         theta_z = [(li,spread) for li in loc]
@@ -271,8 +288,9 @@ class FeatureSharedParam(Feature):
 
 class FeatureTwoParams(Feature):
     '''
+    feature sampler with two unique parameters per class
     '''
-    def __init__(sel,dist,loc,spread):
+    def __init__(self,dist,loc,spread):
         '''
         unique locations and shared spread for z, no impact of a an y
         '''
@@ -283,8 +301,9 @@ class FeatureTwoParams(Feature):
 
 class FeaturePerGroupTwoParam(Feature):
     '''
+    feature sampler with two parameters that vary per group
     '''
-    def __init__(sel,dist,loc,spread):
+    def __init__(self,dist,loc,spread):
         '''
         for feature bias
 
