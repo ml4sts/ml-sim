@@ -7,6 +7,6 @@ setup(name='mlsim',
       author='Sarah M Brown',
       author_email='smb@sarahmbrown.org',
       license='MIT',
-      packages=['mlsim','mlsim.bias','mlsim.anomaly'],
+      packages=['mlsim','mlsim.bias','mlsim.anomaly', 'mlsim.base'],
       zip_safe=False,
       install_requires=['Numpy', 'Scipy'])

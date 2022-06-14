@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import string
 
-# from mlsim.base.basic_gens import means_with_spread
+from ..base.basic_gens import means_with_spread
 
 def geometric_2d_gmm_sp(r_clusters,cluster_size,cluster_spread,p_sp_clusters,
                 domain_range,k,N,p_clusters=None):
