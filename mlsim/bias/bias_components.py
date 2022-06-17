@@ -228,7 +228,7 @@ class Feature(Sampler):
     dimensional features with shared parameters across groups and good
     separability of classes
 
-    Parameters
+    Attributes
     ----------
     dist : function handle
         function to sample X|parameters where the paramters are dependend on
@@ -241,6 +241,13 @@ class Feature(Sampler):
     def __init__(self,dist= mean_only_mvn,mu = [[5,2],[2,5]],
                             param_tuple = None):
         '''
+        Parameters
+        ----------
+        dist : function handle
+            function to sample X|parameters where the paramters are dependend on
+             Z,A,Y through theta default mean only multivariate_normal
+        mu : list like
+            parameters for dist, for each value of z
         '''
         # same mean for both values of y and a
         if param_tuple:
@@ -253,10 +260,23 @@ class Feature(Sampler):
 
     def sample(self,a,z,y):
         '''
-        sample P(X|A,Z,Y)
-        features sampled per true group only
+        sample P(X|A,Z,Y) using distribution and parameters initialized for
+        each a,z,y. The vectors a,z,y must be the same shape
+
+        Parameters
+        ----------
+        a : list-like length n
+            demographic variables
+        z : list like length n
+            true target
+        y : list-like length n
+            proxy target
 
 
+        Returns
+        --------
+        x : list like, length n
+            featuers, same shape as a,z,y
         '''
 
         if type(self.params.theta[0][0][0]) == tuple:
@@ -278,8 +298,14 @@ class FeatureSharedParam(Feature):
         unique locations and shared spread for no impact of A or Y
 
         Parameters
-        ----------
-        dist
+        -----------
+        dist : function handle
+            function to sample X|parameters where the paramters are dependend on
+             Z,A,Y
+        loc : list-like length |Z|
+            location parameter of dist, one per value of z
+        spread : scalar
+            shared spread parameter of dist
         '''
 
         theta_z = [(li,spread) for li in loc]
@@ -293,6 +319,16 @@ class FeatureTwoParams(Feature):
     def __init__(self,dist,loc,spread):
         '''
         unique locations and shared spread for z, no impact of a an y
+
+        Parameters
+        -----------
+        dist : function handle
+            function to sample X|parameters where the paramters are dependend on
+             Z,A,Y
+        loc : list-like length |Z|
+            location parameter of dist, one per value of z
+        spread : list-like length |Z|
+            spread parameter of dist, one per value of z
         '''
 
         theta_z = [(li,si) for li,si in zip(loc,spread)]
@@ -305,11 +341,17 @@ class FeaturePerGroupTwoParam(Feature):
     '''
     def __init__(self,dist,loc,spread):
         '''
-        for feature bias
+        for feature bias where P(X|Z,Y, A=0) != P(X|Z,Y, A=1)
 
         Parameters
-        ----------
-        theta :
+        -----------
+        dist : function handle
+            function to sample X|parameters where the paramters are dependend on
+             Z,A,Y
+        loc : list-like length |Z| of lists length 2
+            location parameter of dist, one per value of z,a
+        spread : list-like length |Z| of lists length 2
+            spread parameter of dist, one per value of z,a
         '''
         theta_za = [[(lii,sii) for lii,sii in zip(li,si)] for li,si in zip(loc,spread)]
         theta = [theta_za,theta_za]
@@ -320,11 +362,18 @@ class FeaturePerGroupSharedParamWithinGroup(Feature):
     '''
     def __init__(sel,dist,loc,spread):
         '''
-        for feature bias
+        for feature bias where P(X|Z,Y, A=0) != P(X|Z,Y, A=1) but one
+        parameter of dist is shared across groups, but unique per class
 
         Parameters
-        ----------
-        theta :
+        -----------
+        dist : function handle
+            function to sample X|parameters where the paramters are dependend on
+             Z,A,Y
+        loc : list-like length |Z| of lists length 2
+            location parameter of dist, one per value of z,a
+        spread : list-like length |Z|
+            spread parameter of dist, one per value of z
         '''
         theta_za = [[(laizi,covzi) for laizi,covzi in zip(laiz,spread)] for laiz in loc]
         # same for both values fo y
@@ -336,11 +385,18 @@ class FeaturePerGroupSharedParamAcrossGroups(Feature):
     '''
     def __init__(sel,dist,loc,spread):
         '''
-        for feature bias
+        for feature bias where P(X|Z,Y, A=0) != P(X|Z,Y, A=1) but one paramter
+        is shared across groups and classes
 
         Parameters
-        ----------
-        theta :
+        -----------
+        dist : function handle
+            function to sample X|parameters where the paramters are dependend on
+             Z,A,Y
+        loc : list-like length |Z| of lists length 2
+            location parameter of dist, one per value of z,a
+        spread : scalar
+            spread parameter of dist
         '''
         theta_za = [[(laizi,spread) for laizi in laiz] for laiz in loc]
         # same for both values fo y
@@ -374,7 +430,7 @@ shape_spread_only_mvn = lambda x,cov: x + np.random.multivariate_normal([0]*len(
 
 class FeatureNoise(Sampler):
     '''
-    Base class for adding noise to feature s
+    Base class for adding noise to features
     '''
     ParamCreator = NoiseParams
 
