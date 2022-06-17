@@ -1,4 +1,4 @@
-from .populations import Population,PopulationInstantiated
+from .populations import Population, PopulationInstantiated
 from .bias_components import Demographic, DemographicIndependent, DemographicCorrelated
 from .bias_components import Target, TargetDisadvantagedError, TargetTwoError
 from .bias_components import Feature,FeatureSharedParam,FeatureTwoParams
