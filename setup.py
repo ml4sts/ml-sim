@@ -9,4 +9,4 @@ setup(name='mlsim',
       license='MIT',
       packages=['mlsim','mlsim.bias','mlsim.anomaly', 'mlsim.base'],
       zip_safe=False,
-      install_requires=['Numpy', 'Scipy'])
+      install_requires=['Numpy', 'Scipy', 'aif360', 'Pandas'])
