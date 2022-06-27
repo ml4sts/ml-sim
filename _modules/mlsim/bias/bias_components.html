@@ -480,11 +480,30 @@ title="Fullscreen mode"
 
 <div class="viewcode-block" id="Feature"><a class="viewcode-back" href="../../../bias/api.html#mlsim.bias.Feature">[docs]</a><span class="k">class</span> <span class="nc">Feature</span><span class="p">(</span><span class="n">Sampler</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    base class for all feature samplers: P(X|A,Z,Y) by default creates two</span>
+<span class="sd">    dimensional features with shared parameters across groups and good</span>
+<span class="sd">    separability of classes</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dist : function handle</span>
+<span class="sd">        function to sample X|parameters where the paramters are dependend on</span>
+<span class="sd">         Z,A,Y</span>
+<span class="sd">    theta : list-like or list of tupples</span>
+<span class="sd">        params of dist, one per value of z</span>
+
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">ParamCreator</span> <span class="o">=</span> <span class="n">FeatureParams</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">dist</span><span class="o">=</span> <span class="n">mean_only_mvn</span><span class="p">,</span><span class="n">mu</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">]],</span>
                             <span class="n">param_tuple</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dist : function handle</span>
+<span class="sd">            function to sample X|parameters where the paramters are dependend on</span>
+<span class="sd">             Z,A,Y through theta default mean only multivariate_normal</span>
+<span class="sd">        mu : list like</span>
+<span class="sd">            parameters for dist, for each value of z</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="c1"># same mean for both values of y and a</span>
         <span class="k">if</span> <span class="n">param_tuple</span><span class="p">:</span>
@@ -497,11 +516,23 @@ title="Fullscreen mode"
 
 <div class="viewcode-block" id="Feature.sample"><a class="viewcode-back" href="../../../bias/api.html#mlsim.bias.Feature.sample">[docs]</a>    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        sample P(X|A,Z,Y)</span>
-<span class="sd">        features sampled per true group only</span>
+<span class="sd">        sample P(X|A,Z,Y) using distribution and parameters initialized for</span>
+<span class="sd">        each a,z,y. The vectors a,z,y must be the same shape</span>
 
-<span class="sd">        dist : function handle</span>
-<span class="sd">        theta : params of dist, one per value of z</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        a : list-like length n</span>
+<span class="sd">            demographic variables</span>
+<span class="sd">        z : list like length n</span>
+<span class="sd">            true target</span>
+<span class="sd">        y : list-like length n</span>
+<span class="sd">            proxy target</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        x : list like, length n</span>
+<span class="sd">            featuers, same shape as a,z,y</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">tuple</span><span class="p">:</span>
@@ -515,10 +546,22 @@ title="Fullscreen mode"
 
 <div class="viewcode-block" id="FeatureSharedParam"><a class="viewcode-back" href="../../../bias/api.html#mlsim.bias.FeatureSharedParam">[docs]</a><span class="k">class</span> <span class="nc">FeatureSharedParam</span><span class="p">(</span><span class="n">Feature</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    feature sampler with one parameter shared across Z (eg shared spread)</span>
+<span class="sd">    A and Y have no impact on X</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">sel</span><span class="p">,</span><span class="n">dist</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span><span class="n">spread</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">dist</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span><span class="n">spread</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        unique locations and shared spread for z, no impact of a an y</span>
+<span class="sd">        unique locations and shared spread for no impact of A or Y</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        dist : function handle</span>
+<span class="sd">            function to sample X|parameters where the paramters are dependend on</span>
+<span class="sd">             Z,A,Y</span>
+<span class="sd">        loc : list-like length |Z|</span>
+<span class="sd">            location parameter of dist, one per value of z</span>
+<span class="sd">        spread : scalar</span>
+<span class="sd">            shared spread parameter of dist</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="n">theta_z</span> <span class="o">=</span> <span class="p">[(</span><span class="n">li</span><span class="p">,</span><span class="n">spread</span><span class="p">)</span> <span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="n">loc</span><span class="p">]</span>
@@ -527,10 +570,21 @@ title="Fullscreen mode"
 
 <div class="viewcode-block" id="FeatureTwoParams"><a class="viewcode-back" href="../../../bias/api.html#mlsim.bias.FeatureTwoParams">[docs]</a><span class="k">class</span> <span class="nc">FeatureTwoParams</span><span class="p">(</span><span class="n">Feature</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    feature sampler with two unique parameters per class</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">sel</span><span class="p">,</span><span class="n">dist</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span><span class="n">spread</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">dist</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span><span class="n">spread</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        unique locations and shared spread for z, no impact of a an y</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        dist : function handle</span>
+<span class="sd">            function to sample X|parameters where the paramters are dependend on</span>
+<span class="sd">             Z,A,Y</span>
+<span class="sd">        loc : list-like length |Z|</span>
+<span class="sd">            location parameter of dist, one per value of z</span>
+<span class="sd">        spread : list-like length |Z|</span>
+<span class="sd">            spread parameter of dist, one per value of z</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="n">theta_z</span> <span class="o">=</span> <span class="p">[(</span><span class="n">li</span><span class="p">,</span><span class="n">si</span><span class="p">)</span> <span class="k">for</span> <span class="n">li</span><span class="p">,</span><span class="n">si</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span><span class="n">spread</span><span class="p">)]</span>
@@ -539,14 +593,21 @@ title="Fullscreen mode"
 
 <div class="viewcode-block" id="FeaturePerGroupTwoParam"><a class="viewcode-back" href="../../../bias/api.html#mlsim.bias.FeaturePerGroupTwoParam">[docs]</a><span class="k">class</span> <span class="nc">FeaturePerGroupTwoParam</span><span class="p">(</span><span class="n">Feature</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    feature sampler with two parameters that vary per group</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">sel</span><span class="p">,</span><span class="n">dist</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span><span class="n">spread</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">dist</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span><span class="n">spread</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        for feature bias</span>
+<span class="sd">        for feature bias where P(X|Z,Y, A=0) != P(X|Z,Y, A=1)</span>
 
 <span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        theta :</span>
+<span class="sd">        -----------</span>
+<span class="sd">        dist : function handle</span>
+<span class="sd">            function to sample X|parameters where the paramters are dependend on</span>
+<span class="sd">             Z,A,Y</span>
+<span class="sd">        loc : list-like length |Z| of lists length 2</span>
+<span class="sd">            location parameter of dist, one per value of z,a</span>
+<span class="sd">        spread : list-like length |Z| of lists length 2</span>
+<span class="sd">            spread parameter of dist, one per value of z,a</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">theta_za</span> <span class="o">=</span> <span class="p">[[(</span><span class="n">lii</span><span class="p">,</span><span class="n">sii</span><span class="p">)</span> <span class="k">for</span> <span class="n">lii</span><span class="p">,</span><span class="n">sii</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">li</span><span class="p">,</span><span class="n">si</span><span class="p">)]</span> <span class="k">for</span> <span class="n">li</span><span class="p">,</span><span class="n">si</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span><span class="n">spread</span><span class="p">)]</span>
         <span class="n">theta</span> <span class="o">=</span> <span class="p">[</span><span class="n">theta_za</span><span class="p">,</span><span class="n">theta_za</span><span class="p">]</span>
@@ -557,11 +618,18 @@ title="Fullscreen mode"
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">sel</span><span class="p">,</span><span class="n">dist</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span><span class="n">spread</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        for feature bias</span>
+<span class="sd">        for feature bias where P(X|Z,Y, A=0) != P(X|Z,Y, A=1) but one</span>
+<span class="sd">        parameter of dist is shared across groups, but unique per class</span>
 
 <span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        theta :</span>
+<span class="sd">        -----------</span>
+<span class="sd">        dist : function handle</span>
+<span class="sd">            function to sample X|parameters where the paramters are dependend on</span>
+<span class="sd">             Z,A,Y</span>
+<span class="sd">        loc : list-like length |Z| of lists length 2</span>
+<span class="sd">            location parameter of dist, one per value of z,a</span>
+<span class="sd">        spread : list-like length |Z|</span>
+<span class="sd">            spread parameter of dist, one per value of z</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">theta_za</span> <span class="o">=</span> <span class="p">[[(</span><span class="n">laizi</span><span class="p">,</span><span class="n">covzi</span><span class="p">)</span> <span class="k">for</span> <span class="n">laizi</span><span class="p">,</span><span class="n">covzi</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">laiz</span><span class="p">,</span><span class="n">spread</span><span class="p">)]</span> <span class="k">for</span> <span class="n">laiz</span> <span class="ow">in</span> <span class="n">loc</span><span class="p">]</span>
         <span class="c1"># same for both values fo y</span>
@@ -573,11 +641,18 @@ title="Fullscreen mode"
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">sel</span><span class="p">,</span><span class="n">dist</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span><span class="n">spread</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        for feature bias</span>
+<span class="sd">        for feature bias where P(X|Z,Y, A=0) != P(X|Z,Y, A=1) but one paramter</span>
+<span class="sd">        is shared across groups and classes</span>
 
 <span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        theta :</span>
+<span class="sd">        -----------</span>
+<span class="sd">        dist : function handle</span>
+<span class="sd">            function to sample X|parameters where the paramters are dependend on</span>
+<span class="sd">             Z,A,Y</span>
+<span class="sd">        loc : list-like length |Z| of lists length 2</span>
+<span class="sd">            location parameter of dist, one per value of z,a</span>
+<span class="sd">        spread : scalar</span>
+<span class="sd">            spread parameter of dist</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">theta_za</span> <span class="o">=</span> <span class="p">[[(</span><span class="n">laizi</span><span class="p">,</span><span class="n">spread</span><span class="p">)</span> <span class="k">for</span> <span class="n">laizi</span> <span class="ow">in</span> <span class="n">laiz</span><span class="p">]</span> <span class="k">for</span> <span class="n">laiz</span> <span class="ow">in</span> <span class="n">loc</span><span class="p">]</span>
         <span class="c1"># same for both values fo y</span>
@@ -611,7 +686,7 @@ title="Fullscreen mode"
 
 <div class="viewcode-block" id="FeatureNoise"><a class="viewcode-back" href="../../../bias/api.html#mlsim.bias.FeatureNoise">[docs]</a><span class="k">class</span> <span class="nc">FeatureNoise</span><span class="p">(</span><span class="n">Sampler</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Base class for adding noise to feature s</span>
+<span class="sd">    Base class for adding noise to features</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">ParamCreator</span> <span class="o">=</span> <span class="n">NoiseParams</span>
 

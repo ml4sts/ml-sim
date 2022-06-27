@@ -377,7 +377,35 @@ of length N</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="mlsim.bias.Feature">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mlsim.bias.</span></span><span class="sig-name descname"><span class="pre">Feature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">dist=&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;,</span> <span class="pre">mu=[[5,</span> <span class="pre">2],</span> <span class="pre">[2,</span> <span class="pre">5]],</span> <span class="pre">param_tuple=None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#Feature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.Feature" title="Permalink to this definition">#</a></dt>
-<dd><dl class="py attribute">
+<dd><p>base class for all feature samplers: P(X|A,Z,Y) by default creates two
+dimensional features with shared parameters across groups and good
+separability of classes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="mlsim.bias.Feature.dist">
+<span class="sig-name descname"><span class="pre">dist</span></span><a class="headerlink" href="#mlsim.bias.Feature.dist" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>function to sample X|parameters where the paramters are dependend on</dt><dd><p>Z,A,Y</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>function handle</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="mlsim.bias.Feature.theta">
+<span class="sig-name descname"><span class="pre">theta</span></span><a class="headerlink" href="#mlsim.bias.Feature.theta" title="Permalink to this definition">#</a></dt>
+<dd><p>params of dist, one per value of z</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list-like or list of tupples</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="mlsim.bias.Feature.ParamCreator">
 <span class="sig-name descname"><span class="pre">ParamCreator</span></span><a class="headerlink" href="#mlsim.bias.Feature.ParamCreator" title="Permalink to this definition">#</a></dt>
 <dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">mlsim.bias.bias_components.FeatureParams</span></code></p>
@@ -386,10 +414,23 @@ of length N</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="mlsim.bias.Feature.sample">
 <span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#Feature.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.Feature.sample" title="Permalink to this definition">#</a></dt>
-<dd><p>sample P(X|A,Z,Y)
-features sampled per true group only</p>
-<p>dist : function handle
-theta : params of dist, one per value of z</p>
+<dd><p>sample P(X|A,Z,Y) using distribution and parameters initialized for
+each a,z,y. The vectors a,z,y must be the same shape</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>list-like length n</em>) – demographic variables</p></li>
+<li><p><strong>z</strong> (<em>list like length n</em>) – true target</p></li>
+<li><p><strong>y</strong> (<em>list-like length n</em>) – proxy target</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>x</strong> – featuers, same shape as a,z,y</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list like, length n</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -406,7 +447,7 @@ the protected attribute</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="mlsim.bias.FeatureNoise">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mlsim.bias.</span></span><span class="sig-name descname"><span class="pre">FeatureNoise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dist=&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig=1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#FeatureNoise"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.FeatureNoise" title="Permalink to this definition">#</a></dt>
-<dd><p>Base class for adding noise to feature s</p>
+<dd><p>Base class for adding noise to features</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="mlsim.bias.FeatureNoise.ParamCreator">
 <span class="sig-name descname"><span class="pre">ParamCreator</span></span><a class="headerlink" href="#mlsim.bias.FeatureNoise.ParamCreator" title="Permalink to this definition">#</a></dt>
@@ -442,17 +483,21 @@ mean and covariance attributes</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="mlsim.bias.FeaturePerGroupTwoParam">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mlsim.bias.</span></span><span class="sig-name descname"><span class="pre">FeaturePerGroupTwoParam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spread</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#FeaturePerGroupTwoParam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.FeaturePerGroupTwoParam" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>feature sampler with two parameters that vary per group</p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="mlsim.bias.FeatureSharedParam">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mlsim.bias.</span></span><span class="sig-name descname"><span class="pre">FeatureSharedParam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spread</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#FeatureSharedParam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.FeatureSharedParam" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>feature sampler with one parameter shared across Z (eg shared spread)
+A and Y have no impact on X</p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="mlsim.bias.FeatureTwoParams">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mlsim.bias.</span></span><span class="sig-name descname"><span class="pre">FeatureTwoParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spread</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#FeatureTwoParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.FeatureTwoParams" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>feature sampler with two unique parameters per class</p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="mlsim.bias.Population">
