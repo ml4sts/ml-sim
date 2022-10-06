@@ -9,15 +9,16 @@ Synthetic Data generators for ML  evaluation
 
 To use the package, download (or clone) and:
 
-.. code-block:: bash
-
-  cd ml-sim/
-  pip install .
+```
+cd ml-sim/
+pip install .
+```
 
 To use the package, after installed::
 
-  import mlsim
-
+```
+import mlsim
+```
 
 
 
