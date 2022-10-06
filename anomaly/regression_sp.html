@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -37,7 +37,7 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -412,11 +412,27 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
-Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">p_sp_clusters</span> <span class="o">=</span> <span class="mf">.9</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">sp_df2</span> <span class="o">=</span> <span class="n">mlsim</span><span class="o">.</span><span class="n">anomaly</span><span class="o">.</span><span class="n">geometric_2d_gmm_sp</span><span class="p">(</span><span class="n">r_clusters</span><span class="p">,</span><span class="n">cluster_size</span><span class="p">,</span><span class="n">cluster_spread</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>                                     <span class="n">p_sp_clusters</span><span class="p">,</span> <span class="n">domain_range</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">p_clusters</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">sp_plot</span><span class="p">(</span><span class="n">sp_df2</span><span class="p">,</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span><span class="s1">&#39;x2&#39;</span><span class="p">,</span><span class="s1">&#39;color&#39;</span><span class="p">)</span>
+
+<span class="nn">File ~/work/ml-sim/ml-sim/mlsim/anomaly/plot_utils.py:27,</span> in <span class="ni">sp_plot</span><span class="nt">(df, x_col, y_col, color_col, ci, domain_range, ax, aggplot, x_jitter, height, legend)</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="n">n_markers</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">color_col</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># number unique</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="n">cur_markers</span> <span class="o">=</span> <span class="n">all_markers</span><span class="p">[:</span><span class="n">n_markers</span><span class="p">]</span>
+<span class="ne">---&gt; </span><span class="mi">27</span> <span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">x_col</span><span class="p">,</span> <span class="n">y_col</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">color_col</span><span class="p">,</span> <span class="n">ci</span><span class="o">=</span><span class="n">ci</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">28</span>                <span class="n">markers</span> <span class="o">=</span><span class="n">cur_markers</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set1&quot;</span><span class="p">,</span><span class="n">x_jitter</span><span class="o">=</span><span class="n">x_jitter</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">29</span>                <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">,</span><span class="n">legend</span><span class="o">=</span><span class="n">legend</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="k">if</span> <span class="n">aggplot</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span>     <span class="c1"># adda whole data regression line, but don&#39;t cover the scatter data</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span>     <span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">x_col</span><span class="p">,</span> <span class="n">y_col</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">scatter</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ci</span><span class="o">=</span><span class="n">ci</span><span class="p">,)</span>
+
+<span class="ne">TypeError</span>: lmplot() got multiple values for argument &#39;data&#39;
 </pre></div>
 </div>
-<img alt="../_images/regression_sp_5_1.png" src="../_images/regression_sp_5_1.png" />
 </div>
 </div>
 <p>We can change the parameters and see variation</p>
@@ -438,13 +454,6 @@ Pass the following variables as keyword args: x, y. From version 0.12, the only 
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
-Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
-</pre></div>
-</div>
-<img alt="../_images/regression_sp_7_1.png" src="../_images/regression_sp_7_1.png" />
-</div>
 </div>
 <section id="multiple-views">
 <h2>Multiple Views<a class="headerlink" href="#multiple-views" title="Permalink to this headline">#</a></h2>
@@ -459,92 +468,6 @@ Pass the following variables as keyword args: x, y. From version 0.12, the only 
 <span class="n">many_sp_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
-Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
-Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
-</pre></div>
-</div>
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>x1</th>
-      <th>x2</th>
-      <th>x3</th>
-      <th>x4</th>
-      <th>A</th>
-      <th>B</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>13.172482</td>
-      <td>14.230178</td>
-      <td>12.409012</td>
-      <td>10.026851</td>
-      <td>A3</td>
-      <td>B1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>7.908730</td>
-      <td>11.563656</td>
-      <td>11.753394</td>
-      <td>10.979174</td>
-      <td>A2</td>
-      <td>B1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>4.377354</td>
-      <td>8.629879</td>
-      <td>14.536545</td>
-      <td>15.306251</td>
-      <td>A0</td>
-      <td>B0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4.943237</td>
-      <td>7.607691</td>
-      <td>8.204048</td>
-      <td>7.204525</td>
-      <td>A0</td>
-      <td>B2</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>3.957393</td>
-      <td>9.682433</td>
-      <td>13.900453</td>
-      <td>15.426102</td>
-      <td>A0</td>
-      <td>B0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div><img alt="../_images/regression_sp_9_3.png" src="../_images/regression_sp_9_3.png" />
-<img alt="../_images/regression_sp_9_4.png" src="../_images/regression_sp_9_4.png" />
 </div>
 </div>
 <p>The views do not have to have the same parameters though. We can make each parameter a list of values with the length set to the number of views.</p>
@@ -569,92 +492,6 @@ Pass the following variables as keyword args: x, y. From version 0.12, the only 
 <span class="n">many_sp_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
-Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
-Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
-</pre></div>
-</div>
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>x1</th>
-      <th>x2</th>
-      <th>x3</th>
-      <th>x4</th>
-      <th>A</th>
-      <th>B</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>13.172482</td>
-      <td>14.230178</td>
-      <td>12.409012</td>
-      <td>10.026851</td>
-      <td>A3</td>
-      <td>B1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>7.908730</td>
-      <td>11.563656</td>
-      <td>11.753394</td>
-      <td>10.979174</td>
-      <td>A2</td>
-      <td>B1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>4.377354</td>
-      <td>8.629879</td>
-      <td>14.536545</td>
-      <td>15.306251</td>
-      <td>A0</td>
-      <td>B0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4.943237</td>
-      <td>7.607691</td>
-      <td>8.204048</td>
-      <td>7.204525</td>
-      <td>A0</td>
-      <td>B2</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>3.957393</td>
-      <td>9.682433</td>
-      <td>13.900453</td>
-      <td>15.426102</td>
-      <td>A0</td>
-      <td>B0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div><img alt="../_images/regression_sp_11_3.png" src="../_images/regression_sp_11_3.png" />
-<img alt="../_images/regression_sp_11_4.png" src="../_images/regression_sp_11_4.png" />
 </div>
 </div>
 </section>
