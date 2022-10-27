@@ -29,7 +29,7 @@ Cell [0;32mIn [3], line 4[0m
 [1;32m      1[0m p_sp_clusters [38;5;241m=[39m [38;5;241m.9[39m
 [1;32m      2[0m sp_df2 [38;5;241m=[39m mlsim[38;5;241m.[39manomaly[38;5;241m.[39mgeometric_2d_gmm_sp(r_clusters,cluster_size,cluster_spread,
 [1;32m      3[0m                                     p_sp_clusters, domain_range,k,N,p_clusters)
-[0;32m----> 4[0m sp_plot(sp_df2,[38;5;124m'[39m[38;5;124mx1[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mx2[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mcolor[39m[38;5;124m'[39m)
+[0;32m----> 4[0m [43msp_plot[49m[43m([49m[43msp_df2[49m[43m,[49m[38;5;124;43m'[39;49m[38;5;124;43mx1[39;49m[38;5;124;43m'[39;49m[43m,[49m[38;5;124;43m'[39;49m[38;5;124;43mx2[39;49m[38;5;124;43m'[39;49m[43m,[49m[38;5;124;43m'[39;49m[38;5;124;43mcolor[39;49m[38;5;124;43m'[39;49m[43m)[49m
 
 File [0;32m~/work/ml-sim/ml-sim/mlsim/anomaly/plot_utils.py:27[0m, in [0;36msp_plot[0;34m(df, x_col, y_col, color_col, ci, domain_range, ax, aggplot, x_jitter, height, legend)[0m
 [1;32m     23[0m n_markers [38;5;241m=[39m df[color_col][38;5;241m.[39munique()[38;5;241m.[39mshape[[38;5;241m0[39m] [38;5;66;03m# number unique[39;00m
