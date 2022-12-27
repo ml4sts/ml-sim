@@ -371,11 +371,166 @@ title="Print to PDF"
 <h1>Using Population objects to create biased data<a class="headerlink" href="#using-population-objects-to-create-biased-data" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mlsim</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import mlsim
+import pandas as pd
+import numpy as np
+import seaborn as sns
+from collections import namedtuple
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
+ImportError                               Traceback (most recent call last)
+Cell In[1], line 1
+----&gt; 1 import mlsim
+      2 import pandas as pd
+      3 import numpy as np
+
+File ~/work/ml-sim/ml-sim/mlsim/__init__.py:5
+      3 from . import anomaly
+----&gt; 5 from . import bias
+      7 __all__ = [&#39;bias&#39;,&#39;anomaly&#39;]
+
+File ~/work/ml-sim/ml-sim/mlsim/bias/__init__.py:1
+----&gt; 1 from .populations import Population, PopulationInstantiated
+      2 from .bias_components import Demographic, DemographicIndependent, DemographicCorrelated
+      3 from .bias_components import Target, TargetDisadvantagedError, TargetTwoError
+
+File ~/work/ml-sim/ml-sim/mlsim/bias/populations.py:3
+      1 import numpy as np
+      2 import pandas as pd
+----&gt; 3 import aif360.datasets
+      4 from .bias_components import Demographic, Target, Feature, FeatureNoise
+      6 default_params = {&#39;dem&#39;:None,}
+
+File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/aif360/datasets/__init__.py:13
+     11 from aif360.datasets.meps_dataset_panel21_fy2016 import MEPSDataset21
+     12 from aif360.datasets.regression_dataset import RegressionDataset
+---&gt; 13 from aif360.datasets.law_school_gpa_dataset import LawSchoolGPADataset 
+
+File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/aif360/datasets/law_school_gpa_dataset.py:4
+      2 import pandas as pd
+      3 from aif360.datasets import RegressionDataset
+----&gt; 4 import tempeh.configurations as tc
+      7 class LawSchoolGPADataset(RegressionDataset):
+      8     &quot;&quot;&quot;Law School GPA dataset.
+      9 
+     10     See https://github.com/microsoft/tempeh for details.
+     11     &quot;&quot;&quot;
+
+File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/configurations.py:6
+      1 # Copyright (c) Microsoft Corporation. All rights reserved.
+      2 # Licensed under the MIT License.
+      4 &quot;&quot;&quot;Holds all the datasets and models that are automatically enqueued.&quot;&quot;&quot;
+----&gt; 6 from tempeh.datasets import SKLearnPerformanceDatasetWrapper, UCIPerformanceDatasetWrapper, \
+      7     BlobPerformanceDatasetWrapper, CompasPerformanceDatasetWrapper, \
+      8     SEAPHEPerformanceDatasetWrapper
+      9 from tempeh.models import RBMSVMModelWrapper, LinearSVMModelWrapper, LogisticModelWrapper, \
+     10     RidgeModelWrapper, DecisionTreeClassifierWrapper, RandomForestClassifierWrapper, \
+     11     RandomForestRegressorWrapper, PytorchMulticlassClassifierWrapper, \
+     12     PytorchBinaryClassifierWrapper, PytorchRegressionWrapper, XGBoostClassifierWrapper, \
+     13     XGBoostRegressorWrapper, LightGBMClassifierWrapper, LightGBMRegressorWrapper, \
+     14     KerasMulticlassClassifierWrapper, KerasBinaryClassifierWrapper, KerasRegressionWrapper
+     15 from tempeh.constants import DatasetSizes
+
+File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/datasets/__init__.py:4
+      1 # Copyright (c) Microsoft Corporation. All rights reserved.
+      2 # Licensed under the MIT License.
+----&gt; 4 from .sk_datasets import SKLearnPerformanceDatasetWrapper
+      5 from .uci_datasets import UCIPerformanceDatasetWrapper
+      6 from .blob_datasets import BlobPerformanceDatasetWrapper
+
+File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/datasets/sk_datasets.py:12
+      7 from .base_wrapper import BasePerformanceDatasetWrapper
+      9 from tempeh.constants import FeatureType, Tasks, DataTypes, SKLearnDatasets, ClassVars  # noqa
+---&gt; 12 class SKLearnPerformanceDatasetWrapper(BasePerformanceDatasetWrapper):
+     13     &quot;&quot;&quot;sklearn Datasets&quot;&quot;&quot;
+     15     dataset_map = {
+     16         SKLearnDatasets.BOSTON: (datasets.load_boston, [FeatureType.CONTINUOUS] * 3 + [FeatureType.NOMINAL] + [FeatureType.CONTINUOUS] * 10),  # noqa: E501
+     17         SKLearnDatasets.IRIS: (datasets.load_iris, [FeatureType.CONTINUOUS] * 4 + [FeatureType.NOMINAL]),  # noqa: E501
+   (...)
+     21         SKLearnDatasets.CANCER: (datasets.load_breast_cancer, [FeatureType.CONTINUOUS] * 30 + [FeatureType.NOMINAL])  # noqa: E501
+     22     }
+
+File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/datasets/sk_datasets.py:16, in SKLearnPerformanceDatasetWrapper()
+     12 class SKLearnPerformanceDatasetWrapper(BasePerformanceDatasetWrapper):
+     13     &quot;&quot;&quot;sklearn Datasets&quot;&quot;&quot;
+     15     dataset_map = {
+---&gt; 16         SKLearnDatasets.BOSTON: (datasets.load_boston, [FeatureType.CONTINUOUS] * 3 + [FeatureType.NOMINAL] + [FeatureType.CONTINUOUS] * 10),  # noqa: E501
+     17         SKLearnDatasets.IRIS: (datasets.load_iris, [FeatureType.CONTINUOUS] * 4 + [FeatureType.NOMINAL]),  # noqa: E501
+     18         SKLearnDatasets.DIABETES: (datasets.load_diabetes, [FeatureType.CONTINUOUS] * 11),
+     19         SKLearnDatasets.DIGITS: (datasets.load_digits, [FeatureType.CONTINUOUS] * 64 + [FeatureType.NOMINAL]),  # noqa: E501
+     20         SKLearnDatasets.WINE: (datasets.load_wine, [FeatureType.CONTINUOUS] * 13 + [FeatureType.NOMINAL]),  # noqa: E501
+     21         SKLearnDatasets.CANCER: (datasets.load_breast_cancer, [FeatureType.CONTINUOUS] * 30 + [FeatureType.NOMINAL])  # noqa: E501
+     22     }
+     23     metadata_map = {
+     24         SKLearnDatasets.BOSTON: (Tasks.REGRESSION, DataTypes.TABULAR, (506, 13)),
+     25         SKLearnDatasets.IRIS: (Tasks.MULTICLASS, DataTypes.TABULAR, (150, 4)),
+   (...)
+     29         SKLearnDatasets.CANCER: (Tasks.BINARY, DataTypes.TABULAR, (569, 30))
+     30     }
+     32     load_function = None
+
+File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/sklearn/datasets/__init__.py:156, in __getattr__(name)
+    105 if name == &quot;load_boston&quot;:
+    106     msg = textwrap.dedent(
+    107         &quot;&quot;&quot;
+    108         `load_boston` has been removed from scikit-learn since version 1.2.
+   (...)
+    154         &quot;&quot;&quot;
+    155     )
+--&gt; 156     raise ImportError(msg)
+    157 try:
+    158     return globals()[name]
+
+ImportError: 
+`load_boston` has been removed from scikit-learn since version 1.2.
+
+The Boston housing prices dataset has an ethical problem: as
+investigated in [1], the authors of this dataset engineered a
+non-invertible variable &quot;B&quot; assuming that racial self-segregation had a
+positive impact on house prices [2]. Furthermore the goal of the
+research that led to the creation of this dataset was to study the
+impact of air quality but it did not give adequate demonstration of the
+validity of this assumption.
+
+The scikit-learn maintainers therefore strongly discourage the use of
+this dataset unless the purpose of the code is to study and educate
+about ethical issues in data science and machine learning.
+
+In this special case, you can fetch the dataset from the original
+source::
+
+    import pandas as pd
+    import numpy as np
+
+    data_url = &quot;http://lib.stat.cmu.edu/datasets/boston&quot;
+    raw_df = pd.read_csv(data_url, sep=&quot;\s+&quot;, skiprows=22, header=None)
+    data = np.hstack([raw_df.values[::2, :], raw_df.values[1::2, :2]])
+    target = raw_df.values[1::2, 2]
+
+Alternative datasets include the California housing dataset and the
+Ames housing dataset. You can load the datasets as follows::
+
+    from sklearn.datasets import fetch_california_housing
+    housing = fetch_california_housing()
+
+for the California housing dataset and::
+
+    from sklearn.datasets import fetch_openml
+    housing = fetch_openml(name=&quot;house_prices&quot;, as_frame=True)
+
+for the Ames housing dataset.
+
+[1] M Carlisle.
+&quot;Racist data destruction?&quot;
+&lt;https://medium.com/@docintangible/racist-data-destruction-113e3eff54a8&gt;
+
+[2] Harrison Jr, David, and Daniel L. Rubinfeld.
+&quot;Hedonic housing prices and the demand for clean air.&quot;
+Journal of environmental economics and management 5.1 (1978): 81-102.
+&lt;https://www.researchgate.net/publication/4974606_Hedonic_housing_prices_and_the_demand_for_clean_air&gt;
 </pre></div>
 </div>
 </div>
@@ -383,7 +538,7 @@ title="Print to PDF"
 <p>Create an all default population</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span> <span class="o">=</span> <span class="n">mlsim</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">Population</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pop = mlsim.bias.Population()
 </pre></div>
 </div>
 </div>
@@ -391,19 +546,7 @@ title="Print to PDF"
 <p>To view the details on this population, we can use the <code class="docutils literal notranslate"><span class="pre">get_parameter_description</span></code> method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">get_parameter_description</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Demographic Parameters
-DemParams(Pa=[0.5, 0.5], Pz_a=[[0.5, 0.5], [0.5, 0.5]])
-Target Parameters 
-TargetParams(Py_az=[[[0.95, 0.05], [0.95, 0.05]], [[0.95, 0.05], [0.95, 0.05]]])
-Feature Parameters 
-FeatureParams(distfunc=&lt;function &lt;lambda&gt; at 0x7f6f9ffcb700&gt;, theta=[[[[5, 2], [2, 5]], [[5, 2], [2, 5]]], [[[5, 2], [2, 5]], [[5, 2], [2, 5]]]])
-Feature Noise Parameters 
-NoiseParams(noisefunc=&lt;function &lt;lambda&gt; at 0x7f6f9ffce280&gt;, theta=[[[1.0, 1.0], [1.0, 1.0]], [[1.0, 1.0], [1.0, 1.0]]])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(pop.get_parameter_description())
 </pre></div>
 </div>
 </div>
@@ -411,338 +554,76 @@ NoiseParams(noisefunc=&lt;function &lt;lambda&gt; at 0x7f6f9ffce280&gt;, theta=[
 <p>The instantiation just assigns values to these parameters. In order to get data, we use the <code class="docutils literal notranslate"><span class="pre">sample</span></code> method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">sample</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on method sample in module mlsim.bias.populations:
-
-sample(N, return_as=&#39;DataFrame&#39;) method of mlsim.bias.populations.Population instance
-    sample N members of the  population, according to its underlying
-    distribution
-    
-    Parameters
-    -----------
-    N : int
-        number of samples
-    return_as : string, &#39;dataframe&#39;
-        type to return as, can be pandas &#39;DataFrame&#39; or IBM AIF360
-        &#39;structuredDataset&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(pop.sample)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop_df1</span> <span class="o">=</span> <span class="n">pop</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">pop_df1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pop_df1 = pop.sample(100)
+pop_df1.head()
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>a</th>
-      <th>z</th>
-      <th>y</th>
-      <th>x0</th>
-      <th>x1</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>4.197520</td>
-      <td>2.904405</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.421137</td>
-      <td>4.526929</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>5.319371</td>
-      <td>1.635306</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>4.633194</td>
-      <td>1.668945</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>7.137459</td>
-      <td>2.080956</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <section id="changing-the-type-of-bias">
 <h2>Changing the type of bias<a class="headerlink" href="#changing-the-type-of-bias" title="Permalink to this headline">#</a></h2>
 <p>Now demo some with various biases to create examples</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a correlated demographic sampler</span>
-<span class="n">label_bias_dem</span> <span class="o">=</span> <span class="n">mlsim</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">DemographicCorrelated</span><span class="p">(</span><span class="n">rho_a</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span><span class="n">rho_z</span><span class="o">=</span><span class="p">[</span><span class="mf">.25</span><span class="p">,</span><span class="mf">.15</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># create a correlated demographic sampler
+label_bias_dem = mlsim.bias.DemographicCorrelated(rho_a=.2,rho_z=[.25,.15])
 
-<span class="c1"># instantiate a population with that</span>
-<span class="n">pop_label_bias</span> <span class="o">=</span> <span class="n">mlsim</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">PopulationInstantiated</span><span class="p">(</span><span class="n">demographic_sampler</span><span class="o">=</span><span class="n">label_bias_dem</span><span class="p">)</span>
+# instantiate a population with that
+pop_label_bias = mlsim.bias.PopulationInstantiated(demographic_sampler=label_bias_dem)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop_label_bias_df1</span> <span class="o">=</span> <span class="n">pop_label_bias</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">pop_label_bias_df1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pop_label_bias_df1 = pop_label_bias.sample(100)
+pop_label_bias_df1.head()
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>a</th>
-      <th>z</th>
-      <th>y</th>
-      <th>x0</th>
-      <th>x1</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>6.781521</td>
-      <td>5.152470</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>6.484544</td>
-      <td>2.501704</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>8.367118</td>
-      <td>3.215052</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>2.697172</td>
-      <td>2.829630</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>3.292006</td>
-      <td>4.735590</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <p>New we’ll create a feature bias where the classes are separable for one group and not for the other.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_sample_dist</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">mu</span><span class="p">,</span><span class="n">cov</span> <span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">cov</span><span class="p">)</span>
-<span class="n">per_group_means</span> <span class="o">=</span> <span class="p">[[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">]],[[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">]]]</span>
-<span class="n">D</span> <span class="o">=</span><span class="mi">6</span>
-<span class="n">shared_cov</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">D</span><span class="p">)</span><span class="o">*</span><span class="mf">.75</span><span class="p">,</span><span class="mf">.95</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">D</span><span class="p">)]</span>
-<span class="n">feature_bias</span> <span class="o">=</span> <span class="n">mlsim</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">FeaturePerGroupSharedParamWithinGroup</span><span class="p">(</span>
-            <span class="n">feature_sample_dist</span><span class="p">,</span><span class="n">per_group_means</span><span class="p">,</span><span class="n">shared_cov</span><span class="p">)</span>
-<span class="n">pop_feature_bias</span> <span class="o">=</span> <span class="n">mlsim</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">PopulationInstantiated</span><span class="p">(</span><span class="n">feature_sampler</span><span class="o">=</span><span class="n">feature_bias</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>feature_sample_dist = lambda mu,cov :np.random.multivariate_normal(mu,cov)
+per_group_means = [[[1,2,3,4,3,3],[4,6,8,8,10,6]],[[3,2,3,4,4,3],[1,3,4,4,5,3]]]
+D =6
+shared_cov = [np.eye(D)*.75,.95*np.eye(D)]
+feature_bias = mlsim.bias.FeaturePerGroupSharedParamWithinGroup(
+            feature_sample_dist,per_group_means,shared_cov)
+pop_feature_bias = mlsim.bias.PopulationInstantiated(feature_sampler=feature_bias)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop_feature_bias_df1</span> <span class="o">=</span> <span class="n">pop_feature_bias</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">pop_feature_bias_df1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pop_feature_bias_df1 = pop_feature_bias.sample(100)
+pop_feature_bias_df1.head()
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>a</th>
-      <th>z</th>
-      <th>y</th>
-      <th>x0</th>
-      <th>x1</th>
-      <th>x2</th>
-      <th>x3</th>
-      <th>x4</th>
-      <th>x5</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>4.434557</td>
-      <td>4.980872</td>
-      <td>10.492508</td>
-      <td>8.684894</td>
-      <td>10.451194</td>
-      <td>6.148952</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.137725</td>
-      <td>0.455506</td>
-      <td>4.084412</td>
-      <td>2.923459</td>
-      <td>4.215092</td>
-      <td>2.588954</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>3.926741</td>
-      <td>3.489567</td>
-      <td>1.869188</td>
-      <td>3.420450</td>
-      <td>3.990602</td>
-      <td>4.050809</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>4.844964</td>
-      <td>3.830380</td>
-      <td>1.346939</td>
-      <td>4.274792</td>
-      <td>3.227639</td>
-      <td>2.572544</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>-0.842779</td>
-      <td>3.583597</td>
-      <td>4.642626</td>
-      <td>4.379923</td>
-      <td>3.825908</td>
-      <td>2.053350</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">var_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">D</span><span class="p">)]</span>
-<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">pop_feature_bias_df1</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span> <span class="n">var_list</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;z&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/demo_populations_15_0.png" src="../_images/demo_populations_15_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">dffbai</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span> <span class="n">var_list</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;z&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">ai</span><span class="p">,</span><span class="n">dffbai</span> <span class="ow">in</span> <span class="n">pop_feature_bias_df1</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>var_list = [&#39;x&#39;+ str(i) for i in range(D)]
+g = sns.pairplot(pop_feature_bias_df1, vars= var_list, hue = &#39;z&#39;)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;seaborn.axisgrid.PairGrid at 0x7f6f9e81b700&gt;,
- &lt;seaborn.axisgrid.PairGrid at 0x7f6f9c173910&gt;]
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>[sns.pairplot(dffbai, vars= var_list, hue = &#39;z&#39;) for ai,dffbai in pop_feature_bias_df1.groupby(&#39;a&#39;)]
 </pre></div>
 </div>
-<img alt="../_images/demo_populations_16_1.png" src="../_images/demo_populations_16_1.png" />
-<img alt="../_images/demo_populations_16_2.png" src="../_images/demo_populations_16_2.png" />
 </div>
 </div>
 </section>

@@ -335,16 +335,172 @@ title="Print to PDF"
 <p>classic example: berkeley admissions</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#imports</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#imports
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import scipy.stats as stats
+import matplotlib.pyplot as plt
 
 
-<span class="kn">import</span> <span class="nn">mlsim</span> 
-<span class="kn">from</span> <span class="nn">mlsim.anomaly</span> <span class="kn">import</span> <span class="n">sp_plot</span>
+import mlsim 
+from mlsim.anomaly import sp_plot
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
+ImportError                               Traceback (most recent call last)
+Cell In[1], line 9
+      5 import scipy.stats as stats
+      6 import matplotlib.pyplot as plt
+----&gt; 9 import mlsim 
+     10 from mlsim.anomaly import sp_plot
+
+File ~/work/ml-sim/ml-sim/mlsim/__init__.py:5
+      3 from . import anomaly
+----&gt; 5 from . import bias
+      7 __all__ = [&#39;bias&#39;,&#39;anomaly&#39;]
+
+File ~/work/ml-sim/ml-sim/mlsim/bias/__init__.py:1
+----&gt; 1 from .populations import Population, PopulationInstantiated
+      2 from .bias_components import Demographic, DemographicIndependent, DemographicCorrelated
+      3 from .bias_components import Target, TargetDisadvantagedError, TargetTwoError
+
+File ~/work/ml-sim/ml-sim/mlsim/bias/populations.py:3
+      1 import numpy as np
+      2 import pandas as pd
+----&gt; 3 import aif360.datasets
+      4 from .bias_components import Demographic, Target, Feature, FeatureNoise
+      6 default_params = {&#39;dem&#39;:None,}
+
+File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/aif360/datasets/__init__.py:13
+     11 from aif360.datasets.meps_dataset_panel21_fy2016 import MEPSDataset21
+     12 from aif360.datasets.regression_dataset import RegressionDataset
+---&gt; 13 from aif360.datasets.law_school_gpa_dataset import LawSchoolGPADataset 
+
+File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/aif360/datasets/law_school_gpa_dataset.py:4
+      2 import pandas as pd
+      3 from aif360.datasets import RegressionDataset
+----&gt; 4 import tempeh.configurations as tc
+      7 class LawSchoolGPADataset(RegressionDataset):
+      8     &quot;&quot;&quot;Law School GPA dataset.
+      9 
+     10     See https://github.com/microsoft/tempeh for details.
+     11     &quot;&quot;&quot;
+
+File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/configurations.py:6
+      1 # Copyright (c) Microsoft Corporation. All rights reserved.
+      2 # Licensed under the MIT License.
+      4 &quot;&quot;&quot;Holds all the datasets and models that are automatically enqueued.&quot;&quot;&quot;
+----&gt; 6 from tempeh.datasets import SKLearnPerformanceDatasetWrapper, UCIPerformanceDatasetWrapper, \
+      7     BlobPerformanceDatasetWrapper, CompasPerformanceDatasetWrapper, \
+      8     SEAPHEPerformanceDatasetWrapper
+      9 from tempeh.models import RBMSVMModelWrapper, LinearSVMModelWrapper, LogisticModelWrapper, \
+     10     RidgeModelWrapper, DecisionTreeClassifierWrapper, RandomForestClassifierWrapper, \
+     11     RandomForestRegressorWrapper, PytorchMulticlassClassifierWrapper, \
+     12     PytorchBinaryClassifierWrapper, PytorchRegressionWrapper, XGBoostClassifierWrapper, \
+     13     XGBoostRegressorWrapper, LightGBMClassifierWrapper, LightGBMRegressorWrapper, \
+     14     KerasMulticlassClassifierWrapper, KerasBinaryClassifierWrapper, KerasRegressionWrapper
+     15 from tempeh.constants import DatasetSizes
+
+File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/datasets/__init__.py:4
+      1 # Copyright (c) Microsoft Corporation. All rights reserved.
+      2 # Licensed under the MIT License.
+----&gt; 4 from .sk_datasets import SKLearnPerformanceDatasetWrapper
+      5 from .uci_datasets import UCIPerformanceDatasetWrapper
+      6 from .blob_datasets import BlobPerformanceDatasetWrapper
+
+File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/datasets/sk_datasets.py:12
+      7 from .base_wrapper import BasePerformanceDatasetWrapper
+      9 from tempeh.constants import FeatureType, Tasks, DataTypes, SKLearnDatasets, ClassVars  # noqa
+---&gt; 12 class SKLearnPerformanceDatasetWrapper(BasePerformanceDatasetWrapper):
+     13     &quot;&quot;&quot;sklearn Datasets&quot;&quot;&quot;
+     15     dataset_map = {
+     16         SKLearnDatasets.BOSTON: (datasets.load_boston, [FeatureType.CONTINUOUS] * 3 + [FeatureType.NOMINAL] + [FeatureType.CONTINUOUS] * 10),  # noqa: E501
+     17         SKLearnDatasets.IRIS: (datasets.load_iris, [FeatureType.CONTINUOUS] * 4 + [FeatureType.NOMINAL]),  # noqa: E501
+   (...)
+     21         SKLearnDatasets.CANCER: (datasets.load_breast_cancer, [FeatureType.CONTINUOUS] * 30 + [FeatureType.NOMINAL])  # noqa: E501
+     22     }
+
+File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/datasets/sk_datasets.py:16, in SKLearnPerformanceDatasetWrapper()
+     12 class SKLearnPerformanceDatasetWrapper(BasePerformanceDatasetWrapper):
+     13     &quot;&quot;&quot;sklearn Datasets&quot;&quot;&quot;
+     15     dataset_map = {
+---&gt; 16         SKLearnDatasets.BOSTON: (datasets.load_boston, [FeatureType.CONTINUOUS] * 3 + [FeatureType.NOMINAL] + [FeatureType.CONTINUOUS] * 10),  # noqa: E501
+     17         SKLearnDatasets.IRIS: (datasets.load_iris, [FeatureType.CONTINUOUS] * 4 + [FeatureType.NOMINAL]),  # noqa: E501
+     18         SKLearnDatasets.DIABETES: (datasets.load_diabetes, [FeatureType.CONTINUOUS] * 11),
+     19         SKLearnDatasets.DIGITS: (datasets.load_digits, [FeatureType.CONTINUOUS] * 64 + [FeatureType.NOMINAL]),  # noqa: E501
+     20         SKLearnDatasets.WINE: (datasets.load_wine, [FeatureType.CONTINUOUS] * 13 + [FeatureType.NOMINAL]),  # noqa: E501
+     21         SKLearnDatasets.CANCER: (datasets.load_breast_cancer, [FeatureType.CONTINUOUS] * 30 + [FeatureType.NOMINAL])  # noqa: E501
+     22     }
+     23     metadata_map = {
+     24         SKLearnDatasets.BOSTON: (Tasks.REGRESSION, DataTypes.TABULAR, (506, 13)),
+     25         SKLearnDatasets.IRIS: (Tasks.MULTICLASS, DataTypes.TABULAR, (150, 4)),
+   (...)
+     29         SKLearnDatasets.CANCER: (Tasks.BINARY, DataTypes.TABULAR, (569, 30))
+     30     }
+     32     load_function = None
+
+File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/sklearn/datasets/__init__.py:156, in __getattr__(name)
+    105 if name == &quot;load_boston&quot;:
+    106     msg = textwrap.dedent(
+    107         &quot;&quot;&quot;
+    108         `load_boston` has been removed from scikit-learn since version 1.2.
+   (...)
+    154         &quot;&quot;&quot;
+    155     )
+--&gt; 156     raise ImportError(msg)
+    157 try:
+    158     return globals()[name]
+
+ImportError: 
+`load_boston` has been removed from scikit-learn since version 1.2.
+
+The Boston housing prices dataset has an ethical problem: as
+investigated in [1], the authors of this dataset engineered a
+non-invertible variable &quot;B&quot; assuming that racial self-segregation had a
+positive impact on house prices [2]. Furthermore the goal of the
+research that led to the creation of this dataset was to study the
+impact of air quality but it did not give adequate demonstration of the
+validity of this assumption.
+
+The scikit-learn maintainers therefore strongly discourage the use of
+this dataset unless the purpose of the code is to study and educate
+about ethical issues in data science and machine learning.
+
+In this special case, you can fetch the dataset from the original
+source::
+
+    import pandas as pd
+    import numpy as np
+
+    data_url = &quot;http://lib.stat.cmu.edu/datasets/boston&quot;
+    raw_df = pd.read_csv(data_url, sep=&quot;\s+&quot;, skiprows=22, header=None)
+    data = np.hstack([raw_df.values[::2, :], raw_df.values[1::2, :2]])
+    target = raw_df.values[1::2, 2]
+
+Alternative datasets include the California housing dataset and the
+Ames housing dataset. You can load the datasets as follows::
+
+    from sklearn.datasets import fetch_california_housing
+    housing = fetch_california_housing()
+
+for the California housing dataset and::
+
+    from sklearn.datasets import fetch_openml
+    housing = fetch_openml(name=&quot;house_prices&quot;, as_frame=True)
+
+for the Ames housing dataset.
+
+[1] M Carlisle.
+&quot;Racist data destruction?&quot;
+&lt;https://medium.com/@docintangible/racist-data-destruction-113e3eff54a8&gt;
+
+[2] Harrison Jr, David, and Daniel L. Rubinfeld.
+&quot;Hedonic housing prices and the demand for clean air.&quot;
+Journal of environmental economics and management 5.1 (1978): 81-102.
+&lt;https://www.researchgate.net/publication/4974606_Hedonic_housing_prices_and_the_demand_for_clean_air&gt;
 </pre></div>
 </div>
 </div>
