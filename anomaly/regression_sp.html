@@ -371,16 +371,16 @@ title="Print to PDF"
 <h1>Regression -Based Simpson’s Paradox<a class="headerlink" href="#regression-based-simpson-s-paradox" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#imports
-import numpy as np
-import pandas as pd
-import seaborn as sns
-import scipy.stats as stats
-import matplotlib.pyplot as plt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 
-import mlsim 
-from mlsim.anomaly import sp_plot
+<span class="kn">import</span> <span class="nn">mlsim</span> 
+<span class="kn">from</span> <span class="nn">mlsim.anomaly</span> <span class="kn">import</span> <span class="n">sp_plot</span>
 </pre></div>
 </div>
 </div>
@@ -410,12 +410,12 @@ File ~/work/ml-sim/ml-sim/mlsim/bias/populations.py:3
       4 from .bias_components import Demographic, Target, Feature, FeatureNoise
       6 default_params = {&#39;dem&#39;:None,}
 
-File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/aif360/datasets/__init__.py:13
+File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/aif360/datasets/__init__.py:13
      11 from aif360.datasets.meps_dataset_panel21_fy2016 import MEPSDataset21
      12 from aif360.datasets.regression_dataset import RegressionDataset
 ---&gt; 13 from aif360.datasets.law_school_gpa_dataset import LawSchoolGPADataset 
 
-File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/aif360/datasets/law_school_gpa_dataset.py:4
+File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/aif360/datasets/law_school_gpa_dataset.py:4
       2 import pandas as pd
       3 from aif360.datasets import RegressionDataset
 ----&gt; 4 import tempeh.configurations as tc
@@ -425,7 +425,7 @@ File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/aif360/d
      10     See https://github.com/microsoft/tempeh for details.
      11     &quot;&quot;&quot;
 
-File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/configurations.py:6
+File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/tempeh/configurations.py:6
       1 # Copyright (c) Microsoft Corporation. All rights reserved.
       2 # Licensed under the MIT License.
       4 &quot;&quot;&quot;Holds all the datasets and models that are automatically enqueued.&quot;&quot;&quot;
@@ -440,14 +440,14 @@ File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/c
      14     KerasMulticlassClassifierWrapper, KerasBinaryClassifierWrapper, KerasRegressionWrapper
      15 from tempeh.constants import DatasetSizes
 
-File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/datasets/__init__.py:4
+File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/tempeh/datasets/__init__.py:4
       1 # Copyright (c) Microsoft Corporation. All rights reserved.
       2 # Licensed under the MIT License.
 ----&gt; 4 from .sk_datasets import SKLearnPerformanceDatasetWrapper
       5 from .uci_datasets import UCIPerformanceDatasetWrapper
       6 from .blob_datasets import BlobPerformanceDatasetWrapper
 
-File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/datasets/sk_datasets.py:12
+File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/tempeh/datasets/sk_datasets.py:12
       7 from .base_wrapper import BasePerformanceDatasetWrapper
       9 from tempeh.constants import FeatureType, Tasks, DataTypes, SKLearnDatasets, ClassVars  # noqa
 ---&gt; 12 class SKLearnPerformanceDatasetWrapper(BasePerformanceDatasetWrapper):
@@ -459,7 +459,7 @@ File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/d
      21         SKLearnDatasets.CANCER: (datasets.load_breast_cancer, [FeatureType.CONTINUOUS] * 30 + [FeatureType.NOMINAL])  # noqa: E501
      22     }
 
-File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/datasets/sk_datasets.py:16, in SKLearnPerformanceDatasetWrapper()
+File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/tempeh/datasets/sk_datasets.py:16, in SKLearnPerformanceDatasetWrapper()
      12 class SKLearnPerformanceDatasetWrapper(BasePerformanceDatasetWrapper):
      13     &quot;&quot;&quot;sklearn Datasets&quot;&quot;&quot;
      15     dataset_map = {
@@ -478,7 +478,7 @@ File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/d
      30     }
      32     load_function = None
 
-File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/sklearn/datasets/__init__.py:156, in __getattr__(name)
+File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/sklearn/datasets/__init__.py:156, in __getattr__(name)
     105 if name == &quot;load_boston&quot;:
     106     msg = textwrap.dedent(
     107         &quot;&quot;&quot;
@@ -544,15 +544,15 @@ Journal of environmental economics and management 5.1 (1978): 81-102.
 <p>The basic version of SP in the regression form is the clustering model based SP- we use a gaussian mixture model and control parameters of the shape</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># setup
-r_clusters = -.6  # correlation coefficient of clusters
-cluster_spread = .8 # pearson correlation of means
-p_sp_clusters = .5 # portion of clusters with SP 
-k = 5 # number of clusters
-cluster_size = [2,3]
-domain_range = [0, 20, 0, 20]
-N = 200 # number of points
-p_clusters = [1.0/k]*k
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># setup</span>
+<span class="n">r_clusters</span> <span class="o">=</span> <span class="o">-</span><span class="mf">.6</span>  <span class="c1"># correlation coefficient of clusters</span>
+<span class="n">cluster_spread</span> <span class="o">=</span> <span class="mf">.8</span> <span class="c1"># pearson correlation of means</span>
+<span class="n">p_sp_clusters</span> <span class="o">=</span> <span class="mf">.5</span> <span class="c1"># portion of clusters with SP </span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># number of clusters</span>
+<span class="n">cluster_size</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">domain_range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">200</span> <span class="c1"># number of points</span>
+<span class="n">p_clusters</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="o">/</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">k</span>
 </pre></div>
 </div>
 </div>
@@ -560,10 +560,10 @@ p_clusters = [1.0/k]*k
 <p>We choose the portion of the clusters to have SP and then can draw samples</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>p_sp_clusters = .9
-sp_df2 = mlsim.anomaly.geometric_2d_gmm_sp(r_clusters,cluster_size,cluster_spread,
-                                    p_sp_clusters, domain_range,k,N,p_clusters)
-sp_plot(sp_df2,&#39;x1&#39;,&#39;x2&#39;,&#39;color&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_sp_clusters</span> <span class="o">=</span> <span class="mf">.9</span>
+<span class="n">sp_df2</span> <span class="o">=</span> <span class="n">mlsim</span><span class="o">.</span><span class="n">anomaly</span><span class="o">.</span><span class="n">geometric_2d_gmm_sp</span><span class="p">(</span><span class="n">r_clusters</span><span class="p">,</span><span class="n">cluster_size</span><span class="p">,</span><span class="n">cluster_spread</span><span class="p">,</span>
+                                    <span class="n">p_sp_clusters</span><span class="p">,</span> <span class="n">domain_range</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">p_clusters</span><span class="p">)</span>
+<span class="n">sp_plot</span><span class="p">(</span><span class="n">sp_df2</span><span class="p">,</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span><span class="s1">&#39;x2&#39;</span><span class="p">,</span><span class="s1">&#39;color&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -571,19 +571,19 @@ sp_plot(sp_df2,&#39;x1&#39;,&#39;x2&#39;,&#39;color&#39;)
 <p>We can change the parameters and see variation</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># setup
-r_clusters = -.4  # correlation coefficient of clusters
-cluster_spread = .8 # pearson correlation of means
-p_sp_clusters = .6 # portion of clusters with SP 
-k = 5 # number of clusters
-cluster_size = [4,4]
-domain_range = [0, 20, 0, 20]
-N = 200 # number of points
-p_clusters = [.5, .2, .1, .1, .1]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># setup</span>
+<span class="n">r_clusters</span> <span class="o">=</span> <span class="o">-</span><span class="mf">.4</span>  <span class="c1"># correlation coefficient of clusters</span>
+<span class="n">cluster_spread</span> <span class="o">=</span> <span class="mf">.8</span> <span class="c1"># pearson correlation of means</span>
+<span class="n">p_sp_clusters</span> <span class="o">=</span> <span class="mf">.6</span> <span class="c1"># portion of clusters with SP </span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># number of clusters</span>
+<span class="n">cluster_size</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">domain_range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">200</span> <span class="c1"># number of points</span>
+<span class="n">p_clusters</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.5</span><span class="p">,</span> <span class="mf">.2</span><span class="p">,</span> <span class="mf">.1</span><span class="p">,</span> <span class="mf">.1</span><span class="p">,</span> <span class="mf">.1</span><span class="p">]</span>
 
-sp_df3 = mlsim.anomaly.geometric_2d_gmm_sp(r_clusters,cluster_size,cluster_spread,
-                                    p_sp_clusters, domain_range,k,N,p_clusters)
-sp_plot(sp_df3,&#39;x1&#39;,&#39;x2&#39;,&#39;color&#39;)
+<span class="n">sp_df3</span> <span class="o">=</span> <span class="n">mlsim</span><span class="o">.</span><span class="n">anomaly</span><span class="o">.</span><span class="n">geometric_2d_gmm_sp</span><span class="p">(</span><span class="n">r_clusters</span><span class="p">,</span><span class="n">cluster_size</span><span class="p">,</span><span class="n">cluster_spread</span><span class="p">,</span>
+                                    <span class="n">p_sp_clusters</span><span class="p">,</span> <span class="n">domain_range</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">p_clusters</span><span class="p">)</span>
+<span class="n">sp_plot</span><span class="p">(</span><span class="n">sp_df3</span><span class="p">,</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span><span class="s1">&#39;x2&#39;</span><span class="p">,</span><span class="s1">&#39;color&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -593,12 +593,12 @@ sp_plot(sp_df3,&#39;x1&#39;,&#39;x2&#39;,&#39;color&#39;)
 <p>The first extension is to add multiple independent views, we have a wrapper function for that</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>many_sp_df = mlsim.anomaly.geometric_indep_views_gmm_sp(2,r_clusters,cluster_size,cluster_spread,p_sp_clusters,
-                domain_range,k,N,p_clusters)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">many_sp_df</span> <span class="o">=</span> <span class="n">mlsim</span><span class="o">.</span><span class="n">anomaly</span><span class="o">.</span><span class="n">geometric_indep_views_gmm_sp</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">r_clusters</span><span class="p">,</span><span class="n">cluster_size</span><span class="p">,</span><span class="n">cluster_spread</span><span class="p">,</span><span class="n">p_sp_clusters</span><span class="p">,</span>
+                <span class="n">domain_range</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">p_clusters</span><span class="p">)</span>
 
-sp_plot(many_sp_df,&#39;x1&#39;,&#39;x2&#39;,&#39;A&#39;)
-sp_plot(many_sp_df,&#39;x3&#39;,&#39;x4&#39;,&#39;B&#39;)
-many_sp_df.head()
+<span class="n">sp_plot</span><span class="p">(</span><span class="n">many_sp_df</span><span class="p">,</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span><span class="s1">&#39;x2&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+<span class="n">sp_plot</span><span class="p">(</span><span class="n">many_sp_df</span><span class="p">,</span><span class="s1">&#39;x3&#39;</span><span class="p">,</span><span class="s1">&#39;x4&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+<span class="n">many_sp_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -606,23 +606,23 @@ many_sp_df.head()
 <p>The views do not have to have the same parameters though. We can make each parameter a list of values with the length set to the number of views.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># setup
-r_clusters = [.8, -.2]  # correlation coefficient of clusters
-cluster_spread = [.8, .2] # pearson correlation of means
-p_sp_clusters = [.6, 1] # portion of clusters with SP 
-k = [5,3] # number of clusters
-cluster_size = [4,4]
-domain_range = [0, 20, 0, 20]
-N = 200 # number of points
-p_clusters = [[.5, .2, .1, .1, .1],[1.0/3]*3]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># setup</span>
+<span class="n">r_clusters</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">.2</span><span class="p">]</span>  <span class="c1"># correlation coefficient of clusters</span>
+<span class="n">cluster_spread</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.8</span><span class="p">,</span> <span class="mf">.2</span><span class="p">]</span> <span class="c1"># pearson correlation of means</span>
+<span class="n">p_sp_clusters</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="c1"># portion of clusters with SP </span>
+<span class="n">k</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># number of clusters</span>
+<span class="n">cluster_size</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">domain_range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">200</span> <span class="c1"># number of points</span>
+<span class="n">p_clusters</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">.5</span><span class="p">,</span> <span class="mf">.2</span><span class="p">,</span> <span class="mf">.1</span><span class="p">,</span> <span class="mf">.1</span><span class="p">,</span> <span class="mf">.1</span><span class="p">],[</span><span class="mf">1.0</span><span class="o">/</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">]</span>
 
 
-many_sp_df_diff = mlsim.anomaly.geometric_indep_views_gmm_sp(2,r_clusters,cluster_size,cluster_spread,p_sp_clusters,
-                domain_range,k,N,p_clusters)
+<span class="n">many_sp_df_diff</span> <span class="o">=</span> <span class="n">mlsim</span><span class="o">.</span><span class="n">anomaly</span><span class="o">.</span><span class="n">geometric_indep_views_gmm_sp</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">r_clusters</span><span class="p">,</span><span class="n">cluster_size</span><span class="p">,</span><span class="n">cluster_spread</span><span class="p">,</span><span class="n">p_sp_clusters</span><span class="p">,</span>
+                <span class="n">domain_range</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">p_clusters</span><span class="p">)</span>
 
-sp_plot(many_sp_df_diff,&#39;x1&#39;,&#39;x2&#39;,&#39;A&#39;)
-sp_plot(many_sp_df_diff,&#39;x3&#39;,&#39;x4&#39;,&#39;B&#39;)
-many_sp_df.head()
+<span class="n">sp_plot</span><span class="p">(</span><span class="n">many_sp_df_diff</span><span class="p">,</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span><span class="s1">&#39;x2&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+<span class="n">sp_plot</span><span class="p">(</span><span class="n">many_sp_df_diff</span><span class="p">,</span><span class="s1">&#39;x3&#39;</span><span class="p">,</span><span class="s1">&#39;x4&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+<span class="n">many_sp_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

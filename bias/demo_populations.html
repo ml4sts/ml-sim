@@ -371,11 +371,11 @@ title="Print to PDF"
 <h1>Using Population objects to create biased data<a class="headerlink" href="#using-population-objects-to-create-biased-data" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import mlsim
-import pandas as pd
-import numpy as np
-import seaborn as sns
-from collections import namedtuple
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mlsim</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
 </pre></div>
 </div>
 </div>
@@ -404,12 +404,12 @@ File ~/work/ml-sim/ml-sim/mlsim/bias/populations.py:3
       4 from .bias_components import Demographic, Target, Feature, FeatureNoise
       6 default_params = {&#39;dem&#39;:None,}
 
-File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/aif360/datasets/__init__.py:13
+File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/aif360/datasets/__init__.py:13
      11 from aif360.datasets.meps_dataset_panel21_fy2016 import MEPSDataset21
      12 from aif360.datasets.regression_dataset import RegressionDataset
 ---&gt; 13 from aif360.datasets.law_school_gpa_dataset import LawSchoolGPADataset 
 
-File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/aif360/datasets/law_school_gpa_dataset.py:4
+File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/aif360/datasets/law_school_gpa_dataset.py:4
       2 import pandas as pd
       3 from aif360.datasets import RegressionDataset
 ----&gt; 4 import tempeh.configurations as tc
@@ -419,7 +419,7 @@ File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/aif360/d
      10     See https://github.com/microsoft/tempeh for details.
      11     &quot;&quot;&quot;
 
-File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/configurations.py:6
+File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/tempeh/configurations.py:6
       1 # Copyright (c) Microsoft Corporation. All rights reserved.
       2 # Licensed under the MIT License.
       4 &quot;&quot;&quot;Holds all the datasets and models that are automatically enqueued.&quot;&quot;&quot;
@@ -434,14 +434,14 @@ File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/c
      14     KerasMulticlassClassifierWrapper, KerasBinaryClassifierWrapper, KerasRegressionWrapper
      15 from tempeh.constants import DatasetSizes
 
-File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/datasets/__init__.py:4
+File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/tempeh/datasets/__init__.py:4
       1 # Copyright (c) Microsoft Corporation. All rights reserved.
       2 # Licensed under the MIT License.
 ----&gt; 4 from .sk_datasets import SKLearnPerformanceDatasetWrapper
       5 from .uci_datasets import UCIPerformanceDatasetWrapper
       6 from .blob_datasets import BlobPerformanceDatasetWrapper
 
-File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/datasets/sk_datasets.py:12
+File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/tempeh/datasets/sk_datasets.py:12
       7 from .base_wrapper import BasePerformanceDatasetWrapper
       9 from tempeh.constants import FeatureType, Tasks, DataTypes, SKLearnDatasets, ClassVars  # noqa
 ---&gt; 12 class SKLearnPerformanceDatasetWrapper(BasePerformanceDatasetWrapper):
@@ -453,7 +453,7 @@ File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/d
      21         SKLearnDatasets.CANCER: (datasets.load_breast_cancer, [FeatureType.CONTINUOUS] * 30 + [FeatureType.NOMINAL])  # noqa: E501
      22     }
 
-File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/datasets/sk_datasets.py:16, in SKLearnPerformanceDatasetWrapper()
+File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/tempeh/datasets/sk_datasets.py:16, in SKLearnPerformanceDatasetWrapper()
      12 class SKLearnPerformanceDatasetWrapper(BasePerformanceDatasetWrapper):
      13     &quot;&quot;&quot;sklearn Datasets&quot;&quot;&quot;
      15     dataset_map = {
@@ -472,7 +472,7 @@ File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/d
      30     }
      32     load_function = None
 
-File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/sklearn/datasets/__init__.py:156, in __getattr__(name)
+File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/sklearn/datasets/__init__.py:156, in __getattr__(name)
     105 if name == &quot;load_boston&quot;:
     106     msg = textwrap.dedent(
     107         &quot;&quot;&quot;
@@ -538,7 +538,7 @@ Journal of environmental economics and management 5.1 (1978): 81-102.
 <p>Create an all default population</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pop = mlsim.bias.Population()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span> <span class="o">=</span> <span class="n">mlsim</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">Population</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -546,7 +546,7 @@ Journal of environmental economics and management 5.1 (1978): 81-102.
 <p>To view the details on this population, we can use the <code class="docutils literal notranslate"><span class="pre">get_parameter_description</span></code> method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(pop.get_parameter_description())
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">get_parameter_description</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -554,15 +554,15 @@ Journal of environmental economics and management 5.1 (1978): 81-102.
 <p>The instantiation just assigns values to these parameters. In order to get data, we use the <code class="docutils literal notranslate"><span class="pre">sample</span></code> method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(pop.sample)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">sample</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pop_df1 = pop.sample(100)
-pop_df1.head()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop_df1</span> <span class="o">=</span> <span class="n">pop</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">pop_df1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -572,19 +572,19 @@ pop_df1.head()
 <p>Now demo some with various biases to create examples</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># create a correlated demographic sampler
-label_bias_dem = mlsim.bias.DemographicCorrelated(rho_a=.2,rho_z=[.25,.15])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a correlated demographic sampler</span>
+<span class="n">label_bias_dem</span> <span class="o">=</span> <span class="n">mlsim</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">DemographicCorrelated</span><span class="p">(</span><span class="n">rho_a</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span><span class="n">rho_z</span><span class="o">=</span><span class="p">[</span><span class="mf">.25</span><span class="p">,</span><span class="mf">.15</span><span class="p">])</span>
 
-# instantiate a population with that
-pop_label_bias = mlsim.bias.PopulationInstantiated(demographic_sampler=label_bias_dem)
+<span class="c1"># instantiate a population with that</span>
+<span class="n">pop_label_bias</span> <span class="o">=</span> <span class="n">mlsim</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">PopulationInstantiated</span><span class="p">(</span><span class="n">demographic_sampler</span><span class="o">=</span><span class="n">label_bias_dem</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pop_label_bias_df1 = pop_label_bias.sample(100)
-pop_label_bias_df1.head()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop_label_bias_df1</span> <span class="o">=</span> <span class="n">pop_label_bias</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">pop_label_bias_df1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -592,36 +592,36 @@ pop_label_bias_df1.head()
 <p>New we’ll create a feature bias where the classes are separable for one group and not for the other.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>feature_sample_dist = lambda mu,cov :np.random.multivariate_normal(mu,cov)
-per_group_means = [[[1,2,3,4,3,3],[4,6,8,8,10,6]],[[3,2,3,4,4,3],[1,3,4,4,5,3]]]
-D =6
-shared_cov = [np.eye(D)*.75,.95*np.eye(D)]
-feature_bias = mlsim.bias.FeaturePerGroupSharedParamWithinGroup(
-            feature_sample_dist,per_group_means,shared_cov)
-pop_feature_bias = mlsim.bias.PopulationInstantiated(feature_sampler=feature_bias)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_sample_dist</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">mu</span><span class="p">,</span><span class="n">cov</span> <span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">cov</span><span class="p">)</span>
+<span class="n">per_group_means</span> <span class="o">=</span> <span class="p">[[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">]],[[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">]]]</span>
+<span class="n">D</span> <span class="o">=</span><span class="mi">6</span>
+<span class="n">shared_cov</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">D</span><span class="p">)</span><span class="o">*</span><span class="mf">.75</span><span class="p">,</span><span class="mf">.95</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">D</span><span class="p">)]</span>
+<span class="n">feature_bias</span> <span class="o">=</span> <span class="n">mlsim</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">FeaturePerGroupSharedParamWithinGroup</span><span class="p">(</span>
+            <span class="n">feature_sample_dist</span><span class="p">,</span><span class="n">per_group_means</span><span class="p">,</span><span class="n">shared_cov</span><span class="p">)</span>
+<span class="n">pop_feature_bias</span> <span class="o">=</span> <span class="n">mlsim</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">PopulationInstantiated</span><span class="p">(</span><span class="n">feature_sampler</span><span class="o">=</span><span class="n">feature_bias</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pop_feature_bias_df1 = pop_feature_bias.sample(100)
-pop_feature_bias_df1.head()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop_feature_bias_df1</span> <span class="o">=</span> <span class="n">pop_feature_bias</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">pop_feature_bias_df1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>var_list = [&#39;x&#39;+ str(i) for i in range(D)]
-g = sns.pairplot(pop_feature_bias_df1, vars= var_list, hue = &#39;z&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">var_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">D</span><span class="p">)]</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">pop_feature_bias_df1</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span> <span class="n">var_list</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;z&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>[sns.pairplot(dffbai, vars= var_list, hue = &#39;z&#39;) for ai,dffbai in pop_feature_bias_df1.groupby(&#39;a&#39;)]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">dffbai</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span> <span class="n">var_list</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;z&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">ai</span><span class="p">,</span><span class="n">dffbai</span> <span class="ow">in</span> <span class="n">pop_feature_bias_df1</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>

@@ -335,16 +335,16 @@ title="Print to PDF"
 <p>classic example: berkeley admissions</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#imports
-import numpy as np
-import pandas as pd
-import seaborn as sns
-import scipy.stats as stats
-import matplotlib.pyplot as plt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 
-import mlsim 
-from mlsim.anomaly import sp_plot
+<span class="kn">import</span> <span class="nn">mlsim</span> 
+<span class="kn">from</span> <span class="nn">mlsim.anomaly</span> <span class="kn">import</span> <span class="n">sp_plot</span>
 </pre></div>
 </div>
 </div>
@@ -374,12 +374,12 @@ File ~/work/ml-sim/ml-sim/mlsim/bias/populations.py:3
       4 from .bias_components import Demographic, Target, Feature, FeatureNoise
       6 default_params = {&#39;dem&#39;:None,}
 
-File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/aif360/datasets/__init__.py:13
+File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/aif360/datasets/__init__.py:13
      11 from aif360.datasets.meps_dataset_panel21_fy2016 import MEPSDataset21
      12 from aif360.datasets.regression_dataset import RegressionDataset
 ---&gt; 13 from aif360.datasets.law_school_gpa_dataset import LawSchoolGPADataset 
 
-File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/aif360/datasets/law_school_gpa_dataset.py:4
+File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/aif360/datasets/law_school_gpa_dataset.py:4
       2 import pandas as pd
       3 from aif360.datasets import RegressionDataset
 ----&gt; 4 import tempeh.configurations as tc
@@ -389,7 +389,7 @@ File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/aif360/d
      10     See https://github.com/microsoft/tempeh for details.
      11     &quot;&quot;&quot;
 
-File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/configurations.py:6
+File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/tempeh/configurations.py:6
       1 # Copyright (c) Microsoft Corporation. All rights reserved.
       2 # Licensed under the MIT License.
       4 &quot;&quot;&quot;Holds all the datasets and models that are automatically enqueued.&quot;&quot;&quot;
@@ -404,14 +404,14 @@ File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/c
      14     KerasMulticlassClassifierWrapper, KerasBinaryClassifierWrapper, KerasRegressionWrapper
      15 from tempeh.constants import DatasetSizes
 
-File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/datasets/__init__.py:4
+File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/tempeh/datasets/__init__.py:4
       1 # Copyright (c) Microsoft Corporation. All rights reserved.
       2 # Licensed under the MIT License.
 ----&gt; 4 from .sk_datasets import SKLearnPerformanceDatasetWrapper
       5 from .uci_datasets import UCIPerformanceDatasetWrapper
       6 from .blob_datasets import BlobPerformanceDatasetWrapper
 
-File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/datasets/sk_datasets.py:12
+File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/tempeh/datasets/sk_datasets.py:12
       7 from .base_wrapper import BasePerformanceDatasetWrapper
       9 from tempeh.constants import FeatureType, Tasks, DataTypes, SKLearnDatasets, ClassVars  # noqa
 ---&gt; 12 class SKLearnPerformanceDatasetWrapper(BasePerformanceDatasetWrapper):
@@ -423,7 +423,7 @@ File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/d
      21         SKLearnDatasets.CANCER: (datasets.load_breast_cancer, [FeatureType.CONTINUOUS] * 30 + [FeatureType.NOMINAL])  # noqa: E501
      22     }
 
-File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/datasets/sk_datasets.py:16, in SKLearnPerformanceDatasetWrapper()
+File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/tempeh/datasets/sk_datasets.py:16, in SKLearnPerformanceDatasetWrapper()
      12 class SKLearnPerformanceDatasetWrapper(BasePerformanceDatasetWrapper):
      13     &quot;&quot;&quot;sklearn Datasets&quot;&quot;&quot;
      15     dataset_map = {
@@ -442,7 +442,7 @@ File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/tempeh/d
      30     }
      32     load_function = None
 
-File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/sklearn/datasets/__init__.py:156, in __getattr__(name)
+File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/sklearn/datasets/__init__.py:156, in __getattr__(name)
     105 if name == &quot;load_boston&quot;:
     106     msg = textwrap.dedent(
     107         &quot;&quot;&quot;
