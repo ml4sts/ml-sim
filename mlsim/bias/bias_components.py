@@ -416,9 +416,9 @@ class FeatureMeasurementQualityProxy(Feature):
         Parameters
         ----------
         loc : list-like
-            one location parameter value per true value, protected attribute pair
+            one location parameter value per (true value, protected attribute) pair
         spread : list-like
-            one spread parameter value per proxy value, protected attribute pair
+            one spread parameter value per (proxy value, protected attribute) pair
         '''
         theta_yaz = [[[(lii,sii) for lii,sii in zip(li,si)]
                                 for li in loc] for si in spread]
