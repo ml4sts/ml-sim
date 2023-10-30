@@ -7,17 +7,17 @@ Synthetic Data generators for ML  evaluation
 
 
 
-To use the package, download (or clone) and:
+To use the package:
 
-```
+```bash
 git clone https://github.com/ml4sts/ml-sim.git
 cd ml-sim/
 pip install .
 ```
 
-To use the package, after installed::
+To use the package, after installed:
 
-```
+```python
 import mlsim
 ```
 
