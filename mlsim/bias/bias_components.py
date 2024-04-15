@@ -374,6 +374,7 @@ class FeatureOneParam(Feature):
     def __init__(self, distribution, distance_between_means):
         '''
         for label bias where P(Y = Z | A = 0) != P(Y = Z | A = 1)
+        We will generate mu[0], by randomly sampling. Then we will add the distance_between_means to compute mu[1]. This way, the user only inputs the distance between the two means 
 
         Parameters 
         ----------
@@ -382,7 +383,7 @@ class FeatureOneParam(Feature):
 
         distance_between_means: float
             fixed distance between the mean of the data when A = 0 versus A = 1
-            
+
         '''
 class FeaturePerGroupTwoParam(Feature):
     '''
