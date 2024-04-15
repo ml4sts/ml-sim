@@ -367,6 +367,23 @@ class FeatureTwoParams(Feature):
         theta = [[theta_z]*N_a]*2
         super().__init__(param_tuple=(dist,theta))
 
+class FeatureOneParam(Feature):
+
+    '''Feature sampler with one parameter that defines the distance between the means of the data (X) for A=0 and A=1 '''
+
+    def __init__(self, distribution, distance_between_means):
+        '''
+        for label bias where P(Y = Z | A = 0) != P(Y = Z | A = 1)
+
+        Parameters 
+        ----------
+        distribution : function handle
+            function to sample X 
+
+        distance_between_means: float
+            fixed distance between the mean of the data when A = 0 versus A = 1
+            
+        '''
 class FeaturePerGroupTwoParam(Feature):
     '''
     feature sampler with two parameters that vary per group
