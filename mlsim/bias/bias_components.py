@@ -367,11 +367,15 @@ class FeatureTwoParams(Feature):
         theta = [[theta_z]*N_a]*2
         super().__init__(param_tuple=(dist,theta))
 
+# you can use the existing feature sampler tha takes in means and just pass a mu
+# where your function takes in a distance and computes the mu
+# you could even randomly sample one mu[0]  then add the distance to get mu[1]
+# and pass that value to the Feature constructor
 class FeatureOneParam(Feature):
 
     '''Feature sampler with one parameter that defines the distance between the means of the data (X) for A=0 and A=1 '''
 
-    def __init__(self, distribution, distance_between_means):
+    def __init__(self, distribution, distance_between_means,mu0):
         '''
         for label bias where P(Y = Z | A = 0) != P(Y = Z | A = 1)
         We will generate mu[0], by randomly sampling. Then we will add the distance_between_means to compute mu[1]. This way, the user only inputs the distance between the two means 
@@ -385,6 +389,13 @@ class FeatureOneParam(Feature):
             fixed distance between the mean of the data when A = 0 versus A = 1
 
         '''
+        mu1 = mu0 + distance_between_means
+
+        
+        
+        
+        super().__init__(param_tuple= (distribution,))
+
 class FeaturePerGroupTwoParam(Feature):
     '''
     feature sampler with two parameters that vary per group
