@@ -391,10 +391,10 @@ class FeatureOneParam(Feature):
         '''
         mu1 = mu0 + distance_between_means
 
+    
         
         
-        
-        super().__init__(param_tuple= (distribution,))
+        super().__init__(param_tuple= (distribution,[mu0,mu1]))
 
 class FeaturePerGroupTwoParam(Feature):
     '''
@@ -450,7 +450,7 @@ class FeaturePerGroupSharedParamAcrossGroups(Feature):
     '''
     def __init__(sel,dist,loc,spread):
         '''
-        for feature bias where P(X|Z,Y, A=0) != P(X|Z,Y, A=1) but one paramter
+        for feature bias where P(X|Z,Y, A=0) != P(X|Z,Y, A=1) but one parameter
         is shared across groups and classes
 
         Parameters
