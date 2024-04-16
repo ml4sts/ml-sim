@@ -1,7 +1,7 @@
 from .populations import Population, PopulationInstantiated
 from .bias_components import Demographic, DemographicIndependent, DemographicCorrelated
 from .bias_components import Target, TargetDisadvantagedError, TargetTwoError
-from .bias_components import Feature,FeatureSharedParam,FeatureTwoParams
+from .bias_components import Feature,FeatureSharedParam,FeatureTwoParams,FeatureOneParam
 from .bias_components import FeaturePerGroupTwoParam, FeaturePerGroupSharedParamWithinGroup
 from .bias_components import FeaturePerGroupSharedParamAcrossGroups
 from .bias_components import FeatureMeasurementQualityProxy
