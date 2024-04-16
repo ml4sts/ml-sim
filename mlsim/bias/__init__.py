@@ -8,7 +8,7 @@ from .bias_components import FeatureMeasurementQualityProxy
 from .bias_components import FeatureNoise, FeatureNoiseReplace
 
 __all__  = ['Population','PopulationInstantiated',  'Demographic',
-    'DemographicIndependent', 'DemographicCorrelated',  'Target',
+    'DemographicIndependent', 'DemographicCorrelated',  'Target','FeatureOneParam'
     'TargetDisadvantagedError', 'TargetTwoError',  'Feature','FeatureSharedParam',
     'FeatureTwoParams',  'FeaturePerGroupTwoParam',
     'FeaturePerGroupSharedParamWithinGroup',
