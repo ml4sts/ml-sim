@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import aif360.datasets
+from aif360.datasets import  StructuredDataset
 from .bias_components import Demographic, Target, Feature, FeatureNoise
 
 default_params = {'dem':None,}
@@ -142,11 +142,11 @@ class Population():
 
         Returns
         --------
-        aif360.datasets.StructuredDataset
+        aif360.datasets.StructuredDataset containing the data with y as the target and a as protected attribute. 
 
         '''
         df = self.make_DataFrame(a,z,y,x)
-        return aif360.datasets.StructuredDataset(df, ['y'], ['a'])
+        return StructuredDataset(df, ['y'], ['a'])
 
     def get_parameter_description(self):
         '''

@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from collections import namedtuple
+from collections.abc import Iterable
 
 DemParams = namedtuple('DemParams',['Pa','Pz_a'])
 TargetParams = namedtuple('TargetParams',['Py_az'])
@@ -37,6 +38,8 @@ class Demographic(Sampler):
         default is independent sampling of a and z
         '''
         Pa = [1-rho_a, rho_a]
+        self.A = [0, 1]
+
         Pz = [1-rho_z, rho_z]
         super().__init__((Pa,[Pz,Pz]))
 
@@ -56,7 +59,7 @@ class Demographic(Sampler):
             a tuple of lenght 2 with elements a and z as column np arrays each
             of length N
         '''
-        a = np.random.choice([0,1], p= self.params.Pa, size=N)
+        a = np.random.choice(self.A, p= self.params.Pa, size=N)
         z = [np.random.choice([0,1], p= self.params.Pz_a[ai]) for ai in a]
 
         return np.asarray(a).T,np.asarray(z).T
@@ -110,14 +113,24 @@ class DemographicCorrelated(Demographic):
 
     def __init__(self,rho_a=.5,rho_z=[.5,.3]):
         '''
-        P(A = 1) = rho_a
-        P(Z=1,A=0) = rho_z[0]
-        P(Z=1,A=1) = rho_z[1]
+        P(A = 1) = rho_a or P(A) = rho_a
+        P(Z=1|A=i) = rho_z[i]
 
+        Parameters
+        rho_a : scalar or vector of floats
+            probablity of A = 1 or distribution of A
+        rho_z : vector of 2 or len(rho_a)
+            probability Z=1, for A = i
         '''
-        Pa = [1-rho_a, rho_a]
-        Pz_a = [[1-rho_z[0], rho_z[0]],
-             [1-rho_z[1], rho_z[1]]]
+        if isinstance(rho_a, Iterable):
+            Pa = rho_a
+            self.A = list(range(len(rho_a)))
+        else:
+            Pa = [1-rho_a, rho_a]
+            self.A = [0, 1]
+
+        Pz_a = [[1-rho_zi, rho_zi] for rho_zi in rho_z]
+
         Sampler.__init__(self,(Pa,Pz_a))
 
 
@@ -125,7 +138,7 @@ class Target(Sampler):
     '''
     '''
     ParamCreator = TargetParams
-    def __init__(self,beta=0.05):
+    def __init__(self,beta=0.05,N_a=2):
         '''
         P(Y=Z|A,Z ) = P(Y=Z) = 1-beta
         make errors with prob beta
@@ -133,7 +146,7 @@ class Target(Sampler):
         beta =0, makes Y =Z
         '''
         pyeqz = [1-beta,beta]
-        Py_az = [[pyeqz,pyeqz],[pyeqz,pyeqz]]
+        Py_az = [[pyeqz,pyeqz]]*N_a
         super().__init__((Py_az,))
 
 
@@ -147,7 +160,6 @@ class Target(Sampler):
         beta : float
 
         '''
-
         y = [np.random.choice([zi,1-zi],p= self.params.Py_az[ai][zi])
                                             for ai,zi in zip(a,z)]
 
@@ -157,15 +169,15 @@ class Target(Sampler):
 class TargetDisadvantagedError(Target):
     '''
     '''
-    def __init__(self,beta=.1):
+    def __init__(self,beta=.1,N_a=2):
         '''
-        make errors with prob beta
+        make errors with prob beta (advantaged, A=(N_a-1))
         P(Y=Z|A=1,Z ) = P(Y=Z|A=1) = 1-beta
         P(Y=Z|A=0,Z ) = P(Y=Z|A=0) = 1
 
         '''
         pyeqz = [1-beta,beta]
-        Py_az = [[[1,0],[1,0]],[pyeqz,pyeqz]]
+        Py_az = [[pyeqz, pyeqz]]*(N_a-1) + [[1, 0], [1, 0]]
         Sampler.__init__(self,(Py_az,))
 
 class TargetTwoError(Target):
@@ -183,6 +195,23 @@ class TargetTwoError(Target):
         Py_az = [[pyz_a0,pyz_a0],[pyz_a1,pyz_a1]]
         Sampler.__init__(self,(Py_az,))
 
+
+class TargetAllAError(Target):
+    '''
+    '''
+
+    def __init__(self, beta=[0, .1]):
+        '''
+        make errors with prob beta
+        P(Y=Z|A=1,Z ) = P(Y=Z|A=1) = 1-beta1
+        P(Y=Z|A=0,Z ) = P(Y=Z|A=0) = 1-beta0
+
+        # '''
+        # pyz_a0 = [1-beta[0], beta[0]]
+        # pyz_a1 = [1-beta[1], beta[1]]
+        Py_az =  [[1-betaai, betaai]*2 for betaai in beta]
+        Sampler.__init__(self, (Py_az,))
+
 class TargetFlipNegative(Target):
     '''
     '''
@@ -195,10 +224,10 @@ class TargetFlipNegative(Target):
         P(Y=Z|Z  =0) = 1
 
         '''
-        pyz1_a0 = [1-beta[0],beta[0]]
-        pyz1_a1 = [1-beta[1],beta[1]]
+        # pyz1_a0 = [1-beta[0],beta[0]]
+        # pyz1_a1 = [1-beta[1],beta[1]]
         no_error = [1,0] # if z=0, P(Y=z) =1
-        Py_az = [[no_error,pyz1_a0],[no_error,pyz1_a1]]
+        Py_az = [[no_error, [1-betaai, betaai]] for betaai in beta]
         Sampler.__init__(self,(Py_az,))
 
 class TargetFlipAllIndep(Target):
@@ -214,9 +243,6 @@ class TargetFlipAllIndep(Target):
 
 
         '''
-        pyz1_a0 = [1-beta[0],beta[0]]
-        pyz1_a1 = [1-beta[1],beta[1]]
-        no_error = [1,0] # if z=0, P(Y=z) =1
         Py_az = [[[1-b,b] for b in be] for be in beta]
         Sampler.__init__(self,(Py_az,))
 
@@ -239,7 +265,7 @@ class Feature(Sampler):
     '''
     ParamCreator = FeatureParams
     def __init__(self,dist= mean_only_mvn,mu = [[5,2],[2,5]],
-                            param_tuple = None):
+                            param_tuple = None,N_a =2):
         '''
         Parameters
         ----------
@@ -255,7 +281,8 @@ class Feature(Sampler):
             super().__init__(param_tuple)
         else:
             # default params passed
-            theta = [[mu,mu],[mu, mu]]
+            # mu has diffs for Z=0,1; repeat for all A for all Y
+            theta = [[mu]*N_a]*2
             super().__init__((dist,theta))
 
     def sample(self,a,z,y):
@@ -281,19 +308,23 @@ class Feature(Sampler):
 
         if type(self.params.theta[0][0][0]) == tuple:
             # if a tuple, then expand and pass 2 params
+            
             x = [self.params.distfunc(*self.params.theta[yi][ai][zi])
-                                        for ai,zi,yi in zip(z,a,y)]
+                                        for ai,zi,yi in zip(a,z,y)]
         else:
             x = [self.params.distfunc(self.params.theta[yi][ai][zi])
                                     for ai,zi,yi in zip(a,z,y)]
         return np.asarray(x)
+
+mvn = lambda mu,var :np.random.multivariate_normal(mu,var*np.eye(len(mu)))
 
 class FeatureSharedParam(Feature):
     '''
     feature sampler with one parameter shared across Z (eg shared spread)
     A and Y have no impact on X
     '''
-    def __init__(self,dist,loc,spread):
+
+    def __init__(self, loc, spread, dist=mvn,N_a=2):
         '''
         unique locations and shared spread for no impact of A or Y
 
@@ -309,14 +340,15 @@ class FeatureSharedParam(Feature):
         '''
 
         theta_z = [(li,spread) for li in loc]
-        theta = [[theta_z,theta_z],[theta_z, theta_z]]
+        theta = [[theta_z]*N_a]*2
         super().__init__(param_tuple=(dist,theta))
 
 class FeatureTwoParams(Feature):
     '''
     feature sampler with two unique parameters per class
     '''
-    def __init__(self,dist,loc,spread):
+
+    def __init__(self, loc, spread, dist=mvn,N_a=2):
         '''
         unique locations and shared spread for z, no impact of a an y
 
@@ -331,8 +363,8 @@ class FeatureTwoParams(Feature):
             spread parameter of dist, one per value of z
         '''
 
-        theta_z = [(li,si) for li,si in zip(loc,spread)]
-        theta = [[theta_z,theta_z],[theta_z, theta_z]]
+        theta_z = [(li, si) for li, si in zip(loc, spread)]
+        theta = [[theta_z]*N_a]*2
         super().__init__(param_tuple=(dist,theta))
 
 class FeaturePerGroupTwoParam(Feature):
@@ -348,13 +380,17 @@ class FeaturePerGroupTwoParam(Feature):
         dist : function handle
             function to sample X|parameters where the paramters are dependend on
              Z,A,Y
-        loc : list-like length |Z| of lists length 2
+        loc : list-like length |Z| of lists length |A|
             location parameter of dist, one per value of z,a
-        spread : list-like length |Z| of lists length 2
+        spread : list-like length |Z| of lists length  |A|
             spread parameter of dist, one per value of z,a
-        '''
+        # '''
+        # print(len(loc), len(spread))
+        # print(len(loc[0]), len(spread[0]))
         theta_za = [[(lii,sii) for lii,sii in zip(li,si)] for li,si in zip(loc,spread)]
+        # repeat so that features do not vary with Y
         theta = [theta_za,theta_za]
+        # print(theta)
         super().__init__(param_tuple=(dist,theta))
 
 class FeaturePerGroupSharedParamWithinGroup(Feature):
@@ -416,9 +452,9 @@ class FeatureMeasurementQualityProxy(Feature):
         Parameters
         ----------
         loc : list-like
-            one location parameter value per true value, protected attribute pair
+            one location parameter value per (true value, protected attribute) pair
         spread : list-like
-            one spread parameter value per proxy value, protected attribute pair
+            one spread parameter value per (proxy value, protected attribute) pair
         '''
         theta_yaz = [[[(lii,sii) for lii,sii in zip(li,si)]
                                 for li in loc] for si in spread]
@@ -434,16 +470,15 @@ class FeatureNoise(Sampler):
     '''
     ParamCreator = NoiseParams
 
-    def __init__(self,dist= shape_spread_only_mvn,sig = 1.0):
+    def __init__(self, dist=shape_spread_only_mvn, sig=1.0, N_a=2):
         '''
         '''
         if type(sig) ==float:
             # constant noise
-            theta = [[[sig,sig],[sig,sig]],[[sig,sig],[sig,sig]]]
-        elif len(sig) ==2:
+            theta = [[[sig,sig]]*N_a]*2
+        else:
             # diff noise for protected attributes
-            theta = [[[sig[0],sig[0]],[sig[1],sig[1]]],
-                    [[sig[0],sig[0]],[sig[1],sig[1]]]]
+            theta = [[sigi,sigi] for sigi in sig]*2
 
         super().__init__((dist,theta))
 
@@ -538,7 +573,7 @@ class FeatureNoiseShift(FeatureNoise):
         # functions for combining noise and true vectors
         x_a = {0: lambda x,n: np.concatenate((x[:d_noise],n)),
               1: lambda x,n: np.concatenate((n, x[d_shared-1:d],  x[:d_noise]))}
-        x = [x_a[a](x_zi,x_ni) for a,x_zi,x_ni in zip(a,x_z,x_n)]
+        x = [x_a[a](x_zi,x_ni) for a,x_zi,x_ni in zip(a,x,x_n)]
         x = np.asarray(x)
 
         return x
@@ -551,7 +586,7 @@ class FeatureNoiseShift(FeatureNoise):
 
 
 
-def feature_proxy(a,z,y,dist,theta):
+def feature_proxy(a,z,y,distfunc,theta):
     '''
     some features are related to the ground truth and some are realated to the
     proxy,
