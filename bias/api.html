@@ -1,48 +1,60 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>API Reference &#8212; ML Sim Documentation</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -50,56 +62,98 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'bias/api';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Basic Generators" href="../base/basic_generators.html" />
     <link rel="prev" title="Using Population objects to create biased data" href="demo_populations.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">ML Sim Documentation</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ML Sim Documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -108,202 +162,527 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Anomalies
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Anomalies</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../anomaly/simpsons_paradox.html">
-   Simpson’s Paradox
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../anomaly/rate_sp.html">
-   Rate-Based SP
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../anomaly/regression_sp.html">
-   Regression -Based Simpson’s Paradox
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../anomaly/api.html">
-   API Reference
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../anomaly/simpsons_paradox.html">Simpson’s Paradox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../anomaly/rate_sp.html">Rate-Based SP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../anomaly/regression_sp.html">Regression -Based Simpson’s Paradox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../anomaly/api.html">API Reference</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Biases
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Biases</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="populations.html">
-   Population Sampling for Bias Modeling
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="demo_populations.html">
-   Using Population objects to create biased data
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   API Reference
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="populations.html">Population Sampling for Bias Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demo_populations.html">Using Population objects to create biased data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">API Reference</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Basic Generators
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Generators</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../base/basic_generators.html">
-   Basic Generators
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../base/basic_generators.html">Basic Generators</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ml4sts/ml-sim" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ml4sts/ml-sim/edit/main/docs/bias/api.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
 
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
 
 
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/bias/api.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
   </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/bias/api.rst"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.rst</span>
-</a>
 
-      </li>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
       
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
+    </div>
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
 </div>
+</div>
+              
+              
 
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>API Reference</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>API Reference</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                    </div>
-                </div>
-            </div>
-            <main id="main-content" role="main">
+              
                 
-              <div>
-                
-  <section id="api-reference">
-<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">#</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="module-mlsim.bias">
+<span id="api-reference"></span><h1>API Reference<a class="headerlink" href="#module-mlsim.bias" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="mlsim.bias.Demographic">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mlsim.bias.</span></span><span class="sig-name descname"><span class="pre">Demographic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho_a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho_z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#Demographic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.Demographic" title="Permalink to this definition">#</a></dt>
+<dd><p>base class for sampling demographics (a= protected attribute,z = true target
+value)</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="mlsim.bias.Demographic.ParamCreator">
+<span class="sig-name descname"><span class="pre">ParamCreator</span></span><a class="headerlink" href="#mlsim.bias.Demographic.ParamCreator" title="Permalink to this definition">#</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">DemParams</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mlsim.bias.Demographic.get_rho_a">
+<span class="sig-name descname"><span class="pre">get_rho_a</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#Demographic.get_rho_a"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.Demographic.get_rho_a" title="Permalink to this definition">#</a></dt>
+<dd><p>get  P(A=1)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rho_a</strong> – Probability of being in the disadvantaged group, A =1</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mlsim.bias.Demographic.get_rho_z">
+<span class="sig-name descname"><span class="pre">get_rho_z</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#Demographic.get_rho_z"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.Demographic.get_rho_z" title="Permalink to this definition">#</a></dt>
+<dd><p>return P(Z=1|A)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rho_z</strong> – probability of the favorable outcome(z =1) for A=0 and A=1 in that
+order</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>nparray of floats</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mlsim.bias.Demographic.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#Demographic.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.Demographic.sample" title="Permalink to this definition">#</a></dt>
+<dd><p>Sample P(A,Z) = P(Z|A)P(A)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>N</strong> (<em>integer</em>) – number of samples to return</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>a_z_tuple</strong> – a tuple of lenght 2 with elements a and z as column np arrays each
+of length N</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mlsim.bias.DemographicCorrelated">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mlsim.bias.</span></span><span class="sig-name descname"><span class="pre">DemographicCorrelated</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho_a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho_z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0.5,</span> <span class="pre">0.3]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#DemographicCorrelated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.DemographicCorrelated" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mlsim.bias.DemographicIndependent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mlsim.bias.</span></span><span class="sig-name descname"><span class="pre">DemographicIndependent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho_a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho_z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#DemographicIndependent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.DemographicIndependent" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mlsim.bias.Feature">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mlsim.bias.</span></span><span class="sig-name descname"><span class="pre">Feature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">dist=&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;,</span> <span class="pre">mu=[[5,</span> <span class="pre">2],</span> <span class="pre">[2,</span> <span class="pre">5]],</span> <span class="pre">param_tuple=None,</span> <span class="pre">N_a=2</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#Feature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.Feature" title="Permalink to this definition">#</a></dt>
+<dd><p>base class for all feature samplers: P(X|A,Z,Y) by default creates two
+dimensional features with shared parameters across groups and good
+separability of classes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="mlsim.bias.Feature.dist">
+<span class="sig-name descname"><span class="pre">dist</span></span><a class="headerlink" href="#mlsim.bias.Feature.dist" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>function to sample X|parameters where the paramters are dependend on</dt><dd><p>Z,A,Y</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>function handle</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="mlsim.bias.Feature.theta">
+<span class="sig-name descname"><span class="pre">theta</span></span><a class="headerlink" href="#mlsim.bias.Feature.theta" title="Permalink to this definition">#</a></dt>
+<dd><p>params of dist, one per value of z</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list-like or list of tupples</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="mlsim.bias.Feature.ParamCreator">
+<span class="sig-name descname"><span class="pre">ParamCreator</span></span><a class="headerlink" href="#mlsim.bias.Feature.ParamCreator" title="Permalink to this definition">#</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">FeatureParams</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mlsim.bias.Feature.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#Feature.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.Feature.sample" title="Permalink to this definition">#</a></dt>
+<dd><p>sample P(X|A,Z,Y) using distribution and parameters initialized for
+each a,z,y. The vectors a,z,y must be the same shape</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>list-like length n</em>) – demographic variables</p></li>
+<li><p><strong>z</strong> (<em>list like length n</em>) – true target</p></li>
+<li><p><strong>y</strong> (<em>list-like length n</em>) – proxy target</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>x</strong> – featuers, same shape as a,z,y</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list like, length n</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mlsim.bias.FeatureMeasurementQualityProxy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mlsim.bias.</span></span><span class="sig-name descname"><span class="pre">FeatureMeasurementQualityProxy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spread</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#FeatureMeasurementQualityProxy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.FeatureMeasurementQualityProxy" title="Permalink to this definition">#</a></dt>
+<dd><p>the measurement locations vary with the true target value z and the
+measurements spread vary with the meaured target value y, allowing for error
+to be present in both the features and the measurements. Also may vary with
+the protected attribute</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mlsim.bias.FeatureNoise">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mlsim.bias.</span></span><span class="sig-name descname"><span class="pre">FeatureNoise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dist=&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig=1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N_a=2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#FeatureNoise"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.FeatureNoise" title="Permalink to this definition">#</a></dt>
+<dd><p>Base class for adding noise to features</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="mlsim.bias.FeatureNoise.ParamCreator">
+<span class="sig-name descname"><span class="pre">ParamCreator</span></span><a class="headerlink" href="#mlsim.bias.FeatureNoise.ParamCreator" title="Permalink to this definition">#</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">NoiseParams</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mlsim.bias.FeatureNoise.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#FeatureNoise.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.FeatureNoise.sample" title="Permalink to this definition">#</a></dt>
+<dd><p>add noise to the features conditions on a,z,y
+add a groupwise noise to the feature vectors than the other</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mlsim.bias.FeatureNoiseReplace">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mlsim.bias.</span></span><span class="sig-name descname"><span class="pre">FeatureNoiseReplace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[[1,</span> <span class="pre">0,</span> <span class="pre">0],</span> <span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">0],</span> <span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">1]]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_shared</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#FeatureNoiseReplace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.FeatureNoiseReplace" title="Permalink to this definition">#</a></dt>
+<dd><p>feature noise that replcaes some of the features with noise according to
+mean and covariance attributes</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mlsim.bias.FeaturePerGroupSharedParamAcrossGroups">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mlsim.bias.</span></span><span class="sig-name descname"><span class="pre">FeaturePerGroupSharedParamAcrossGroups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spread</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#FeaturePerGroupSharedParamAcrossGroups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.FeaturePerGroupSharedParamAcrossGroups" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mlsim.bias.FeaturePerGroupSharedParamWithinGroup">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mlsim.bias.</span></span><span class="sig-name descname"><span class="pre">FeaturePerGroupSharedParamWithinGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spread</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#FeaturePerGroupSharedParamWithinGroup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.FeaturePerGroupSharedParamWithinGroup" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mlsim.bias.FeaturePerGroupTwoParam">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mlsim.bias.</span></span><span class="sig-name descname"><span class="pre">FeaturePerGroupTwoParam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spread</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#FeaturePerGroupTwoParam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.FeaturePerGroupTwoParam" title="Permalink to this definition">#</a></dt>
+<dd><p>feature sampler with two parameters that vary per group</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mlsim.bias.FeatureSharedParam">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mlsim.bias.</span></span><span class="sig-name descname"><span class="pre">FeatureSharedParam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spread</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist=&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N_a=2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#FeatureSharedParam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.FeatureSharedParam" title="Permalink to this definition">#</a></dt>
+<dd><p>feature sampler with one parameter shared across Z (eg shared spread)
+A and Y have no impact on X</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mlsim.bias.FeatureTwoParams">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mlsim.bias.</span></span><span class="sig-name descname"><span class="pre">FeatureTwoParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spread</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist=&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N_a=2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#FeatureTwoParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.FeatureTwoParams" title="Permalink to this definition">#</a></dt>
+<dd><p>feature sampler with two unique parameters per class</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mlsim.bias.Population">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mlsim.bias.</span></span><span class="sig-name descname"><span class="pre">Population</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">demographic_sampler=&lt;class</span> <span class="pre">'mlsim.bias.bias_components.Demographic'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_sampler=&lt;class</span> <span class="pre">'mlsim.bias.bias_components.Target'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_sampler=&lt;class</span> <span class="pre">'mlsim.bias.bias_components.Feature'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_noise_sampler=&lt;class</span> <span class="pre">'mlsim.bias.bias_components.FeatureNoise'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_dictionary={}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/populations.html#Population"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.Population" title="Permalink to this definition">#</a></dt>
+<dd><p>Object for describing a population so that sampling from the population
+and biased samples are possible from a sampler type and parameter dictionary</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mlsim.bias.Population.get_parameter_description">
+<span class="sig-name descname"><span class="pre">get_parameter_description</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/populations.html#Population.get_parameter_description"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.Population.get_parameter_description" title="Permalink to this definition">#</a></dt>
+<dd><p>Build a string output that describes this object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>description</strong> – values of each parameter value grouped by sampler</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mlsim.bias.Population.make_DataFrame">
+<span class="sig-name descname"><span class="pre">make_DataFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/populations.html#Population.make_DataFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.Population.make_DataFrame" title="Permalink to this definition">#</a></dt>
+<dd><p>combine into data frame with labels</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>a</strong> (<em>list</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mlsim.bias.Population.make_StructuredDataset">
+<span class="sig-name descname"><span class="pre">make_StructuredDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/populations.html#Population.make_StructuredDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.Population.make_StructuredDataset" title="Permalink to this definition">#</a></dt>
+<dd><p>Converts a dataframe created by one of the above functions into a dataset usable in IBM 360 package</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pandas dataframe</em>) – </p></li>
+<li><p><strong>label_names</strong> (<em>optional</em><em>, </em><em>a list of strings describing each label</em>) – </p></li>
+<li><p><strong>protected_attribute_names</strong> (<em>optional</em><em>, </em><em>a list of strings describing</em>) – </p></li>
+<li><p><strong>attributes</strong> (<em>features corresponding to      protected</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>aif360.datasets.StructuredDataset containing the data with y as the target and a as protected attribute.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mlsim.bias.Population.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_as</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DataFrame'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/populations.html#Population.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.Population.sample" title="Permalink to this definition">#</a></dt>
+<dd><p>sample N members of the  population, according to its underlying
+distribution</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>N</strong> (<em>int</em>) – number of samples</p></li>
+<li><p><strong>return_as</strong> (<em>string</em><em>, </em><em>'dataframe'</em>) – type to return as, can be pandas ‘DataFrame’ or IBM AIF360
+‘structuredDataset’</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mlsim.bias.Population.sample_unfavorable_outcomes">
+<span class="sig-name descname"><span class="pre">sample_unfavorable_outcomes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho_z_scale</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/populations.html#Population.sample_unfavorable_outcomes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.Population.sample_unfavorable_outcomes" title="Permalink to this definition">#</a></dt>
+<dd><p>sample so that the disadvantaged group (a=1) gets the favorable
+outcome (y=1) less often based on the rho_z_scale</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mlsim.bias.PopulationInstantiated">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mlsim.bias.</span></span><span class="sig-name descname"><span class="pre">PopulationInstantiated</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">demographic_sampler=&lt;mlsim.bias.bias_components.Demographic</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_sampler=&lt;mlsim.bias.bias_components.Target</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_sampler=&lt;mlsim.bias.bias_components.Feature</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_noise_sampler=&lt;mlsim.bias.bias_components.FeatureNoise</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/populations.html#PopulationInstantiated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.PopulationInstantiated" title="Permalink to this definition">#</a></dt>
+<dd><p>To instantiate with either default parameters or instantiated sampler objects</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mlsim.bias.Target">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mlsim.bias.</span></span><span class="sig-name descname"><span class="pre">Target</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N_a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#Target"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.Target" title="Permalink to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="mlsim.bias.Target.ParamCreator">
+<span class="sig-name descname"><span class="pre">ParamCreator</span></span><a class="headerlink" href="#mlsim.bias.Target.ParamCreator" title="Permalink to this definition">#</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">TargetParams</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mlsim.bias.Target.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#Target.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.Target.sample" title="Permalink to this definition">#</a></dt>
+<dd><p>sample P(Y|A,Z) via P(Y=Z|A,Z)
+:param a:
+:param z:
+:param beta:
+:type beta: float</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mlsim.bias.TargetDisadvantagedError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mlsim.bias.</span></span><span class="sig-name descname"><span class="pre">TargetDisadvantagedError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N_a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#TargetDisadvantagedError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.TargetDisadvantagedError" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mlsim.bias.TargetTwoError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mlsim.bias.</span></span><span class="sig-name descname"><span class="pre">TargetTwoError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0.1]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlsim/bias/bias_components.html#TargetTwoError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mlsim.bias.TargetTwoError" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
 </section>
 
     <script type="text/x-thebe-config">
@@ -318,7 +697,7 @@ title="Print to PDF"
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./bias"
         },
         predefinedOutput: true
@@ -326,50 +705,88 @@ title="Print to PDF"
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="demo_populations.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Using Population objects to create biased data</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="demo_populations.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Using Population objects to create biased data</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="../base/basic_generators.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="../base/basic_generators.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Basic Generators</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By ML4STS Lab<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By ML4STS Lab
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
