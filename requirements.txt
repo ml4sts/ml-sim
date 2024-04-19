@@ -9,3 +9,4 @@ seaborn
 sphinx
 myst-nb
 myst-parser
+pytest
