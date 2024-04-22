@@ -284,7 +284,6 @@ class Feature(Sampler):
             # mu has diffs for Z=0,1; repeat for all A for all Y
             theta = [[mu]*N_a]*2
             super().__init__((dist,theta))
-
     def sample(self,a,z,y):
         '''
         sample P(X|A,Z,Y) using distribution and parameters initialized for
@@ -371,30 +370,61 @@ class FeatureTwoParams(Feature):
 # where your function takes in a distance and computes the mu
 # you could even randomly sample one mu[0]  then add the distance to get mu[1]
 # and pass that value to the Feature constructor
+# class FeatureOneParam(Feature):
+
+#     '''Feature sampler with one parameter that defines the distance between the means of the data (X) for A=0 and A=1 '''
+
+#     def __init__(self, distribution, distance_between_means,mu0,cov):
+#         '''
+#         for label bias where P(Y = Z | A = 0) != P(Y = Z | A = 1)
+#         We will generate mu[0], by randomly sampling. Then we will add the distance_between_means to compute mu[1]. This way, the user only inputs the distance between the two means 
+
+#         Parameters 
+#         ----------
+#         distribution : function handle
+#             function to sample X 
+
+#         distance_between_means: float
+#             fixed distance between the mean of the data when A = 0 versus A = 1
+
+#         '''
+#         mu1 = mu0 + distance_between_means
+
+#         mu = [[mu0,mu1],[mu0,mu1]]
+        
+#         # [[mu0,mu1],[mu0,mu1]]
+#         # Construct theta with both mean and covariance for each value of z
+#         theta = [[[mui, covi] for mui, covi in zip(mui_z, cov_z)] for mui_z, cov_z in zip(mu, cov)]
+
+#         super().__init__(param_tuple= (distribution,theta))
+
+
+
 class FeatureOneParam(Feature):
+    '''
+    Feature sampler with one parameter that defines the distance between the means of the data (X) for A=0 and A=1.
+    '''
 
-    '''Feature sampler with one parameter that defines the distance between the means of the data (X) for A=0 and A=1 '''
-
-    def __init__(self, distribution, distance_between_means,mu0):
+    def __init__(self,distance_between_means, mu0):
         '''
-        for label bias where P(Y = Z | A = 0) != P(Y = Z | A = 1)
-        We will generate mu[0], by randomly sampling. Then we will add the distance_between_means to compute mu[1]. This way, the user only inputs the distance between the two means 
+        Initialize the feature sampler with the specified distribution, distance between means, mean vector, and covariance matrix.
 
-        Parameters 
+        Parameters
         ----------
-        distribution : function handle
-            function to sample X 
-
-        distance_between_means: float
-            fixed distance between the mean of the data when A = 0 versus A = 1
-
+        dist : function handle
+            Function to sample X|parameters where the parameters are dependent on Z, A, Y.
+        distance_between_means : float
+            Fixed distance between the mean of the data when A=0 versus A=1.
+        mu : numpy.ndarray
+            Mean vector for the multivariate normal distribution
         '''
+        # Calculate the mean for a=1 by adding the distance to the mean for a=0
         mu1 = mu0 + distance_between_means
 
-    
-        
-        
-        super().__init__(param_tuple= (distribution,[mu0,mu1]))
+        # Define theta with means and covariance for each group
+        # theta = [[[mu0, cov], [mu1, cov]], [[mu0, cov], [mu1, cov]]]
+
+        super().__init__(mu = [[mu0,mu1],[mu0,mu1]] )
 
 class FeaturePerGroupTwoParam(Feature):
     '''
