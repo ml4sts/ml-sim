@@ -260,7 +260,7 @@ class Feature(Sampler):
         function to sample X|parameters where the paramters are dependend on
          Z,A,Y
     theta : list-like or list of tupples
-        params of dist, one per value of z
+        params of dist, one per value of z,a, y
 
     '''
     ParamCreator = FeatureParams
@@ -273,7 +273,10 @@ class Feature(Sampler):
             function to sample X|parameters where the paramters are dependend on
              Z,A,Y through theta default mean only multivariate_normal
         mu : list like
-            parameters for dist, for each value of z
+            parameters for dist, for each value of z, inner list can be tuple or list depending
+            on need of dist
+        N_a : int
+            number of values for A
         '''
         # same mean for both values of y and a
         if param_tuple:
@@ -282,7 +285,8 @@ class Feature(Sampler):
         else:
             # default params passed
             # mu has diffs for Z=0,1; repeat for all A for all Y
-            theta = [[mu]*N_a]*2
+            N_y = len(mu) # |Y| = |Z| // z and y have sam enumber of values
+            theta = [[mu]*N_a]*N_y
             super().__init__((dist,theta))
 
     def sample(self,a,z,y):
@@ -320,7 +324,7 @@ mvn = lambda mu,var :np.random.multivariate_normal(mu,var*np.eye(len(mu)))
 
 class FeatureSharedParam(Feature):
     '''
-    feature sampler with one parameter shared across Z (eg shared spread)
+    feature sampler with two total parameters and one parameter shared across Z (eg shared spread)
     A and Y have no impact on X
     '''
 
@@ -340,7 +344,7 @@ class FeatureSharedParam(Feature):
         '''
 
         theta_z = [(li,spread) for li in loc]
-        theta = [[theta_z]*N_a]*2
+        theta = [[theta_z]*N_a]*len(loc)
         super().__init__(param_tuple=(dist,theta))
 
 class FeatureTwoParams(Feature):
@@ -380,8 +384,9 @@ class FeaturePerGroupTwoParam(Feature):
         dist : function handle
             function to sample X|parameters where the paramters are dependend on
              Z,A,Y
-        loc : list-like length |Z| of lists length |A|
-            location parameter of dist, one per value of z,a
+        loc : list-like length |Z| of list-like length |A| 
+            location parameter of dist, one per value of z,a; for multivariate feature spaces
+            in genral the location paramters will each be a list of length = number of features
         spread : list-like length |Z| of lists length  |A|
             spread parameter of dist, one per value of z,a
         # '''
@@ -519,13 +524,13 @@ class FeatureNoiseReplace(FeatureNoise):
             number of shared features that are informative for both groups
         '''
         d = len(mu)
-        d_shared = d_shared
+        
 
         d_adv_noise = int(np.floor((d-d_shared)/2)) # noise dims per row
         d_dis_noise = int(np.ceil((d-d_shared)/2))
         d_adv_signal = d_shared + d_dis_noise # total dims
         d_dis_signal = d_shared + d_adv_noise
-        d_noise = max(d_pad_a,d_pad_d)
+        # d_noise = max(d_pad_a,d_pad_d)
 
         # create masks to 0 out features or noise as appropriate for adding
         adv_data_mask = np.asarray([1]*d_adv_signal + [0]*d_adv_noise)
