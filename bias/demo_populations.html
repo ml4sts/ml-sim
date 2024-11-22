@@ -16,17 +16,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
@@ -36,10 +38,11 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -64,6 +67,7 @@
     <link rel="prev" title="Population Sampling for Bias Modeling" href="populations.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +83,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,15 +147,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -343,24 +332,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -430,9 +411,9 @@ DemParams(Pa=[0.5, 0.5], Pz_a=[[0.5, 0.5], [0.5, 0.5]])
 Target Parameters 
 TargetParams(Py_az=[[[0.95, 0.05], [0.95, 0.05]], [[0.95, 0.05], [0.95, 0.05]]])
 Feature Parameters 
-FeatureParams(distfunc=&lt;function &lt;lambda&gt; at 0x7fee2c001d00&gt;, theta=[[[[5, 2], [2, 5]], [[5, 2], [2, 5]]], [[[5, 2], [2, 5]], [[5, 2], [2, 5]]]])
+FeatureParams(distfunc=&lt;function &lt;lambda&gt; at 0x7f367781e700&gt;, theta=[[[[5, 2], [2, 5]], [[5, 2], [2, 5]]], [[[5, 2], [2, 5]], [[5, 2], [2, 5]]]])
 Feature Noise Parameters 
-NoiseParams(noisefunc=&lt;function &lt;lambda&gt; at 0x7fee2c002a20&gt;, theta=[[[1.0, 1.0], [1.0, 1.0]], [[1.0, 1.0], [1.0, 1.0]]])
+NoiseParams(noisefunc=&lt;function &lt;lambda&gt; at 0x7f367781f420&gt;, theta=[[[1.0, 1.0], [1.0, 1.0]], [[1.0, 1.0], [1.0, 1.0]]])
 </pre></div>
 </div>
 </div>
@@ -498,43 +479,43 @@ sample(N, return_as=&#39;DataFrame&#39;) method of mlsim.bias.populations.Popula
   <tbody>
     <tr>
       <th>0</th>
+      <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>5.171320</td>
-      <td>0.666304</td>
+      <td>1.0</td>
+      <td>3.182082</td>
+      <td>4.594324</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.0</td>
       <td>1.0</td>
       <td>1.0</td>
-      <td>0.800660</td>
-      <td>4.745456</td>
+      <td>1.0</td>
+      <td>3.049347</td>
+      <td>6.543984</td>
     </tr>
     <tr>
       <th>2</th>
+      <td>0.0</td>
       <td>1.0</td>
       <td>1.0</td>
-      <td>1.0</td>
-      <td>-0.665084</td>
-      <td>5.639606</td>
+      <td>0.813956</td>
+      <td>7.642841</td>
     </tr>
     <tr>
       <th>3</th>
       <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>2.832580</td>
-      <td>4.869878</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>4.386188</td>
+      <td>2.503460</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>3.108259</td>
-      <td>4.696831</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.733758</td>
+      <td>4.678923</td>
     </tr>
   </tbody>
 </table>
@@ -590,43 +571,43 @@ sample(N, return_as=&#39;DataFrame&#39;) method of mlsim.bias.populations.Popula
   <tbody>
     <tr>
       <th>0</th>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>5.267000</td>
-      <td>3.465217</td>
+      <td>0.0</td>
+      <td>5.059749</td>
+      <td>0.462498</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>4.149285</td>
-      <td>1.239773</td>
+      <td>0.0</td>
+      <td>3.938205</td>
+      <td>3.445628</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>3.838661</td>
-      <td>1.829532</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.576376</td>
+      <td>7.430619</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>3.317427</td>
-      <td>1.693548</td>
+      <td>3.784182</td>
+      <td>3.497882</td>
     </tr>
     <tr>
       <th>4</th>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>6.825981</td>
-      <td>0.512398</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>4.630621</td>
+      <td>5.814778</td>
     </tr>
   </tbody>
 </table>
@@ -686,63 +667,63 @@ sample(N, return_as=&#39;DataFrame&#39;) method of mlsim.bias.populations.Popula
   <tbody>
     <tr>
       <th>0</th>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>3.770898</td>
-      <td>2.409110</td>
-      <td>3.332066</td>
-      <td>4.349685</td>
-      <td>3.258143</td>
-      <td>4.136205</td>
+      <td>0.0</td>
+      <td>1.016204</td>
+      <td>0.488367</td>
+      <td>1.198120</td>
+      <td>4.140980</td>
+      <td>2.847464</td>
+      <td>0.083858</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>3.090208</td>
-      <td>1.667539</td>
-      <td>4.791645</td>
-      <td>1.228572</td>
-      <td>4.026897</td>
-      <td>4.398691</td>
-    </tr>
-    <tr>
-      <th>2</th>
       <td>0.0</td>
       <td>1.0</td>
       <td>1.0</td>
-      <td>2.694175</td>
-      <td>7.023370</td>
-      <td>6.928451</td>
-      <td>7.664216</td>
-      <td>11.893786</td>
-      <td>5.682654</td>
+      <td>3.660997</td>
+      <td>4.850933</td>
+      <td>6.043325</td>
+      <td>4.757886</td>
+      <td>12.464587</td>
+      <td>4.044343</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.108399</td>
+      <td>3.132314</td>
+      <td>5.397789</td>
+      <td>3.341915</td>
+      <td>4.324666</td>
+      <td>6.274768</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-1.583963</td>
-      <td>1.856087</td>
-      <td>1.311327</td>
-      <td>5.890855</td>
-      <td>3.169030</td>
-      <td>5.401490</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>5.238988</td>
+      <td>5.739315</td>
+      <td>8.507579</td>
+      <td>8.341367</td>
+      <td>10.823820</td>
+      <td>6.808361</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>-0.030799</td>
-      <td>3.770761</td>
-      <td>3.151406</td>
-      <td>3.284564</td>
-      <td>5.018268</td>
-      <td>1.793790</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.334202</td>
+      <td>0.772579</td>
+      <td>2.889912</td>
+      <td>3.521248</td>
+      <td>4.585416</td>
+      <td>3.336505</td>
     </tr>
   </tbody>
 </table>
@@ -756,7 +737,7 @@ sample(N, return_as=&#39;DataFrame&#39;) method of mlsim.bias.populations.Popula
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9a47161e5d16a249980fff4b8da90f4007db7573382081e90d87341e3cc2dd05.png" src="../_images/9a47161e5d16a249980fff4b8da90f4007db7573382081e90d87341e3cc2dd05.png" />
+<img alt="../_images/d675bbf78a17114ef398158410b3fdadaab5357c27facd2fb508cf7af5746586.png" src="../_images/d675bbf78a17114ef398158410b3fdadaab5357c27facd2fb508cf7af5746586.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -766,12 +747,12 @@ sample(N, return_as=&#39;DataFrame&#39;) method of mlsim.bias.populations.Popula
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;seaborn.axisgrid.PairGrid at 0x7fee268917c0&gt;,
- &lt;seaborn.axisgrid.PairGrid at 0x7fee2535d520&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;seaborn.axisgrid.PairGrid at 0x7f3672059940&gt;,
+ &lt;seaborn.axisgrid.PairGrid at 0x7f367096a390&gt;]
 </pre></div>
 </div>
-<img alt="../_images/c2405e02eeef9f1669acb999b1ccd6101af166a90482742827a7d33dc84f1989.png" src="../_images/c2405e02eeef9f1669acb999b1ccd6101af166a90482742827a7d33dc84f1989.png" />
-<img alt="../_images/32b295ad7368134d2415769efe9bb03e5cabbd0801d8c548eb6e447dd27a9664.png" src="../_images/32b295ad7368134d2415769efe9bb03e5cabbd0801d8c548eb6e447dd27a9664.png" />
+<img alt="../_images/a8488d10f28bbacae44e71b4f67df4e84750f3ebc1a02424a231d528e9b25446.png" src="../_images/a8488d10f28bbacae44e71b4f67df4e84750f3ebc1a02424a231d528e9b25446.png" />
+<img alt="../_images/0548c93e117a24d6af838c3c93bd1180c88565b85770349a7612ffc45326a0e5.png" src="../_images/0548c93e117a24d6af838c3c93bd1180c88565b85770349a7612ffc45326a0e5.png" />
 </div>
 </div>
 </section>
@@ -832,7 +813,8 @@ sample(N, return_as=&#39;DataFrame&#39;) method of mlsim.bias.populations.Popula
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -890,8 +872,8 @@ By ML4STS Lab
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>
