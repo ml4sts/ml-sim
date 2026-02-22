@@ -1,7 +1,10 @@
 import numpy as np
 import pandas as pd
 from aif360.datasets import  StructuredDataset
-from .bias_components import Demographic, Target, Feature, FeatureNoise
+from .demographic import Demographic
+from .target import Target
+from .feature import Feature
+from .feature_noise import FeatureNoise
 
 default_params = {'dem':None,}
 
@@ -10,10 +13,10 @@ class Population():
     Object for describing a population so that sampling from the population
     and biased samples are possible from a sampler type and parameter dictionary
     '''
-    def __init__(self, demographic_sampler= Demographic,
-                target_sampler = Target,
-                feature_sampler = Feature,
-                feature_noise_sampler = FeatureNoise, parameter_dictionary = {}):
+    def __init__(self, demographic_sampler= Demographic(),
+                target_sampler = Target(),
+                feature_sampler = Feature(),
+                feature_noise_sampler = FeatureNoise(), parameter_dictionary = {}):
         '''
         initialize a population based on the way to sample from it. a population
         object has properties that define the samplers for the demographic
@@ -77,6 +80,7 @@ class Population():
             type to return as, can be pandas 'DataFrame' or IBM AIF360
             'structuredDataset'
         '''
+        
         a,z = self.demographic_sampler.sample(N)
         y = self.target_sampler.sample(a,z)
         x = self.feature_sampler.sample(a,z,y)
@@ -124,7 +128,7 @@ class Population():
         azy = np.vstack([a,z,y]).T
         data = np.concatenate([azy,x],axis=1)
         labels =['a','z','y']
-        _,D = x.shape
+        _,D = x.shap
         labels.extend(['x'+str(i) for i in range(D)])
 
         return pd.DataFrame(data=data, columns = labels)
