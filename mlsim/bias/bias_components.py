@@ -247,7 +247,7 @@ class TargetFlipAllIndep(Target):
         Sampler.__init__(self,(Py_az,))
 
 mean_only_mvn = lambda mu :np.random.multivariate_normal(mu,np.eye(len(mu)))
-
+ 
 class Feature(Sampler):
     '''
     base class for all feature samplers: P(X|A,Z,Y) by default creates two
@@ -319,6 +319,110 @@ class Feature(Sampler):
             x = [self.params.distfunc(self.params.theta[yi][ai][zi])
                                     for ai,zi,yi in zip(a,z,y)]
         return np.asarray(x)
+
+############
+
+class FeatureConditionerA(Feature):
+
+    '''
+        sample P(X|A) using distribution and parameters initialized for
+        a. 
+
+        Parameters
+        ----------
+        a : list-like length n
+            demographic variables
+
+        Returns
+        --------
+        x : list like, length n
+            featuers, same shape as a
+    '''
+
+    def sample(self, a=None, z=None, y=None):
+        if a is None:
+            raise ValueError('FeatureConditionerA requires a')
+
+        if type(self.params.theta[0][0][0])== tuple:
+            x = [self.params.distfunc(*self.params.theta[0][ai][0]) 
+                 for ai in a]
+        else:
+            x = [self.params.distfunc(self.params.theta[0][ai][0]) 
+                 for ai in a]
+
+        return np.asarray(x)
+
+
+class FeatureConditionerZ(Feature):
+    '''
+        sample P(X|Z) using distribution and parameters initialized for z. 
+
+        Parameters
+        ----------
+        z : list like length n
+            true target
+
+        Returns
+        --------
+        x : list like, length n
+            featuers, same shape as z
+    '''
+
+    def sample(self, a=None, z=None, y=None):
+        if z is None:
+            raise ValueError('FeatureConditionerZ requires z')
+
+        if type(self.params.theta[0][0][0])== tuple:
+            x = [self.params.distfunc(*self.params.theta[0][0][zi]) 
+                 for zi in z]
+        else:
+            x = [self.params.distfunc(self.params.theta[0][0][zi])
+                 for zi in z]
+
+        return np.asarray(x)
+
+
+class FeatureConditionerAZ(Feature):
+    '''
+        sample P(X|A,Z) using distribution and parameters initialized for
+        each a,z. The vectors a,z must be the same shape
+
+        Parameters
+        ----------
+        a : list-like length n
+            demographic variables
+        z : list like length n
+            true target
+
+
+        Returns
+        --------
+        x : list like, length n
+            featuers, same shape as a,z
+    '''
+
+    def sample(self, a=None, z=None, y=None):
+        if a is None or z is None:
+            raise ValueError('FeatureConditionerAZ requires a and z')
+
+        if type(self.params.theta[0][0][0])== tuple:
+            x = [self.params.distfunc(*self.params.theta[0][ai][zi]) 
+                 for ai, zi in zip(a, z)]
+        else:
+            x = [self.params.distfunc(self.params.theta[0][ai][zi]) 
+                 for ai, zi in zip(a, z)]
+
+        return np.asarray(x)
+
+
+class FeatureConditionerAZY(Feature):
+    '''
+    inherits original Feature behaviour.
+    '''
+    pass
+
+
+#############
 
 mvn = lambda mu,var :np.random.multivariate_normal(mu,var*np.eye(len(mu)))
 
@@ -443,6 +547,30 @@ class FeaturePerGroupSharedParamAcrossGroups(Feature):
         # same for both values fo y
         theta = [theta_za,theta_za]
         super().__init__(param_tuple=(dist,theta))
+######
+#combined classes
+
+class FeatureAShared(FeatureConditionerA, FeatureSharedParam):
+    pass
+
+
+class FeatureATwoParams(FeatureConditionerA, FeatureTwoParams):
+    pass
+
+
+class FeatureZShared(FeatureConditionerZ, FeatureSharedParam):
+    pass
+
+
+class FeatureZTwoParams(FeatureConditionerZ, FeatureTwoParams):
+    pass
+
+
+class FeatureAZPerGroup(FeatureConditionerAZ, FeaturePerGroupTwoParam):
+    pass
+
+
+#####
 
 class FeatureMeasurementQualityProxy(Feature):
     '''
@@ -582,6 +710,38 @@ class FeatureNoiseShift(FeatureNoise):
         x = np.asarray(x)
 
         return x
+######
+class FeatureSplit(Sampler):
+    '''
+    list of feature samplers.
+
+    Each sampler generates its own columns of X; the columns are stacked
+    horizontally so row i of the output contains all features for person i.
+    This lets different features in one dataset carry different bias
+    structure (e.g. two columns depend only on z, one column depends on
+    a and z, ...).
+    '''
+    def __init__(self, list_of_feature_samplers):
+        self.feature_samplers = list(list_of_feature_samplers)
+
+    def sample(self, a, z=None, y=None):
+        '''
+        call sample() on every sampler and stack results horizontally
+
+        Returns
+        -------
+        x : np array shape (n, total_feature_dims)
+        '''
+        columns = []
+        for fs in self.feature_samplers:
+            xi = np.asarray(fs.sample(a, z, y))
+            if xi.ndim == 1:                    
+                xi = xi.reshape(-1, 1)
+            columns.append(xi)
+        return np.hstack(columns)
+
+######
+
 
 
 
