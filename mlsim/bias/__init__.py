@@ -1,4 +1,4 @@
-from .populations import Population, PopulationInstantiated
+from .populations import Population, PopulationInstantiated, PopulationProxyTargets
 from .bias_components import Demographic, DemographicIndependent, DemographicCorrelated
 from .bias_components import Target, TargetDisadvantagedError, TargetTwoError
 from .bias_components import Feature,FeatureSharedParam,FeatureTwoParams
@@ -7,7 +7,7 @@ from .bias_components import FeaturePerGroupSharedParamAcrossGroups
 from .bias_components import FeatureMeasurementQualityProxy
 from .bias_components import FeatureNoise, FeatureNoiseReplace
 
-__all__  = ['Population','PopulationInstantiated',  'Demographic',
+__all__  = ['Population','PopulationInstantiated', 'PopulationProxyTargets', 'Demographic',
     'DemographicIndependent', 'DemographicCorrelated',  'Target',
     'TargetDisadvantagedError', 'TargetTwoError',  'Feature','FeatureSharedParam',
     'FeatureTwoParams',  'FeaturePerGroupTwoParam',
