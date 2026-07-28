@@ -274,7 +274,8 @@ class PopulationProxyTargets(PopulationInstantiated):
         y = self.target_sampler.sample(a, z)
 
         x_true  = self.feature_sampler.sample(a, z, y)
-        x_proxy = self.feature_sampler_proxy.sample(a, y, y)  # y in z slot = proxy trick
+        # y in z slot = proxy trick
+        x_proxy = self.feature_sampler_proxy.sample(a, y, y) 
         x = np.concatenate([x_true, x_proxy], axis=1)
         x = self.feature_noise_sampler.sample(a, z, y, x)
 
