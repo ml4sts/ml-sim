@@ -193,3 +193,95 @@ class PopulationInstantiated(Population):
         self.target_sampler = target_sampler
         self.feature_sampler = feature_sampler
         self.feature_noise_sampler = feature_noise_sampler
+
+
+class PopulationProxyTargets(PopulationInstantiated):
+    '''
+    Population for proxy target overfitting bias.
+
+    Generates a population whose features are split into two sets: one set is
+    informative of the true target ``z`` and a second "proxy" set is
+    informative of the observed, possibly biased, target ``y``. When ``y``
+    differs from ``z`` more often for one protected group (for example using
+    ``TargetTwoError``), a model trained on ``y`` can rely on the proxy
+    features and be systematically wrong about ``z`` for that group, producing
+    a per-group accuracy gap.
+
+    Parameters
+    ----------
+    demographic_sampler : Demographic
+        Sampler for the protected attribute ``a`` and the true target ``z``.
+    target_sampler : Target
+        Sampler for the observed target ``y``; use a sampler with per-group
+        label error (e.g. ``TargetTwoError``) so that ``y != z`` more for
+        one group.
+    feature_sampler_true : Feature
+        Sampler for features informative of the true target ``z``; sampled as
+        ``sample(a, z, y)``.
+    feature_sampler_proxy : Feature
+        Sampler for features informative of the proxy target ``y``; sampled as
+        ``sample(a, y, y)`` so its class locations follow the observed label
+        instead of the truth.
+    feature_noise_sampler : FeatureNoise
+        Sampler that adds noise to the concatenated feature matrix, applied as
+        ``sample(a, z, y, x)``.
+
+    See Also
+    --------
+    PopulationInstantiated : parent class taking instantiated samplers.
+    TargetTwoError : per-group label error so that ``y != z`` more for one group.
+
+    Notes
+    -----
+    The proxy features are produced by passing ``y`` in the position the base
+    samplers use for ``z``; this is the mechanism that makes them track the
+    observed label rather than the truth.
+    '''
+
+    def __init__(self, demographic_sampler=Demographic(),
+                target_sampler=Target(),
+                feature_sampler_true=Feature(),
+                feature_sampler_proxy=Feature(),
+                feature_noise_sampler=FeatureNoise()):
+        self.demographic_sampler = demographic_sampler
+        self.target_sampler = target_sampler
+        self.feature_sampler = feature_sampler_true
+        self.feature_sampler_proxy = feature_sampler_proxy
+        self.feature_noise_sampler = feature_noise_sampler
+
+    def sample(self, N, return_as='DataFrame'):
+        '''
+        Sample ``N`` members of the population.
+
+        The returned feature columns are the true-target features followed by
+        the proxy-target features.
+
+        Parameters
+        ----------
+        N : int
+            Number of samples to draw.
+        return_as : string, 'DataFrame'
+            Type to return as, either pandas ``'DataFrame'`` or IBM AIF360
+            ``'structuredDataset'``.
+
+        Returns
+        -------
+        df : pandas.DataFrame or aif360.datasets.StructuredDataset
+            Columns ``a``, ``z``, ``y`` followed by the feature columns
+            ``x0 ... x(d_true + d_proxy - 1)``.
+        '''
+        a, z = self.demographic_sampler.sample(N)
+        y = self.target_sampler.sample(a, z)
+
+        x_true  = self.feature_sampler.sample(a, z, y)
+        # y in z slot = proxy trick
+        x_proxy = self.feature_sampler_proxy.sample(a, y, y) 
+        x = np.concatenate([x_true, x_proxy], axis=1)
+        x = self.feature_noise_sampler.sample(a, z, y, x)
+
+        if return_as == 'DataFrame':
+            df = self.make_DataFrame(a, z, y, x)
+        elif return_as == 'structuredDataset':
+            df = self.make_StructuredDataset(a, z, y, x)
+
+        return df
