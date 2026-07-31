@@ -355,17 +355,17 @@ class FeatureConditionerA(Feature):
 
 class FeatureConditionerZ(Feature):
     '''
-        sample P(X|Z) using distribution and parameters initialized for z. 
+      sample P(X|Z) using distribution and parameters initialized for z. 
 
-        Parameters
-        ----------
-        z : list like length n
-            true target
+      Parameters
+      ----------
+      z : list like length n
+          true target
 
-        Returns
-        --------
-        x : list like, length n
-            featuers, same shape as z
+      Returns
+      --------
+      x : list like, length n
+          features, same length as z and width determined by sampler
     '''
 
     def sample(self, a=None, z=None, y=None):
