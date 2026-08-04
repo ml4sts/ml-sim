@@ -320,11 +320,10 @@ class Feature(Sampler):
                                     for ai,zi,yi in zip(a,z,y)]
         return np.asarray(x)
 
-############
+class FeatureConditionerA():
 
-class FeatureConditionerA(Feature):
-
-    '''
+    def sample(self, a=None, z=None, y=None):
+        '''
         sample P(X|A) using distribution and parameters initialized for
         a. 
 
@@ -337,9 +336,7 @@ class FeatureConditionerA(Feature):
         --------
         x : list like, length n
             featuers, same shape as a
-    '''
-
-    def sample(self, a=None, z=None, y=None):
+        '''
         if a is None:
             raise ValueError('FeatureConditionerA requires a')
 
@@ -353,9 +350,11 @@ class FeatureConditionerA(Feature):
         return np.asarray(x)
 
 
-class FeatureConditionerZ(Feature):
-    '''
-      sample P(X|Z) using distribution and parameters initialized for z. 
+class FeatureConditionerZ():
+
+    def sample(self, a=None, z=None, y=None):
+        '''
+        sample P(X|Z) using distribution and parameters initialized for z. 
 
       Parameters
       ----------
@@ -366,9 +365,7 @@ class FeatureConditionerZ(Feature):
       --------
       x : list like, length n
           features, same length as z and width determined by sampler
-    '''
-
-    def sample(self, a=None, z=None, y=None):
+        '''
         if z is None:
             raise ValueError('FeatureConditionerZ requires z')
 
@@ -381,9 +378,10 @@ class FeatureConditionerZ(Feature):
 
         return np.asarray(x)
 
+class FeatureConditionerAZ():
 
-class FeatureConditionerAZ(Feature):
-    '''
+    def sample(self, a=None, z=None, y=None):
+        '''
         sample P(X|A,Z) using distribution and parameters initialized for
         each a,z. The vectors a,z must be the same shape
 
@@ -394,14 +392,11 @@ class FeatureConditionerAZ(Feature):
         z : list like length n
             true target
 
-
         Returns
         --------
         x : list like, length n
             featuers, same shape as a,z
-    '''
-
-    def sample(self, a=None, z=None, y=None):
+        '''
         if a is None or z is None:
             raise ValueError('FeatureConditionerAZ requires a and z')
 
@@ -415,23 +410,46 @@ class FeatureConditionerAZ(Feature):
         return np.asarray(x)
 
 
-class FeatureConditionerAZY(Feature):
-    '''
-    inherits original Feature behaviour.
-    '''
-    pass
+class FeatureConditionerAZY():
+    def sample(self, a=None, z=None, y=None):
+        '''
+        sample P(X|A,Z,Y) using distribution and parameters initialized for
+        each a,z,y. The vectors a,z & y must be the same shape
 
+        Parameters
+        ----------
+        a : list-like length n
+            demographic variables
+        z : list like length n
+            true target
+        y : list-like length n
+            proxy target
 
-#############
+        Returns
+        --------
+        x : list like, length n
+            featuers, same shape as a,z
+        '''
+        if a is None or z is None or y is None:
+            raise ValueError('FeatureConditionerAZY requires a, z and y')
+
+        if type(self.params.theta[0][0][0]) == tuple:
+            x = [self.params.distfunc(*self.params.theta[yi][ai][zi])
+                 for ai, zi, yi in zip(a, z, y)]
+        else:
+            x = [self.params.distfunc(self.params.theta[yi][ai][zi])
+                 for ai, zi, yi in zip(a, z, y)]
+        return np.asarray(x)
+
 
 mvn = lambda mu,var :np.random.multivariate_normal(mu,var*np.eye(len(mu)))
 
-class FeatureSharedParam(Feature):
+class FeatureSharedParam(Sampler):
     '''
     feature sampler with two total parameters and one parameter shared across Z (eg shared spread)
     A and Y have no impact on X
     '''
-
+    ParamCreator = FeatureParams
     def __init__(self, loc, spread, dist=mvn,N_a=2):
         '''
         unique locations and shared spread for no impact of A or Y
@@ -451,11 +469,11 @@ class FeatureSharedParam(Feature):
         theta = [[theta_z]*N_a]*len(loc)
         super().__init__(param_tuple=(dist,theta))
 
-class FeatureTwoParams(Feature):
+class FeatureTwoParams(Sampler):
     '''
     feature sampler with two unique parameters per class
     '''
-
+    ParamCreator = FeatureParams
     def __init__(self, loc, spread, dist=mvn,N_a=2):
         '''
         unique locations and shared spread for z, no impact of a an y
@@ -475,10 +493,11 @@ class FeatureTwoParams(Feature):
         theta = [[theta_z]*N_a]*2
         super().__init__(param_tuple=(dist,theta))
 
-class FeaturePerGroupTwoParam(Feature):
+class FeaturePerGroupTwoParam(Sampler):
     '''
     feature sampler with two parameters that vary per group
     '''
+    ParamCreator = FeatureParams
     def __init__(self,dist,loc,spread):
         '''
         for feature bias where P(X|Z,Y, A=0) != P(X|Z,Y, A=1)
@@ -502,9 +521,9 @@ class FeaturePerGroupTwoParam(Feature):
         # print(theta)
         super().__init__(param_tuple=(dist,theta))
 
-class FeaturePerGroupSharedParamWithinGroup(Feature):
-    '''
-    '''
+class FeaturePerGroupSharedParamWithinGroup(Sampler):
+    
+    ParamCreator = FeatureParams
     def __init__(sel,dist,loc,spread):
         '''
         for feature bias where P(X|Z,Y, A=0) != P(X|Z,Y, A=1) but one
@@ -525,10 +544,10 @@ class FeaturePerGroupSharedParamWithinGroup(Feature):
         theta = [theta_za,theta_za]
         super().__init__(param_tuple=(dist,theta))
 
-class FeaturePerGroupSharedParamAcrossGroups(Feature):
-    '''
-    '''
-    def __init__(sel,dist,loc,spread):
+class FeaturePerGroupSharedParamAcrossGroups(Sampler):
+
+    ParamCreator = FeatureParams
+    def __init__(self,dist,loc,spread):
         '''
         for feature bias where P(X|Z,Y, A=0) != P(X|Z,Y, A=1) but one paramter
         is shared across groups and classes
@@ -547,8 +566,7 @@ class FeaturePerGroupSharedParamAcrossGroups(Feature):
         # same for both values fo y
         theta = [theta_za,theta_za]
         super().__init__(param_tuple=(dist,theta))
-######
-#combined classes
+
 
 class FeatureAShared(FeatureConditionerA, FeatureSharedParam):
     pass
@@ -569,8 +587,6 @@ class FeatureZTwoParams(FeatureConditionerZ, FeatureTwoParams):
 class FeatureAZPerGroup(FeatureConditionerAZ, FeaturePerGroupTwoParam):
     pass
 
-
-#####
 
 class FeatureMeasurementQualityProxy(Feature):
     '''
@@ -710,16 +726,13 @@ class FeatureNoiseShift(FeatureNoise):
         x = np.asarray(x)
 
         return x
-######
+
 class FeatureSplit(Sampler):
     '''
     list of feature samplers.
 
-    Each sampler generates its own columns of X; the columns are stacked
-    horizontally so row i of the output contains all features for person i.
-    This lets different features in one dataset carry different bias
-    structure (e.g. two columns depend only on z, one column depends on
-    a and z, ...).
+    Each sampler generates its own columns of X; the columns are joined side by side, so features within one dataset can be 
+    conditioned differently (e.g. some columns from P(X|Z), others from P(X|A,Z)).
     '''
     def __init__(self, list_of_feature_samplers):
         self.feature_samplers = list(list_of_feature_samplers)
@@ -730,7 +743,7 @@ class FeatureSplit(Sampler):
 
         Returns
         -------
-        x : np array shape (n, total_feature_dims)
+        x : np array of shape (n, total_feature_dims)
         '''
         columns = []
         for fs in self.feature_samplers:
@@ -739,10 +752,6 @@ class FeatureSplit(Sampler):
                 xi = xi.reshape(-1, 1)
             columns.append(xi)
         return np.hstack(columns)
-
-######
-
-
 
 
 # --------------------------------------------
