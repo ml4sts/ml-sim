@@ -571,11 +571,6 @@ class FeaturePerGroupSharedParamAcrossGroups(Sampler):
 class FeatureAShared(FeatureConditionerA, FeatureSharedParam):
     pass
 
-
-class FeatureATwoParams(FeatureConditionerA, FeatureTwoParams):
-    pass
-
-
 class FeatureZShared(FeatureConditionerZ, FeatureSharedParam):
     pass
 
