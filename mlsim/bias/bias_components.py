@@ -726,24 +726,49 @@ class FeatureSplit(Sampler):
     '''
     list of feature samplers.
 
-    Each sampler generates its own columns of X; the columns are joined side by side, so features within one dataset can be 
-    conditioned differently (e.g. some columns from P(X|Z), others from P(X|A,Z)).
+    Each sampler generates its own columns of X; the columns are joined side by side, so features within one dataset can be
+    conditioned differently (e.g. some columns from P(X|Z), others from P(X|A,Z)
+    or P(X|Y)).
     '''
     def __init__(self, list_of_feature_samplers):
-        self.feature_samplers = list(list_of_feature_samplers)
+        '''
+        Parameters
+        ----------
+        list_of_feature_samplers : list
+            each entry is either a feature sampler, or a tuple
+            (feature sampler, condition_on) where condition_on is one of
+            'a','z','y' naming the variable passed in the class position of
+            that sampler's sample(). A bare sampler is equivalent to
+            (sampler, 'z'), which is the usual conditioning.
+        '''
+        self.feature_samplers = [fs if isinstance(fs, tuple) else (fs, 'z')
+                                 for fs in list_of_feature_samplers]
+
+        for _, condition_on in self.feature_samplers:
+            if condition_on not in ['a', 'z', 'y']:
+                raise ValueError("condition_on must be 'a', 'z' or 'y', got "
+                                 + repr(condition_on))
 
     def sample(self, a, z=None, y=None):
         '''
         call sample() on every sampler and stack results horizontally
 
+        Each sampler is passed the variable named by its condition_on in the
+        class position, so a sampler that conditions on Z can be reused to
+        condition on Y instead.
+
         Returns
         -------
         x : np array of shape (n, total_feature_dims)
         '''
+        var = {'a': a, 'z': z, 'y': y}
         columns = []
-        for fs in self.feature_samplers:
-            xi = np.asarray(fs.sample(a, z, y))
-            if xi.ndim == 1:                    
+        for fs, condition_on in self.feature_samplers:
+            if var[condition_on] is None:
+                raise ValueError('FeatureSplit needs ' + condition_on +
+                                 ' to condition on it')
+            xi = np.asarray(fs.sample(a, var[condition_on], y))
+            if xi.ndim == 1:
                 xi = xi.reshape(-1, 1)
             columns.append(xi)
         return np.hstack(columns)
