@@ -247,6 +247,8 @@ class TargetFlipAllIndep(Target):
         Sampler.__init__(self,(Py_az,))
 
 mean_only_mvn = lambda mu :np.random.multivariate_normal(mu,np.eye(len(mu)))
+# Categorical disttribution. Set Mu to a list of tuples (categories, probabilities)
+cat = lambda categories,probs :np.random.choice(categories, p=probs)
 
 class Feature(Sampler):
     '''

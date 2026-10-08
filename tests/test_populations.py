@@ -1,5 +1,6 @@
 from mlsim import bias
-from mlsim.bias.bias_components import Feature
+from mlsim.bias.bias_components import Feature, cat
+import numpy as np
 
 def test_overall():
     assert(bias.Population())
@@ -81,3 +82,24 @@ def test_feature_sampler():
 
 #def test_feature_noise_sampler():
     # TODO: Check For Noise
+
+def test_base_categorical_lambda():
+    # Test generate the correct length and values are "A", "B", or "C"
+    cats = ["A", "B", "C"]
+    test_categorical = bias.Feature(dist=cat, mu=[(cats, [0.3, 0.6, 0.1])] * 2, N_a=20)
+    n=100
+    a = np.random.randint(0, 20, size=n)
+    z = np.random.randint(0, 2, size=n)
+    y = np.random.randint(0, 2, size=n)
+    x = test_categorical.sample(a,z,y)
+    assert len(x) == 100
+    assert np.all(np.isin(x, cats))
+
+    # Test that the generation correctly distributes the categories based on the probablities. 
+    test_categorical = bias.Feature(dist=cat, mu=[(cats, [0.0, 0.5, 0.5])] * 2)
+    a = np.random.randint(0,2,size=n)
+    x = test_categorical.sample(a, z, y)
+    assert 'A' not in x
+    assert np.all(np.isin(x, ["B", "C"]))
+
+
